@@ -1,21 +1,414 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Admin Demo - New Granthi Singh Federation"><title>Admin Demo | New Granthi Singh Federation</title><link rel="stylesheet" href="assets/style.css"></head>
-<body><a href="#main" class="skip-link" style="position:absolute;left:-9999px">Skip to content</a>
-<div class="top"><span>☎ +91 XXXXX XXXXX &nbsp; | &nbsp; ✉ info@example.org</span><span>ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ</span></div>
-<header><a class="brand" href="index.html"><span class="logo">ੴ</span><span>New Granthi Singh Federation<small style="display:block;font-size:12px;font-weight:500">Service | Unity | Humanity</small></span></a><nav aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About Us</a><a href="membership.html">Membership</a><a href="donations.html">Donations</a><a href="activities.html">Activities</a><a href="events.html">Events</a><a href="team.html">Our Team</a><a href="news.html">News</a><a href="contact.html">Contact</a></nav></header>
-<section class="page-intro"><div class="eyebrow" style="color:#0b57a4">New Granthi Singh Federation</div><h1>Admin Demo</h1><p>Service • Unity • Humanity</p></section><main id="main">
-<section class="content"><div class="section-head"><h2>Administration Features — Planning Page</h2><p>This is a public planning/demo page, not a secure administrator login.</p></div><div class="grid"><article class="tile"><h3>Membership records</h3><p>Future backend: member approvals, designations, ID cards and renewal tracking.</p></article><article class="tile"><h3>Donations & receipts</h3><p>Future backend: verified transactions, receipts, donor history and reconciliation.</p></article><article class="tile"><h3>Reports & permissions</h3><p>Future backend: role-based access, audit logs, expense reporting and secure records.</p></article></div><div class="tile" style="margin-top:18px"><b>Security note:</b> Do not put passwords, private member records, donation information or admin credentials into this static website. A secure backend and authentication system are required.</div></section>
-</main>
-<div class="cta"><div><h2>Support a Better Tomorrow</h2><div>Your time, contribution and seva can make a difference.</div></div><div class="actions"><a class="btn" href="donations.html">Donation Information</a><a class="btn secondary" href="membership.html">Become a Member</a></div></div>
-<footer><div class="footgrid"><div><div class="brand" style="color:white"><span class="logo">ੴ</span><span>New Granthi Singh Federation<small style="display:block;font-size:12px;font-weight:500">Service | Unity | Humanity</small></span></div><p>Serving humanity with compassion, unity and community action.</p></div><div><h3>Explore</h3><a href="about.html">About Us</a><a href="activities.html">Activities</a><a href="events.html">Events</a></div><div><h3>Get Involved</h3><a href="membership.html">Membership</a><a href="donations.html">Donations</a><a href="team.html">Our Team</a></div><div><h3>Contact</h3><a href="contact.html">Contact / Enquiry</a><a href="news.html">News & Updates</a><a href="admin-demo.html">Admin features (demo)</a></div></div><div class="copyright"><span>© <span id="year"></span> New Granthi Singh Federation. Verify all contact details before publishing.</span><span>ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ</span></div></footer>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071426">
+<title>Admin Panel | New Granthi Singh Federation</title>
+
+<style>
+:root {
+  --blue: #0b2d59;
+  --blue-dark: #071426;
+  --black: #080a0e;
+  --gold: #f5c542;
+  --white: #ffffff;
+  --light: #f3f6fb;
+  --text: #172b45;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  background: var(--light);
+}
+
+.topbar {
+  background: var(--black);
+  color: white;
+  padding: 12px 18px;
+  border-bottom: 3px solid var(--gold);
+  font-size: 14px;
+}
+
+.header {
+  background: var(--blue-dark);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 3px solid var(--gold);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.logo {
+  width: 66px;
+  height: 66px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 3px solid var(--gold);
+  background: white;
+  flex-shrink: 0;
+}
+
+.brand h1 {
+  font-size: 19px;
+  margin: 0 0 6px;
+  line-height: 1.3;
+}
+
+.brand p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--gold);
+}
+
+.menu-btn {
+  background: var(--blue);
+  color: white;
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+  font-size: 28px;
+  width: 54px;
+  height: 52px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.layout {
+  display: flex;
+  min-height: calc(100vh - 140px);
+}
+
+.sidebar {
+  width: 245px;
+  background: var(--blue-dark);
+  padding: 18px 12px;
+  flex-shrink: 0;
+}
+
+.sidebar h2 {
+  color: var(--gold);
+  font-size: 17px;
+  padding: 0 12px;
+}
+
+.sidebar a {
+  display: block;
+  padding: 13px 12px;
+  margin: 5px 0;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background: var(--gold);
+  color: var(--blue-dark);
+}
+
+.main {
+  flex: 1;
+  padding: 24px;
+  min-width: 0;
+}
+
+.welcome {
+  background: linear-gradient(120deg, var(--blue-dark), var(--blue));
+  color: white;
+  border: 1px solid var(--gold);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.welcome h2 {
+  color: var(--gold);
+  margin-top: 0;
+}
+
+.welcome p {
+  line-height: 1.6;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #dbe2ec;
+  border-top: 4px solid var(--gold);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 14px rgba(7, 20, 38, 0.06);
+}
+
+.card .icon {
+  font-size: 27px;
+}
+
+.card h3 {
+  color: var(--blue);
+  margin: 12px 0 8px;
+}
+
+.card p {
+  color: #5d6b7b;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--blue);
+  color: white;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 7px;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.btn:hover {
+  background: var(--blue-dark);
+}
+
+.notice {
+  background: #fff7df;
+  border-left: 4px solid var(--gold);
+  padding: 14px;
+  margin-top: 22px;
+  border-radius: 6px;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.footer {
+  background: var(--black);
+  color: white;
+  text-align: center;
+  padding: 18px;
+  border-top: 3px solid var(--gold);
+  font-size: 13px;
+}
+
+@media (max-width: 800px) {
+  .layout {
+    display: block;
+  }
+
+  .sidebar {
+    display: none;
+    width: 100%;
+    padding: 12px;
+  }
+
+  .sidebar.open {
+    display: block;
+  }
+
+  .main {
+    padding: 16px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .brand h1 {
+    font-size: 16px;
+  }
+
+  .logo {
+    width: 58px;
+    height: 58px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .welcome {
+    padding: 19px;
+  }
+
+  .topbar {
+    line-height: 1.8;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  ☎ <a href="tel:+917087993724" style="color:white;text-decoration:none">+91 70879-93724</a>
+  &nbsp; | &nbsp;
+  ✉ <a href="mailto:helpline.ngsf@gmail.com" style="color:white;text-decoration:none">helpline.ngsf@gmail.com</a>
+</div>
+
+<header class="header">
+  <div class="brand">
+    <img class="logo" src="assets/ngsf-logo.jpg"
+         alt="NGSF Logo"
+         onerror="this.style.display='none'">
+    <div>
+      <h1>New Granthi Singh Federation</h1>
+      <p>Service | Unity | Humanity</p>
+    </div>
+  </div>
+
+  <button class="menu-btn"
+          id="menuBtn"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="sidebar">☰</button>
+</header>
+
+<div class="layout">
+
+  <nav class="sidebar" id="sidebar">
+    <h2>⚙ Admin Menu</h2>
+    <a class="active" href="admin-demo.html">🏠 Dashboard</a>
+    <a href="index.html">🌐 View Website</a>
+    <a href="about.html">ℹ️ About Us</a>
+    <a href="membership.html">👥 Membership</a>
+    <a href="donations.html">💛 Donations</a>
+    <a href="activities.html">🤝 Activities</a>
+    <a href="events.html">📅 Events</a>
+    <a href="team.html">👨‍👩‍👧 Our Team</a>
+    <a href="news.html">📰 News</a>
+    <a href="contact.html">📞 Contact</a>
+    <a href="mailto:helpline.ngsf@gmail.com">✉ Email Support</a>
+  </nav>
+
+  <main class="main">
+    <section class="welcome">
+      <h2>Admin Dashboard</h2>
+      <p>Welcome to the New Granthi Singh Federation website management page.</p>
+      <p>Use the shortcuts below to open the website sections.</p>
+      <a class="btn" href="index.html">View Website →</a>
+    </section>
+
+    <section class="cards">
+
+      <article class="card">
+        <div class="icon">👥</div>
+        <h3>Membership</h3>
+        <p>Open the membership page and view the registration form.</p>
+        <a class="btn" href="membership.html">Open Membership</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">💛</div>
+        <h3>Donations</h3>
+        <p>Open the donation information and support page.</p>
+        <a class="btn" href="donations.html">Open Donations</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">🤝</div>
+        <h3>Activities</h3>
+        <p>View community service and federation activities.</p>
+        <a class="btn" href="activities.html">Open Activities</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">📅</div>
+        <h3>Events</h3>
+        <p>Open the events and programmes page.</p>
+        <a class="btn" href="events.html">Open Events</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">👨‍👩‍👧</div>
+        <h3>Our Team</h3>
+        <p>View the federation team and office bearers.</p>
+        <a class="btn" href="team.html">Open Team</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">📰</div>
+        <h3>News</h3>
+        <p>Open the federation news and updates page.</p>
+        <a class="btn" href="news.html">Open News</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">ℹ️</div>
+        <h3>About Us</h3>
+        <p>Read the federation mission and introduction.</p>
+        <a class="btn" href="about.html">Open About</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">📞</div>
+        <h3>Contact</h3>
+        <p>Find the official phone, WhatsApp and office address.</p>
+        <a class="btn" href="contact.html">Open Contact</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">✉️</div>
+        <h3>Email Support</h3>
+        <p>Contact the federation by email.</p>
+        <a class="btn" href="mailto:helpline.ngsf@gmail.com">Send Email</a>
+      </article>
+
+    </section>
+
+    <div class="notice">
+      <strong>Important:</strong> This is a front-end dashboard with shortcut links.
+      It does not provide secure administrator login or database management.
+      Membership records, donation transactions and other private information
+      are not stored or managed by this page.
+    </div>
+  </main>
+
+</div>
+
+<footer class="footer">
+  © <span id="year"></span> New Granthi Singh Federation
+  <br>Service | Unity | Humanity
+  <br>Plot No. 01, Sheranwala, Near Petrol Pump,
+  Sri Muktsar Sahib, Punjab, India – 152114
+</footer>
+
 <script>
-document.getElementById('year').textContent = new Date().getFullYear();
-document.querySelectorAll('form[data-demo-form]').forEach(form => form.addEventListener('submit', event => {
- event.preventDefault();
- const status = form.querySelector('.status');
- status.hidden = false;
- status.textContent = 'Thank you. This is a demonstration only; your information has not been sent or saved. Connect a secure backend before collecting real data.';
- form.reset();
-}));
-</script></body></html>
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.getElementById("sidebar");
+
+menuBtn.addEventListener("click", function () {
+  const isOpen = sidebar.classList.toggle("open");
+  menuBtn.textContent = isOpen ? "✕" : "☰";
+  menuBtn.setAttribute("aria-expanded", String(isOpen));
+  menuBtn.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
