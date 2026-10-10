@@ -1,21 +1,873 @@
+
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Membership - New Granthi Singh Federation"><title>Membership | New Granthi Singh Federation</title><link rel="stylesheet" href="assets/style.css"></head>
-<body><a href="#main" class="skip-link" style="position:absolute;left:-9999px">Skip to content</a>
-<div class="top"><span>☎ +91 XXXXX XXXXX &nbsp; | &nbsp; ✉ info@example.org</span><span>ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ</span></div>
-<header><a class="brand" href="index.html"><span class="logo">ੴ</span><span>New Granthi Singh Federation<small style="display:block;font-size:12px;font-weight:500">Service | Unity | Humanity</small></span></a><nav aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About Us</a><a href="membership.html" aria-current="page">Membership</a><a href="donations.html">Donations</a><a href="activities.html">Activities</a><a href="events.html">Events</a><a href="team.html">Our Team</a><a href="news.html">News</a><a href="contact.html">Contact</a></nav></header>
-<section class="page-intro"><div class="eyebrow" style="color:#0b57a4">New Granthi Singh Federation</div><h1>Membership</h1><p>Service • Unity • Humanity</p></section><main id="main">
-<section class="content"><div class="section-head"><h2>Join the Federation</h2><p>Share your details to express interest in membership or volunteering.</p></div><div class="form-card"><form data-demo-form><label for="fullName">Full name *</label><input id="fullName" name="fullName" required autocomplete="name"><label for="phone">Mobile number *</label><input id="phone" name="phone" required inputmode="tel" autocomplete="tel"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email"><label for="city">City / District</label><input id="city" name="city"><label for="interest">Interested as *</label><select id="interest" name="interest" required><option value="">Choose one</option><option>Member</option><option>Volunteer</option><option>District Coordinator</option><option>State Coordinator</option><option>Other</option></select><label for="message">Message (optional)</label><textarea id="message" name="message" rows="4"></textarea><button class="btn" type="submit">Submit Interest</button><p class="notice">Demo form only: this form does not securely store or send information yet. Connect a backend before collecting real member data.</p><p class="status" hidden role="status"></p></form></div></section>
-</main>
-<div class="cta"><div><h2>Support a Better Tomorrow</h2><div>Your time, contribution and seva can make a difference.</div></div><div class="actions"><a class="btn" href="donations.html">Donation Information</a><a class="btn secondary" href="membership.html">Become a Member</a></div></div>
-<footer><div class="footgrid"><div><div class="brand" style="color:white"><span class="logo">ੴ</span><span>New Granthi Singh Federation<small style="display:block;font-size:12px;font-weight:500">Service | Unity | Humanity</small></span></div><p>Serving humanity with compassion, unity and community action.</p></div><div><h3>Explore</h3><a href="about.html">About Us</a><a href="activities.html">Activities</a><a href="events.html">Events</a></div><div><h3>Get Involved</h3><a href="membership.html">Membership</a><a href="donations.html">Donations</a><a href="team.html">Our Team</a></div><div><h3>Contact</h3><a href="contact.html">Contact / Enquiry</a><a href="news.html">News & Updates</a><a href="admin-demo.html">Admin features (demo)</a></div></div><div class="copyright"><span>© <span id="year"></span> New Granthi Singh Federation. Verify all contact details before publishing.</span><span>ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ</span></div></footer>
-<script>
-document.getElementById('year').textContent = new Date().getFullYear();
-document.querySelectorAll('form[data-demo-form]').forEach(form => form.addEventListener('submit', event => {
- event.preventDefault();
- const status = form.querySelector('.status');
- status.hidden = false;
- status.textContent = 'Thank you. This is a demonstration only; your information has not been sent or saved. Connect a secure backend before collecting real data.';
- form.reset();
-}));
-</script></body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071426">
+  <meta name="description" content="Membership information and enquiry form for New Granthi Singh Federation, Sri Muktsar Sahib, Punjab.">
+  <title>Membership | New Granthi Singh Federation</title>
+
+  <style>
+    :root {
+      --blue: #0B2D59;
+      --navy: #071426;
+      --black: #080B10;
+      --gold: #F5C542;
+      --white: #FFFFFF;
+      --light: #F3F6FB;
+      --text: #26364B;
+      --muted: #637186;
+      --border: #D9E2EF;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.7;
+    }
+
+    a { text-decoration: none; }
+
+    .topbar {
+      background: var(--black);
+      color: var(--white);
+      padding: 10px 5%;
+      border-bottom: 3px solid var(--gold);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px 18px;
+      font-size: 14px;
+    }
+
+    .topbar a { color: var(--white); }
+    .topbar a:hover { color: var(--gold); }
+
+    .header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 16px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      color: var(--white);
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 76px;
+      height: 76px;
+      object-fit: contain;
+      border: 3px solid var(--gold);
+      border-radius: 50%;
+      background: var(--white);
+      flex-shrink: 0;
+    }
+
+    .brand h1 {
+      margin: 0;
+      color: var(--white);
+      font-size: clamp(17px, 3vw, 25px);
+      line-height: 1.3;
+    }
+
+    .brand p {
+      margin: 4px 0 0;
+      color: var(--gold);
+      font-size: 14px;
+    }
+
+    .menu-btn {
+      display: none;
+      width: 50px;
+      height: 48px;
+      border: 2px solid var(--gold);
+      border-radius: 9px;
+      background: var(--blue);
+      color: var(--white);
+      font-size: 27px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .nav {
+      background: var(--black);
+      padding: 0 5%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .nav a {
+      display: block;
+      color: var(--white);
+      padding: 12px 13px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .hero {
+      background: linear-gradient(125deg, var(--black), var(--navy), var(--blue));
+      color: var(--white);
+      padding: 58px 6%;
+      border-bottom: 5px solid var(--gold);
+    }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: auto;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero h2 {
+      color: var(--white);
+      font-size: clamp(34px, 6vw, 52px);
+      line-height: 1.15;
+      margin: 10px 0;
+    }
+
+    .hero p {
+      color: #E4EAF4;
+      font-size: 18px;
+      max-width: 760px;
+      margin-bottom: 0;
+    }
+
+    section { padding: 45px 0; }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .section-heading h2 {
+      color: var(--navy);
+      font-size: clamp(26px, 4vw, 35px);
+      margin: 0 0 8px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .intro {
+      max-width: 850px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .intro p { font-size: 17px; }
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .benefit-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 5px solid var(--gold);
+      border-radius: 13px;
+      padding: 25px;
+      box-shadow: 0 6px 20px rgba(7, 20, 38, 0.06);
+    }
+
+    .benefit-icon {
+      width: 55px;
+      height: 55px;
+      border-radius: 12px;
+      background: var(--navy);
+      color: var(--gold);
+      display: grid;
+      place-items: center;
+      font-size: 27px;
+      margin-bottom: 15px;
+    }
+
+    .benefit-card h3 {
+      color: var(--blue);
+      margin: 0 0 8px;
+    }
+
+    .benefit-card p { margin-bottom: 0; }
+
+    .light-section { background: var(--light); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      counter-reset: step;
+    }
+
+    .step {
+      counter-increment: step;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .step::before {
+      content: counter(step);
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .step h3 { color: var(--blue); }
+
+    .application-layout {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .info-panel {
+      background: var(--navy);
+      color: var(--white);
+      padding: 28px;
+      border-radius: 14px;
+      border-top: 5px solid var(--gold);
+    }
+
+    .info-panel h3 {
+      color: var(--gold);
+      margin-top: 0;
+    }
+
+    .info-panel a {
+      color: var(--gold);
+      overflow-wrap: anywhere;
+    }
+
+    .info-panel li { margin-bottom: 10px; }
+
+    .form-panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      box-shadow: 0 8px 25px rgba(7, 20, 38, 0.06);
+    }
+
+    .form-panel h3 {
+      color: var(--navy);
+      margin-top: 0;
+    }
+
+    .form-note {
+      background: #FFF6D9;
+      border-left: 4px solid var(--gold);
+      padding: 13px 15px;
+      border-radius: 5px;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .field { margin-bottom: 17px; }
+
+    label {
+      display: block;
+      font-weight: bold;
+      color: var(--navy);
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    input, select, textarea {
+      display: block;
+      width: 100%;
+      padding: 12px 13px;
+      border: 1px solid #BFCBDD;
+      border-radius: 7px;
+      font: inherit;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--white);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid var(--gold);
+      outline-offset: 1px;
+      border-color: var(--blue);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: normal;
+      margin: 12px 0 20px;
+    }
+
+    .consent input {
+      width: auto;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border: 2px solid var(--gold);
+      border-radius: 8px;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .btn:hover { background: #E8B72E; }
+
+    .btn-blue {
+      background: var(--blue);
+      color: var(--white);
+      border-color: var(--blue);
+    }
+
+    .btn-blue:hover {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .form-status {
+      margin-top: 15px;
+      color: var(--blue);
+      font-weight: bold;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .contact-card {
+      padding: 24px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--gold);
+      border-radius: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-card h3 { color: var(--blue); }
+    .contact-card a:not(.btn) { color: var(--blue); font-weight: bold; }
+
+    .cta {
+      text-align: center;
+      background: var(--navy);
+      color: var(--white);
+      border-top: 4px solid var(--gold);
+    }
+
+    .cta h2 { color: var(--white); }
+    .cta p { color: #E4EAF4; }
+
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 30px 5%;
+      border-top: 3px solid var(--gold);
+    }
+
+    .footer-grid {
+      width: min(1100px, 100%);
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 25px;
+    }
+
+    footer h3 { color: var(--gold); }
+    footer a { color: var(--gold); }
+    footer a:hover { text-decoration: underline; }
+
+    .copyright {
+      text-align: center;
+      border-top: 1px solid #38404C;
+      margin: 25px auto 0;
+      padding-top: 18px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .benefit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .application-layout { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .topbar { flex-direction: column; }
+      .header { padding: 14px 5%; }
+      .brand img { width: 60px; height: 60px; }
+      .brand h1 { font-size: 16px; }
+      .brand p { font-size: 12px; }
+      .menu-btn { display: block; }
+
+      .nav {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 8px 5% 14px;
+      }
+
+      .nav.open { display: flex; }
+      .nav a { padding: 12px; }
+
+      .benefit-grid,
+      .steps,
+      .contact-grid,
+      .footer-grid,
+      .form-row { grid-template-columns: 1fr; }
+
+      .hero { padding: 42px 5%; }
+      .form-panel, .info-panel { padding: 21px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <div>
+      ☎ <a href="tel:+917087993724">+91 70879-93724</a>
+      &nbsp; | &nbsp;
+      WhatsApp:
+      <a href="https://wa.me/9175973384624"
+         target="_blank" rel="noopener">+91 75973-384624</a>
+    </div>
+    <div>
+      ✉ <a href="mailto:helpline.ngsf@gmail.com">helpline.ngsf@gmail.com</a>
+    </div>
+  </div>
+
+  <header class="header">
+    <a class="brand" href="index.html" aria-label="Federation Home">
+      <img src="assets/ngsf-logo.jpg" alt="New Granthi Singh Federation Logo">
+      <div>
+        <h1>New Granthi Singh Federation</h1>
+        <p>Service | Unity | Humanity</p>
+      </div>
+    </a>
+
+    <button
+      class="menu-btn"
+      id="menuBtn"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="mainNav">☰</button>
+  </header>
+
+  <nav class="nav" id="mainNav" aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="membership.html" class="active" aria-current="page">Membership</a>
+    <a href="donations.html">Donations</a>
+    <a href="activities.html">Activities</a>
+    <a href="events.html">Events</a>
+    <a href="team.html">Our Team</a>
+    <a href="news.html">News</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin-demo.html">Admin</a>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ</div>
+        <h2>Become a Member</h2>
+        <p>
+          Join New Granthi Singh Federation in supporting community service,
+          unity and social welfare. Contact us to learn about membership
+          eligibility, available categories and the application process.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="intro">
+          <div class="section-heading">
+            <h2>Membership at NGSF</h2>
+            <p>Working together for a stronger and more supportive community.</p>
+          </div>
+          <p>
+            We welcome enquiries from people who wish to learn more about the
+            federation and its activities. Membership applications and
+            eligibility are subject to confirmation by the federation.
+            Please contact our official team for current terms and requirements.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="light-section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Why Get Involved?</h2>
+          <p>Ways to connect with community initiatives.</p>
+        </div>
+
+        <div class="benefit-grid">
+          <article class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true">🤝</div>
+            <h3>Community Service</h3>
+            <p>Learn about opportunities to contribute to community welfare and seva activities.</p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true">🌐</div>
+            <h3>Unity & Cooperation</h3>
+            <p>Connect with people who value cooperation, mutual support and shared responsibility.</p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true">📚</div>
+            <h3>Learning & Awareness</h3>
+            <p>Ask about educational, awareness and community development programmes.</p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true">❤️</div>
+            <h3>Social Welfare</h3>
+            <p>Find out how you may be able to support social welfare initiatives and people in need.</p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true">🙌</div>
+            <h3>Volunteer Participation</h3>
+            <p>Discuss your interests, skills and availability with the federation team.</p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true">📢</div>
+            <h3>Stay Connected</h3>
+            <p>Contact the federation for official announcements and information about activities.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-heading">
+          <h2>How to Enquire About Membership</h2>
+          <p>Follow these simple steps to get started.</p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <h3>Send an Enquiry</h3>
+            <p>Complete the enquiry form below or contact us by phone, WhatsApp or email.</p>
+          </article>
+
+          <article class="step">
+            <h3>Confirm the Requirements</h3>
+            <p>Ask our team about eligibility, documents, membership terms and any applicable fees.</p>
+          </article>
+
+          <article class="step">
+            <h3>Follow the Official Process</h3>
+            <p>Submit any required information through the process confirmed by the federation.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="light-section" id="membership-form">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Membership Enquiry Form</h2>
+          <p>Share your contact details so you can enquire about joining NGSF.</p>
+        </div>
+
+        <div class="application-layout">
+          <aside class="info-panel">
+            <h3>Before You Apply</h3>
+            <ul>
+              <li>This form is for a membership enquiry, not an official membership approval.</li>
+              <li>The federation must confirm eligibility and the application process.</li>
+              <li>Do not submit identity documents, bank details or other sensitive information through this form.</li>
+              <li>No membership fee or payment is collected on this page.</li>
+            </ul>
+
+            <hr style="border:0;border-top:1px solid #52647B;margin:22px 0;">
+
+            <h3>Need Help?</h3>
+            <p>Phone: <a href="tel:+917087993724">+91 70879-93724</a></p>
+            <p>WhatsApp: <a href="https://wa.me/9175973384624"
+                            target="_blank" rel="noopener">+91 75973-384624</a></p>
+            <p>Email: <a href="mailto:helpline.ngsf@gmail.com">helpline.ngsf@gmail.com</a></p>
+          </aside>
+
+          <div class="form-panel">
+            <h3>Send a Membership Enquiry</h3>
+
+            <div class="form-note">
+              Submitting this form opens your email app with a pre-filled message.
+              Your enquiry is not sent automatically by this website.
+            </div>
+
+            <form id="membershipForm">
+              <div class="form-row">
+                <div class="field">
+                  <label for="fullName">Full Name *</label>
+                  <input id="fullName" name="fullName" type="text"
+                         autocomplete="name" required maxlength="100"
+                         placeholder="Enter your full name">
+                </div>
+
+                <div class="field">
+                  <label for="phone">Phone Number *</label>
+                  <input id="phone" name="phone" type="tel"
+                         autocomplete="tel" required maxlength="25"
+                         placeholder="Enter your phone number">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="field">
+                  <label for="email">Email Address</label>
+                  <input id="email" name="email" type="email"
+                         autocomplete="email" maxlength="150"
+                         placeholder="Enter your email">
+                </div>
+
+                <div class="field">
+                  <label for="city">City / District</label>
+                  <input id="city" name="city" type="text"
+                         autocomplete="address-level2" maxlength="100"
+                         placeholder="Enter your city or district">
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="interest">Area of Interest *</label>
+                <select id="interest" name="interest" required>
+                  <option value="">Select an area</option>
+                  <option>Community Service</option>
+                  <option>Social Welfare</option>
+                  <option>Educational Activities</option>
+                  <option>Volunteer Participation</option>
+                  <option>Community Awareness</option>
+                  <option>General Membership Enquiry</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="message">Message (Optional)</label>
+                <textarea id="message" name="message" maxlength="1500"
+                  placeholder="Tell us briefly why you would like to join or ask about membership."></textarea>
+              </div>
+
+              <label class="consent" for="consent">
+                <input id="consent" type="checkbox" required>
+                <span>
+                  I agree to use the information provided above for responding
+                  to my membership enquiry. *
+                </span>
+              </label>
+
+              <button class="btn btn-blue" type="submit">
+                Prepare Email Enquiry
+              </button>
+
+              <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-heading">
+          <h2>Official Contact Information</h2>
+          <p>Contact the federation directly for verified membership details.</p>
+        </div>
+
+        <div class="contact-grid">
+          <article class="contact-card">
+            <h3>☎️ Phone & WhatsApp</h3>
+            <p>Phone: <a href="tel:+917087993724">+91 70879-93724</a></p>
+            <p>WhatsApp: <a href="https://wa.me/9175973384624"
+                            target="_blank" rel="noopener">+91 75973-384624</a></p>
+            <a class="btn" href="https://wa.me/9175973384624"
+               target="_blank" rel="noopener">Chat on WhatsApp</a>
+          </article>
+
+          <article class="contact-card">
+            <h3>✉️ Email & Registered Office</h3>
+            <p>Email: <a href="mailto:helpline.ngsf@gmail.com">helpline.ngsf@gmail.com</a></p>
+            <p>
+              Plot No. 01, Sheranwala, Near Petrol Pump,<br>
+              Sri Muktsar Sahib, Punjab (India) 152114.
+            </p>
+            <a class="btn btn-blue"
+               href="https://www.google.com/maps/search/?api=1&query=Plot%20No.%2001%2C%20Sheranwala%2C%20Near%20Petrol%20Pump%2C%20Sri%20Muktsar%20Sahib%2C%20Punjab%20152114"
+               target="_blank" rel="noopener">View Office Location</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <h2>Be Part of the Seva</h2>
+        <p>Reach out to New Granthi Singh Federation to learn about membership and participation.</p>
+        <a class="btn" href="#membership-form">Membership Enquiry</a>
+        <a class="btn btn-blue" href="contact.html">Contact Us</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h3>New Granthi Singh Federation</h3>
+        <p>Service | Unity | Humanity</p>
+        <p>ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ</p>
+      </div>
+
+      <div>
+        <h3>Registered Office</h3>
+        <p>
+          Plot No. 01, Sheranwala, Near Petrol Pump,<br>
+          Sri Muktsar Sahib, Punjab (India) 152114.
+        </p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Plot%20No.%2001%2C%20Sheranwala%2C%20Near%20Petrol%20Pump%2C%20Sri%20Muktsar%20Sahib%2C%20Punjab%20152114"
+           target="_blank" rel="noopener">View on Google Maps</a>
+      </div>
+
+      <div>
+        <h3>Quick Contact</h3>
+        <p><a href="tel:+917087993724">Call: +91 70879-93724</a></p>
+        <p><a href="https://wa.me/9175973384624"
+              target="_blank" rel="noopener">WhatsApp: +91 75973-384624</a></p>
+        <p><a href="mailto:helpline.ngsf@gmail.com">helpline.ngsf@gmail.com</a></p>
+      </div>
+    </div>
+
+    <div class="copyright">
+      © <span id="year"></span> New Granthi Singh Federation. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const mainNav = document.getElementById("mainNav");
+
+    menuBtn.addEventListener("click", function () {
+      const isOpen = mainNav.classList.toggle("open");
+
+      menuBtn.textContent = isOpen ? "✕" : "☰";
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+      menuBtn.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation menu" : "Open navigation menu"
+      );
+    });
+
+    mainNav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        mainNav.classList.remove("open");
+        menuBtn.textContent = "☰";
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.setAttribute("aria-label", "Open navigation menu");
+      });
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    document.getElementById("membershipForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const fullName = document.getElementById("fullName").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const city = document.getElementById("city").value.trim();
+      const interest = document.getElementById("interest").value;
+      const message = document.getElementById("message").value.trim();
+      const status = document.getElementById("formStatus");
+
+      const subject = "Membership Enquiry - New Granthi Singh Federation";
+
+      const body =
+        "Membership Enquiry\n\n" +
+        "Full Name: " + fullName + "\n" +
+        "Phone Number: " + phone + "\n" +
+        "Email Address: " + (email || "Not provided") + "\n" +
+        "City / District: " + (city || "Not provided") + "\n" +
+        "Area of Interest: " + interest + "\n\n" +
+        "Message:\n" + (message || "No additional message") + "\n";
+
+      const mailto =
+        "mailto:helpline.ngsf@gmail.com" +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
+
+      status.textContent =
+        "Your email app should open with the enquiry details. Please review and send the email there.";
+
+      window.location.href = mailto;
+    });
+  </script>
+
+</body>
+</html>
