@@ -1,21 +1,493 @@
+
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="About Us - New Granthi Singh Federation"><title>About Us | New Granthi Singh Federation</title><link rel="stylesheet" href="assets/style.css"></head>
-<body><a href="#main" class="skip-link" style="position:absolute;left:-9999px">Skip to content</a>
-<div class="top"><span>☎ +91 XXXXX XXXXX &nbsp; | &nbsp; ✉ info@example.org</span><span>ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ</span></div>
-<header><a class="brand" href="index.html"><span class="logo">ੴ</span><span>New Granthi Singh Federation<small style="display:block;font-size:12px;font-weight:500">Service | Unity | Humanity</small></span></a><nav aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html" aria-current="page">About Us</a><a href="membership.html">Membership</a><a href="donations.html">Donations</a><a href="activities.html">Activities</a><a href="events.html">Events</a><a href="team.html">Our Team</a><a href="news.html">News</a><a href="contact.html">Contact</a></nav></header>
-<section class="page-intro"><div class="eyebrow" style="color:#0b57a4">New Granthi Singh Federation</div><h1>About Us</h1><p>Service • Unity • Humanity</p></section><main id="main">
-<section class="content"><div class="section-head"><h2>Who We Are</h2><p>Service, unity and humanity at the heart of our work.</p></div><div class="grid"><article class="tile"><div class="emoji">ੴ</div><h3>Our Mission</h3><p>To encourage seva, community support, education and social welfare with compassion and transparency.</p></article><article class="tile"><div class="emoji">🌱</div><h3>Our Vision</h3><p>A united community where people can contribute their time, skills and resources to help others.</p></article><article class="tile"><div class="emoji">🤲</div><h3>Our Values</h3><p>Respect, service, integrity, inclusion and responsible stewardship of contributions.</p></article></div><div class="tile" style="margin-top:18px"><h3>About the Federation</h3><p>Please add the approved history, legal registration number, founding date, registered address and official mission text here. Only publish details that have been verified by the federation.</p></div></section>
-</main>
-<div class="cta"><div><h2>Support a Better Tomorrow</h2><div>Your time, contribution and seva can make a difference.</div></div><div class="actions"><a class="btn" href="donations.html">Donation Information</a><a class="btn secondary" href="membership.html">Become a Member</a></div></div>
-<footer><div class="footgrid"><div><div class="brand" style="color:white"><span class="logo">ੴ</span><span>New Granthi Singh Federation<small style="display:block;font-size:12px;font-weight:500">Service | Unity | Humanity</small></span></div><p>Serving humanity with compassion, unity and community action.</p></div><div><h3>Explore</h3><a href="about.html">About Us</a><a href="activities.html">Activities</a><a href="events.html">Events</a></div><div><h3>Get Involved</h3><a href="membership.html">Membership</a><a href="donations.html">Donations</a><a href="team.html">Our Team</a></div><div><h3>Contact</h3><a href="contact.html">Contact / Enquiry</a><a href="news.html">News & Updates</a><a href="admin-demo.html">Admin features (demo)</a></div></div><div class="copyright"><span>© <span id="year"></span> New Granthi Singh Federation. Verify all contact details before publishing.</span><span>ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ</span></div></footer>
-<script>
-document.getElementById('year').textContent = new Date().getFullYear();
-document.querySelectorAll('form[data-demo-form]').forEach(form => form.addEventListener('submit', event => {
- event.preventDefault();
- const status = form.querySelector('.status');
- status.hidden = false;
- status.textContent = 'Thank you. This is a demonstration only; your information has not been sent or saved. Connect a secure backend before collecting real data.';
- form.reset();
-}));
-</script></body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>About Us | New Granthi Singh Federation</title>
+  <meta name="description" content="Learn about New Granthi Singh Federation, our mission, values and commitment to seva, unity and humanity.">
+
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    :root {
+      --navy: #071A33;
+      --blue: #0B3D78;
+      --black: #080B10;
+      --gold: #F6C445;
+      --white: #FFFFFF;
+      --light: #F3F7FC;
+      --text: #26364B;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      line-height: 1.7;
+      background: var(--white);
+    }
+
+    a { text-decoration: none; }
+
+    .topbar {
+      background: var(--black);
+      color: var(--white);
+      border-bottom: 3px solid var(--gold);
+      padding: 12px 5%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px 20px;
+      font-size: 14px;
+    }
+
+    .topbar a { color: var(--white); }
+
+    .brandbar {
+      background: var(--navy);
+      color: var(--white);
+      padding: 18px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 86px;
+      height: 86px;
+      object-fit: contain;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      background: var(--white);
+      flex-shrink: 0;
+    }
+
+    .brand h1 {
+      color: var(--white);
+      font-size: clamp(19px, 3vw, 28px);
+      line-height: 1.25;
+      margin: 0;
+    }
+
+    .brand p {
+      color: var(--gold);
+      margin: 5px 0 0;
+    }
+
+    .menu-button {
+      display: none;
+      color: var(--white);
+      background: var(--blue);
+      border: 2px solid var(--gold);
+      border-radius: 10px;
+      font-size: 27px;
+      padding: 5px 15px;
+      cursor: pointer;
+    }
+
+    .main-nav {
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,.15);
+      padding: 0 5% 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .main-nav a {
+      color: var(--white);
+      font-weight: 700;
+      padding: 10px 12px;
+      border-radius: 7px;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: var(--gold);
+      background: rgba(246,196,69,.12);
+    }
+
+    .page-hero {
+      background: linear-gradient(120deg, var(--black), var(--navy), var(--blue));
+      color: var(--white);
+      padding: 60px 6%;
+      border-bottom: 5px solid var(--gold);
+    }
+
+    .page-hero .eyebrow {
+      color: var(--gold);
+      font-size: 15px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .page-hero h2 {
+      color: var(--white);
+      font-size: clamp(36px, 6vw, 56px);
+      line-height: 1.15;
+      margin: 12px 0;
+    }
+
+    .page-hero p {
+      color: #E4EAF4;
+      font-size: 19px;
+      margin-bottom: 0;
+    }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: auto;
+    }
+
+    section { padding: 55px 0; }
+
+    .intro { text-align: center; }
+
+    .intro h2,
+    .section-title {
+      color: var(--navy);
+      font-size: clamp(28px, 4vw, 38px);
+      margin: 0 0 12px;
+    }
+
+    .intro p {
+      max-width: 780px;
+      margin: auto;
+      color: #5E6D80;
+      font-size: 18px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 30px;
+    }
+
+    .card {
+      padding: 26px;
+      border: 1px solid #DCE4EF;
+      border-top: 4px solid var(--gold);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(7,26,51,.07);
+      background: var(--white);
+    }
+
+    .card .symbol {
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    .card h3 {
+      color: var(--blue);
+      font-size: 22px;
+      margin: 8px 0;
+    }
+
+    .values {
+      background: var(--light);
+    }
+
+    .values-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .value-item {
+      padding: 17px;
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid #DCE4EF;
+    }
+
+    .value-item strong { color: var(--blue); }
+
+    .cta {
+      background: var(--navy);
+      color: var(--white);
+      text-align: center;
+      padding: 45px 20px;
+      border-top: 4px solid var(--gold);
+    }
+
+    .cta h2 { color: var(--white); }
+
+    .cta p { color: #E4EAF4; }
+
+    .button {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: bold;
+      padding: 13px 23px;
+      margin: 8px;
+      border-radius: 10px;
+    }
+
+    .button.outline {
+      background: transparent;
+      border: 2px solid var(--gold);
+      color: var(--white);
+    }
+
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 30px 5%;
+      border-top: 3px solid var(--gold);
+    }
+
+    footer h3 { color: var(--gold); }
+
+    footer a { color: var(--gold); }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 25px;
+    }
+
+    @media (max-width: 700px) {
+      .brandbar { padding: 15px 5%; }
+      .brand img { width: 68px; height: 68px; }
+      .menu-button { display: block; }
+      .main-nav { display: none; padding: 10px 5% 18px; }
+      .main-nav.open { display: flex; flex-direction: column; }
+      .main-nav a { padding: 12px 14px; }
+      .topbar { flex-direction: column; }
+      .cards { grid-template-columns: 1fr; }
+      .values-list { grid-template-columns: 1fr; }
+      .page-hero { padding: 42px 5%; }
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <div>
+      ☎ <a href="tel:+917087993724">+91 70879-93724</a>
+      &nbsp; | &nbsp;
+      WhatsApp: <a href="https://wa.me/9175973384624" target="_blank" rel="noopener">+91 75973-384624</a>
+    </div>
+    <div>
+      ✉ <a href="mailto:helpline.ngsf@gmail.com">helpline.ngsf@gmail.com</a>
+    </div>
+    <div>ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ</div>
+  </div>
+
+  <header>
+    <div class="brandbar">
+      <a class="brand" href="index.html" aria-label="Federation Home">
+        <img src="assets/ngsf-logo.jpg" alt="New Granthi Singh Federation Logo">
+        <div>
+          <h1>New Granthi Singh Federation</h1>
+          <p>Service | Unity | Humanity</p>
+        </div>
+      </a>
+
+      <button class="menu-button" id="menuButton"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mainNav">☰</button>
+    </div>
+
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About Us</a>
+      <a href="membership.html">Membership</a>
+      <a href="donations.html">Donations</a>
+      <a href="activities.html">Activities</a>
+      <a href="events.html">Events</a>
+      <a href="team.html">Our Team</a>
+      <a href="news.html">News</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="eyebrow">New Granthi Singh Federation</div>
+        <h2>About Us</h2>
+        <p>ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ | Service • Unity • Humanity</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container intro">
+        <h2>Who We Are</h2>
+        <p>
+          New Granthi Singh Federation is committed to serving humanity
+          through community support, education, social welfare and
+          compassionate action inspired by Sikh values.
+        </p>
+      </div>
+
+      <div class="container cards">
+        <article class="card">
+          <div class="symbol" aria-hidden="true">ੴ</div>
+          <h3>Our Mission</h3>
+          <p>
+            To encourage seva, unity and humanitarian service, and to support
+            people and communities through responsible social initiatives.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="symbol" aria-hidden="true">🤝</div>
+          <h3>Our Vision</h3>
+          <p>
+            To build a caring, united and inclusive society where people help
+            one another with dignity, respect and compassion.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="symbol" aria-hidden="true">💛</div>
+          <h3>Our Commitment</h3>
+          <p>
+            We aim to promote community participation, support those in need
+            and work transparently toward meaningful social welfare.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="values">
+      <div class="container">
+        <div class="intro">
+          <h2>Our Core Values</h2>
+          <p>Our work is guided by service, honesty and respect for all.</p>
+        </div>
+
+        <div class="values-list">
+          <div class="value-item">
+            <strong>Seva — Selfless Service</strong><br>
+            Helping others without discrimination.
+          </div>
+          <div class="value-item">
+            <strong>Unity — Working Together</strong><br>
+            Bringing people together for positive change.
+          </div>
+          <div class="value-item">
+            <strong>Humanity — Respect for Everyone</strong><br>
+            Treating every person with dignity and compassion.
+          </div>
+          <div class="value-item">
+            <strong>Transparency — Responsible Work</strong><br>
+            Striving for honesty and accountability in our initiatives.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container intro">
+        <h2>Our Areas of Service</h2>
+        <p>
+          We seek to encourage meaningful community support through activities
+          such as education assistance, social welfare, volunteer participation,
+          community events and help for people in need.
+        </p>
+      </div>
+
+      <div class="container cards">
+        <article class="card">
+          <div class="symbol" aria-hidden="true">📚</div>
+          <h3>Education Support</h3>
+          <p>Encouraging learning and supporting educational opportunities.</p>
+        </article>
+
+        <article class="card">
+          <div class="symbol" aria-hidden="true">🫶</div>
+          <h3>Community Welfare</h3>
+          <p>Promoting compassion, cooperation and support within communities.</p>
+        </article>
+
+        <article class="card">
+          <div class="symbol" aria-hidden="true">🌍</div>
+          <h3>Volunteer Service</h3>
+          <p>Welcoming people who want to contribute their time and skills.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <h2>Join Us in Serving Humanity</h2>
+        <p>Become a member, volunteer or support a community initiative.</p>
+        <a class="button" href="membership.html">Become a Member</a>
+        <a class="button outline" href="contact.html">Contact Us</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <h3>New Granthi Singh Federation</h3>
+        <p>Service | Unity | Humanity</p>
+        <p>
+          Registered Office: Plot No. 01, Sheranwala, Near Petrol Pump,
+          Sri Muktsar Sahib, Punjab (India) – 152114.
+        </p>
+      </div>
+
+      <div>
+        <h3>Contact Information</h3>
+        <p><a href="tel:+917087993724">Call: +91 70879-93724</a></p>
+        <p><a href="https://wa.me/9175973384624" target="_blank" rel="noopener">WhatsApp: +91 75973-384624</a></p>
+        <p><a href="mailto:helpline.ngsf@gmail.com">helpline.ngsf@gmail.com</a></p>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:25px">
+      © <span id="year"></span> New Granthi Singh Federation. All rights reserved.
+    </p>
+  </footer>
+
+  <script>
+    const menuButton = document.getElementById("menuButton");
+    const mainNav = document.getElementById("mainNav");
+
+    menuButton.addEventListener("click", function () {
+      const isOpen = mainNav.classList.toggle("open");
+      menuButton.textContent = isOpen ? "✕" : "☰";
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation menu" : "Open navigation menu"
+      );
+    });
+
+    mainNav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        mainNav.classList.remove("open");
+        menuButton.textContent = "☰";
+        menuButton.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
