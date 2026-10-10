@@ -1,21 +1,720 @@
+
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Our Team - New Granthi Singh Federation"><title>Our Team | New Granthi Singh Federation</title><link rel="stylesheet" href="assets/style.css"></head>
-<body><a href="#main" class="skip-link" style="position:absolute;left:-9999px">Skip to content</a>
-<div class="top"><span>☎ +91 XXXXX XXXXX &nbsp; | &nbsp; ✉ info@example.org</span><span>ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ</span></div>
-<header><a class="brand" href="index.html"><span class="logo">ੴ</span><span>New Granthi Singh Federation<small style="display:block;font-size:12px;font-weight:500">Service | Unity | Humanity</small></span></a><nav aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About Us</a><a href="membership.html">Membership</a><a href="donations.html">Donations</a><a href="activities.html">Activities</a><a href="events.html">Events</a><a href="team.html" aria-current="page">Our Team</a><a href="news.html">News</a><a href="contact.html">Contact</a></nav></header>
-<section class="page-intro"><div class="eyebrow" style="color:#0b57a4">New Granthi Singh Federation</div><h1>Our Team</h1><p>Service • Unity • Humanity</p></section><main id="main">
-<section class="content"><div class="section-head"><h2>Management Team</h2><p>Official names, designations and photos can be added after approval.</p></div><div class="grid"><article class="tile"><div class="emoji">🧑‍💼</div><h3>President / Chairperson</h3><p>Add approved name and short biography.</p></article><article class="tile"><div class="emoji">🗂️</div><h3>Secretary</h3><p>Add approved name and responsibilities.</p></article><article class="tile"><div class="emoji">💼</div><h3>Treasurer</h3><p>Add approved name and role description.</p></article><article class="tile"><div class="emoji">📍</div><h3>State Coordinators</h3><p>Add verified regional contact information.</p></article><article class="tile"><div class="emoji">🤝</div><h3>District Coordinators</h3><p>Add verified district-level team information.</p></article><article class="tile"><div class="emoji">🙌</div><h3>Volunteers</h3><p>Celebrate volunteers who have agreed to be featured.</p></article></div></section>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Team | New Granthi Singh Federation</title>
+<meta name="description" content="Meet the leadership team of New Granthi Singh Federation, serving the community with sewa, unity and humanity.">
+
+<style>
+:root {
+  --blue: #0756a6;
+  --deep-blue: #062b55;
+  --black: #10141c;
+  --gold: #d9ad45;
+  --light-gold: #f5e5b5;
+  --white: #fff;
+  --light: #f4f7fb;
+  --text: #273244;
+  --muted: #687487;
+  --shadow: 0 12px 35px rgba(5,28,58,.12);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--light);
+  color: var(--text);
+  line-height: 1.65;
+}
+a { text-decoration: none; }
+img { max-width: 100%; }
+
+.topbar {
+  background: var(--black);
+  color: white;
+  text-align: center;
+  padding: 9px 12px;
+  font-size: 13px;
+}
+.topbar a { color: var(--light-gold); margin: 0 5px; }
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: white;
+  box-shadow: 0 3px 15px rgba(0,0,0,.08);
+}
+.navbar {
+  max-width: 1200px;
+  margin: auto;
+  padding: 12px 20px;
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.brand img {
+  width: 53px;
+  height: 53px;
+  object-fit: contain;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.brand-name {
+  color: var(--deep-blue);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+.brand-name span {
+  display: block;
+  color: #97701c;
+  font-size: 10px;
+  letter-spacing: .7px;
+  margin-top: 4px;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+.nav-links a {
+  padding: 8px;
+  color: var(--black);
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 6px;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: white;
+  background: var(--deep-blue);
+}
+.menu-toggle {
+  display: none;
+  border: 1px solid #d5dce7;
+  border-radius: 8px;
+  padding: 7px 12px;
+  background: white;
+  color: var(--deep-blue);
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.hero {
+  text-align: center;
+  color: white;
+  padding: 68px 20px 72px;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(217,173,69,.2), transparent 28%),
+    linear-gradient(120deg, var(--black), var(--deep-blue) 72%, var(--blue));
+  border-bottom: 5px solid var(--gold);
+}
+.eyebrow {
+  display: inline-block;
+  color: var(--light-gold);
+  border: 1px solid rgba(245,229,181,.6);
+  border-radius: 30px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+.hero h1 {
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1.2;
+  margin-bottom: 13px;
+}
+.hero h1 span { color: var(--gold); }
+.hero p {
+  max-width: 720px;
+  margin: auto;
+  color: #e0e8f4;
+}
+
+.container {
+  width: 100%;
+  max-width: 1120px;
+  padding: 0 20px;
+  margin: auto;
+}
+.section { padding: 55px 0; }
+.section-heading {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.section-heading h2 {
+  color: var(--deep-blue);
+  font-size: clamp(26px, 4vw, 35px);
+  margin-bottom: 8px;
+}
+.section-heading p {
+  color: var(--muted);
+  max-width: 720px;
+  margin: auto;
+}
+.gold-line {
+  width: 72px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 4px;
+  margin: 13px auto 0;
+}
+
+.profile-list { display: grid; gap: 28px; }
+.profile-card {
+  display: grid;
+  grid-template-columns: minmax(250px, 350px) minmax(0, 1fr);
+  background: white;
+  border: 1px solid #e0e6ef;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.profile-photo-wrap {
+  min-height: 340px;
+  padding: 16px;
+  background: linear-gradient(145deg, var(--deep-blue), var(--black));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  max-height: 480px;
+  object-fit: cover;
+  object-position: center 20%;
+  border: 3px solid var(--gold);
+  border-radius: 12px;
+  background: #e9edf2;
+}
+.profile-info {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.profile-label {
+  align-self: flex-start;
+  background: #fbf0cf;
+  color: #76540e;
+  border: 1px solid #e8d18b;
+  border-radius: 30px;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .4px;
+  margin-bottom: 15px;
+}
+.profile-info h3 {
+  color: var(--deep-blue);
+  font-size: clamp(23px, 3vw, 33px);
+  line-height: 1.3;
+  margin-bottom: 9px;
+}
+.profile-role {
+  color: #97701c;
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+.profile-info p { color: #526074; margin-bottom: 13px; }
+.location {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  color: var(--deep-blue);
+  font-weight: 700;
+}
+.profile-note {
+  margin-top: 17px;
+  padding: 11px 14px;
+  background: #faf7ef;
+  border-left: 4px solid var(--gold);
+  color: #5e512f;
+  font-size: 13px;
+}
+
+.team-section { background: #eaf0f7; }
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.team-card {
+  text-align: center;
+  background: white;
+  border: 1px solid #e0e6ef;
+  border-top: 4px solid var(--gold);
+  border-radius: 12px;
+  padding: 25px 18px;
+  box-shadow: 0 6px 20px rgba(5,28,58,.06);
+}
+.team-icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 14px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: var(--deep-blue);
+  color: var(--light-gold);
+  font-size: 24px;
+}
+.team-card h3 {
+  color: var(--deep-blue);
+  font-size: 17px;
+  margin-bottom: 7px;
+}
+.team-card p { color: var(--muted); font-size: 14px; }
+
+.join-banner {
+  background: linear-gradient(110deg, var(--deep-blue), var(--black));
+  color: white;
+  text-align: center;
+  border-radius: 15px;
+  padding: 34px 20px;
+  margin-top: 40px;
+  border-bottom: 4px solid var(--gold);
+}
+.join-banner h2 { font-size: 26px; margin-bottom: 9px; }
+.join-banner p {
+  max-width: 650px;
+  margin: 0 auto 20px;
+  color: #e0e8f4;
+}
+.btn {
+  display: inline-block;
+  padding: 12px 19px;
+  border-radius: 7px;
+  background: var(--gold);
+  color: var(--black);
+  font-size: 14px;
+  font-weight: 800;
+  margin: 4px;
+}
+.btn:hover { background: var(--light-gold); }
+
+footer {
+  background: var(--black);
+  color: white;
+  padding: 38px 20px 18px;
+}
+.footer-grid {
+  max-width: 1120px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 28px;
+}
+.footer-col h3 {
+  color: var(--gold);
+  font-size: 17px;
+  margin-bottom: 13px;
+}
+.footer-col p,
+.footer-col a {
+  color: #d0d7e2;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.footer-col a:hover { color: var(--light-gold); }
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 12px;
+}
+.copyright {
+  max-width: 1120px;
+  margin: 26px auto 0;
+  padding-top: 16px;
+  border-top: 1px solid #343a46;
+  text-align: center;
+  color: #aeb8c8;
+  font-size: 12px;
+}
+
+@media (max-width: 1000px) {
+  .menu-toggle { display: block; flex-shrink: 0; }
+  .navbar { flex-wrap: wrap; }
+  .nav-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px 0 5px;
+    border-top: 1px solid #e5e9ef;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 11px 13px; font-size: 14px; }
+  .profile-card {
+    grid-template-columns: minmax(220px, 290px) minmax(0, 1fr);
+  }
+  .profile-info { padding: 24px; }
+}
+@media (max-width: 700px) {
+  .topbar { font-size: 11px; line-height: 1.9; }
+  .navbar { padding: 10px 13px; }
+  .brand img { width: 45px; height: 45px; }
+  .brand-name { font-size: 11px; }
+  .brand-name span { font-size: 9px; }
+  .hero { padding: 50px 17px 56px; }
+  .section { padding: 42px 0; }
+  .profile-card { grid-template-columns: 1fr; }
+  .profile-photo-wrap { min-height: 0; padding: 14px; }
+  .profile-photo {
+    height: auto;
+    min-height: 0;
+    max-height: 520px;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+  .profile-info { padding: 23px 20px 27px; }
+  .team-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+  .join-banner h2 { font-size: 23px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <a href="tel:+917087993724">Call: +91 70879-93724</a> |
+  <a href="https://wa.me/9175973384624" target="_blank" rel="noopener">WhatsApp</a> |
+  <a href="mailto:helpline.ngsf@gmail.com">Email Us</a>
+</div>
+
+<header>
+  <nav class="navbar" aria-label="Main navigation">
+    <a class="brand" href="index.html">
+      <img src="assets/ngsf-logo.jpg" alt="NGSF Logo">
+      <span class="brand-name">
+        NEW GRANTHI SINGH FEDERATION
+        <span>SEWA • UNITY • HUMANITY</span>
+      </span>
+    </a>
+
+    <button class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="navLinks">☰</button>
+
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="membership.html">Membership</a>
+      <a href="donations.html">Donations</a>
+      <a href="activities.html">Activities</a>
+      <a href="events.html">Events</a>
+      <a class="active" href="team.html" aria-current="page">Our Team</a>
+      <a href="news.html">News</a>
+      <a href="contact.html">Contact</a>
+      <a href="admin-demo.html">Admin Demo</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+  <div class="eyebrow">Our Leadership & Team</div>
+  <h1>Meet Our <span>Team</span></h1>
+  <p>
+    United by sewa, dedication and humanity, we work together
+    to support our community and serve society.
+  </p>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Our Leadership</h2>
+      <p>Meet the leaders associated with New Granthi Singh Federation.</p>
+      <div class="gold-line"></div>
+    </div>
+
+    <div class="profile-list">
+
+      <!-- Founder and CEO -->
+      <article class="profile-card">
+        <div class="profile-photo-wrap">
+          <img class="profile-photo"
+               src="assets/madho-singh-khalsa.png"
+               alt="Bhai Madho Singh Khalsa Ji, CEO and Founder"
+               loading="lazy">
+        </div>
+        <div class="profile-info">
+          <span class="profile-label">Founder & CEO</span>
+          <h3>Bhai Madho Singh Khalsa Ji</h3>
+          <div class="profile-role">CEO & Founder</div>
+          <p>
+            Bhai Madho Singh Khalsa Ji is the CEO and Founder of
+            New Granthi Singh Federation.
+          </p>
+          <div class="location">
+            <span aria-hidden="true">📍</span>
+            <span>Sri Muktsar Sahib, Punjab, India</span>
+          </div>
+          <div class="profile-note">
+            <strong>New Granthi Singh Federation</strong><br>
+            Sewa, unity, dignity and community welfare.
+          </div>
+        </div>
+      </article>
+
+      <!-- Haryana State Chairman and Professor -->
+      <article class="profile-card">
+        <div class="profile-photo-wrap">
+          <img class="profile-photo"
+               src="assets/harmesh-singh-khalsa.jpg"
+               alt="Bhai Harmesh Singh Khalsa Ji"
+               loading="lazy">
+        </div>
+        <div class="profile-info">
+          <span class="profile-label">Haryana State Leadership</span>
+          <h3>Bhai Harmesh Singh Khalsa Ji</h3>
+          <div class="profile-role">Haryana State Chairman & Professor</div>
+          <p>
+            Bhai Harmesh Singh Khalsa Ji serves as Haryana State Chairman
+            of New Granthi Singh Federation and is a Professor.
+          </p>
+          <div class="location">
+            <span aria-hidden="true">📍</span>
+            <span>Panchkula, Haryana, India</span>
+          </div>
+          <div class="profile-note">
+            <strong>New Granthi Singh Federation</strong><br>
+            Serving the community with dedication and the spirit of sewa.
+          </div>
+        </div>
+      </article>
+
+      <!-- District Chairman and Reporter -->
+      <article class="profile-card">
+        <div class="profile-photo-wrap">
+          <img class="profile-photo"
+               src="assets/beant-singh-khalsa.png"
+               alt="Bhai Beant Singh Khalsa Ji"
+               loading="lazy">
+        </div>
+        <div class="profile-info">
+          <span class="profile-label">District Leadership</span>
+          <h3>Bhai Beant Singh Khalsa Ji</h3>
+          <div class="profile-role">
+            District Sri Muktsar Sahib Chairman & Reporter
+          </div>
+          <p>
+            Bhai Beant Singh Khalsa Ji serves as District Sri Muktsar Sahib
+            Chairman of New Granthi Singh Federation and works as a Reporter.
+          </p>
+          <div class="location">
+            <span aria-hidden="true">📍</span>
+            <span>Sri Muktsar Sahib, Punjab, India</span>
+          </div>
+          <div class="profile-note">
+            <strong>New Granthi Singh Federation</strong><br>
+            Committed to community service and communication.
+          </div>
+        </div>
+      </article>
+
+      <!-- NGSF Professor -->
+      <article class="profile-card">
+        <div class="profile-photo-wrap">
+          <img class="profile-photo"
+               src="assets/ram-singh-khalsa.jpg"
+               alt="Bhai Ram Singh Khalsa Ji, NGSF Professor"
+               loading="lazy">
+        </div>
+        <div class="profile-info">
+          <span class="profile-label">Federation Faculty</span>
+          <h3>Bhai Ram Singh Khalsa Ji</h3>
+          <div class="profile-role">NGSF Professor</div>
+          <p>
+            Bhai Ram Singh Khalsa Ji is associated with New Granthi Singh
+            Federation as a Professor.
+          </p>
+          <div class="location">
+            <span aria-hidden="true">📍</span>
+            <span>Raisingh Nagar, Rajasthan, India</span>
+          </div>
+          <div class="profile-note">
+            <strong>New Granthi Singh Federation</strong><br>
+            Promoting learning, community connection and the spirit of sewa.
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="section team-section">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Our Team Structure</h2>
+      <p>
+        Roles that help coordinate programmes, administration,
+        volunteering and community activities.
+      </p>
+      <div class="gold-line"></div>
+    </div>
+
+    <div class="team-grid">
+      <article class="team-card">
+        <div class="team-icon" aria-hidden="true">★</div>
+        <h3>Leadership</h3>
+        <p>Guiding the Federation's mission, vision and organisational direction.</p>
+      </article>
+
+      <article class="team-card">
+        <div class="team-icon" aria-hidden="true">✦</div>
+        <h3>Administration</h3>
+        <p>Supporting communication, meetings, records and administration.</p>
+      </article>
+
+      <article class="team-card">
+        <div class="team-icon" aria-hidden="true">₹</div>
+        <h3>Finance</h3>
+        <p>Supporting financial record-keeping and responsible administration.</p>
+      </article>
+
+      <article class="team-card">
+        <div class="team-icon" aria-hidden="true">🤝</div>
+        <h3>Community Programmes</h3>
+        <p>Helping coordinate activities, outreach and service initiatives.</p>
+      </article>
+
+      <article class="team-card">
+        <div class="team-icon" aria-hidden="true">♥</div>
+        <h3>Volunteers</h3>
+        <p>Encouraging teamwork and supporting community activities.</p>
+      </article>
+
+      <article class="team-card">
+        <div class="team-icon" aria-hidden="true">☼</div>
+        <h3>Team Members</h3>
+        <p>Contributing time and skills to support the Federation's work.</p>
+      </article>
+    </div>
+
+    <div class="join-banner">
+      <h2>Be a Part of Our Mission</h2>
+      <p>
+        Interested in joining or supporting New Granthi Singh Federation?
+        Contact us to learn more about membership and volunteering.
+      </p>
+      <a class="btn" href="membership.html">Explore Membership</a>
+      <a class="btn" href="contact.html">Contact Us</a>
+    </div>
+  </div>
+</section>
 </main>
-<div class="cta"><div><h2>Support a Better Tomorrow</h2><div>Your time, contribution and seva can make a difference.</div></div><div class="actions"><a class="btn" href="donations.html">Donation Information</a><a class="btn secondary" href="membership.html">Become a Member</a></div></div>
-<footer><div class="footgrid"><div><div class="brand" style="color:white"><span class="logo">ੴ</span><span>New Granthi Singh Federation<small style="display:block;font-size:12px;font-weight:500">Service | Unity | Humanity</small></span></div><p>Serving humanity with compassion, unity and community action.</p></div><div><h3>Explore</h3><a href="about.html">About Us</a><a href="activities.html">Activities</a><a href="events.html">Events</a></div><div><h3>Get Involved</h3><a href="membership.html">Membership</a><a href="donations.html">Donations</a><a href="team.html">Our Team</a></div><div><h3>Contact</h3><a href="contact.html">Contact / Enquiry</a><a href="news.html">News & Updates</a><a href="admin-demo.html">Admin features (demo)</a></div></div><div class="copyright"><span>© <span id="year"></span> New Granthi Singh Federation. Verify all contact details before publishing.</span><span>ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ</span></div></footer>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h3>New Granthi Singh Federation</h3>
+      <p>
+        Dedicated to sewa, unity, dignity and community welfare.
+        Together, we can make a positive difference.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="membership.html">Membership</a>
+        <a href="donations.html">Donations</a>
+        <a href="activities.html">Activities</a>
+        <a href="events.html">Events</a>
+        <a href="team.html">Our Team</a>
+        <a href="news.html">News</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h3>Contact Information</h3>
+      <p>
+        <strong>Registered Office:</strong><br>
+        Plot No. 01, Sheranwala, Near Petrol Pump,<br>
+        Sri Muktsar Sahib, Punjab (India) 152114
+      </p>
+      <p style="margin-top:12px;">
+        Phone:
+        <a href="tel:+917087993724">+91 70879-93724</a>
+      </p>
+      <p>
+        WhatsApp:
+        <a href="https://wa.me/9175973384624" target="_blank" rel="noopener">
+          +91 75973-384624
+        </a>
+      </p>
+      <p>
+        Email:
+        <a href="mailto:helpline.ngsf@gmail.com">helpline.ngsf@gmail.com</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="copyright">
+    © <span id="year"></span> New Granthi Singh Federation.
+    All Rights Reserved.
+  </div>
+</footer>
+
 <script>
-document.getElementById('year').textContent = new Date().getFullYear();
-document.querySelectorAll('form[data-demo-form]').forEach(form => form.addEventListener('submit', event => {
- event.preventDefault();
- const status = form.querySelector('.status');
- status.hidden = false;
- status.textContent = 'Thank you. This is a demonstration only; your information has not been sent or saved. Connect a secure backend before collecting real data.';
- form.reset();
-}));
-</script></body></html>
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", function () {
+  const isOpen = navLinks.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute(
+    "aria-label",
+    isOpen ? "Close navigation menu" : "Open navigation menu"
+  );
+  menuToggle.textContent = isOpen ? "✕" : "☰";
+});
+
+navLinks.querySelectorAll("a").forEach(function (link) {
+  link.addEventListener("click", function () {
+    navLinks.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation menu");
+    menuToggle.textContent = "☰";
+  });
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
