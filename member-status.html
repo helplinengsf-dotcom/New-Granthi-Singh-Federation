@@ -70,7 +70,7 @@ a{color:var(--blue)}
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SUPABASE_URL = "https://oqelvpojoaylmwdbmwcn.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_rgbSAlgeSBnVaBtYWlQOdA_ltIW3Hka";
 
 const db = window.supabase.createClient(
   SUPABASE_URL,
@@ -113,7 +113,7 @@ async function loadApplications() {
 
   const { data, error } = await db
     .from("ngsf_member_registrations")
-    .select("id, full_name, interest, status, created_at")
+    .select("id, full_name, mobile, district, state, status, created_at")
     .eq("user_id", currentUser.id)
     .order("created_at", { ascending: false });
 
@@ -144,8 +144,8 @@ async function loadApplications() {
     badge.textContent = app.status || "Pending";
     status.append("Status: ", badge);
 
-    const interest = document.createElement("p");
-    interest.textContent = "Area of Interest: " + (app.interest || "—");
+    const details = document.createElement("p");
+    details.textContent = "Mobile: " + (app.mobile || "—") + " · District: " + (app.district || "—") + " · State: " + (app.state || "—");
 
     const date = document.createElement("p");
     date.textContent = "Submitted: " + formatDate(app.created_at);
@@ -154,7 +154,7 @@ async function loadApplications() {
     ref.className = "muted";
     ref.textContent = "Application ID: " + app.id;
 
-    card.append(title, status, interest, date, ref);
+    card.append(title, status, details, date, ref);
     $("applications").appendChild(card);
   });
 }
@@ -219,7 +219,7 @@ db.auth.onAuthStateChange((event, session) => {
   }
 });
 
-if (SUPABASE_PUBLISHABLE_KEY === "sb_publishable_rgbSAlgeSBnVaBtYWlQOdA_ltIW3Hka) {
+if (!SUPABASE_PUBLISHABLE_KEY || SUPABASE_PUBLISHABLE_KEY.includes("PASTE_YOUR_") || SUPABASE_PUBLISHABLE_KEY.startsWith("sb_secret_")) {
   showMessage("ਕੋਡ ਵਿੱਚ ਆਪਣੀ Supabase publishable key ਪਾਓ।", true);
 } else {
   initialize();
