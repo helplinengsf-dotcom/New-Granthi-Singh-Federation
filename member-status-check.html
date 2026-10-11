@@ -106,7 +106,7 @@ async function loadApplications() {
   // RLS ensures a member can read only their own rows.
   const { data, error } = await db
     .from("ngsf_member_registrations")
-    .select("id,full_name,status,created_at,city,interest")
+    .select("id,full_name,mobile,district,state,status,created_at")
     .eq("user_id", user.id)
     .order("created_at", { ascending: false });
 
