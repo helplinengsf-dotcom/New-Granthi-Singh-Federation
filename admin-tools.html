@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pa">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071426">
+<title>NGSF Admin Tools</title>
+<style>
+:root{--navy:#071426;--blue:#0b2d59;--gold:#f5c542;--bg:#f3f6fb;--text:#26364b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 Arial,sans-serif}
+header{background:var(--navy);color:#fff;padding:18px 5%;border-bottom:4px solid var(--gold)}header a{color:var(--gold);margin-right:12px}
+main{width:min(1000px,94%);margin:22px auto}.card{background:#fff;border:1px solid #d9e2ef;border-top:5px solid var(--gold);border-radius:12px;padding:18px;margin-bottom:18px;box-shadow:0 5px 18px #0714260d}
+h1,h2{color:var(--navy);margin-top:0}label{display:block;font-weight:bold;margin:12px 0 5px}
+input,select,textarea{width:100%;padding:11px;border:1px solid #bbc8d8;border-radius:8px;font:inherit;background:white}
+button{border:0;border-radius:8px;padding:11px 15px;margin:8px 6px 0 0;background:var(--gold);color:var(--navy);font-weight:bold;font-size:15px}
+button.secondary{background:var(--blue);color:white}button.danger{background:#8d2020;color:white}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.item{border:1px solid #d9e2ef;border-radius:10px;padding:14px;margin:12px 0;overflow-wrap:anywhere}.details{background:#f3f6fb;padding:10px;border-radius:8px;white-space:pre-wrap;overflow-wrap:anywhere}.status{background:#e8f6ec;padding:11px;border-radius:8px;margin:12px 0;overflow-wrap:anywhere}.error{background:#ffeded;color:#8d2020;padding:11px;border-radius:8px;margin:12px 0;overflow-wrap:anywhere}.muted{font-size:13px;color:#657386}.hidden{display:none!important}
+@media(max-width:650px){.grid{grid-template-columns:1fr}main{width:94%}}
+</style></head>
+<body>
+<header><strong>NGSF — Admin Tools</strong><nav><a href="admin-demo.html">Admin Dashboard</a><a href="index.html">Home</a></nav></header>
+<main>
+<section class="card" id="loginCard">
+<h1>Admin Login</h1><p>Complaints ਅਤੇ Coordinator ID applications ਦਾ ਪ੍ਰਬੰਧ ਕਰਨ ਲਈ authorized NGSF Admin ਵਜੋਂ login ਕਰੋ।</p>
+<form id="loginForm"><label for="email">Admin Email</label><input id="email" type="email" autocomplete="username" required>
+<label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required>
+<button id="loginBtn">Login</button></form><button id="logoutBtn" class="danger hidden" type="button">Sign Out</button><div id="message" aria-live="polite"></div>
+</section>
+<div id="tools" class="hidden">
+<section class="card" id="complaints">
+<h2>Complaints Management</h2><div class="grid"><div><label for="complaintFilter">Status</label><select id="complaintFilter"><option value="">All statuses</option><option>Pending</option><option>In Progress</option><option>Resolved</option><option>Closed</option></select></div><div><label for="complaintSearch">Search</label><input id="complaintSearch" placeholder="Complaint code, subject or email/user ID"></div></div>
+<button id="reloadComplaints">Refresh Complaints</button><div id="complaintList">Load complaints to begin.</div>
+</section>
+<section class="card" id="coordinators">
+<h2>Coordinator ID Applications</h2><div class="grid"><div><label for="coordFilter">Status</label><select id="coordFilter"><option value="">All statuses</option><option value="pending">Pending</option><option value="approved">Approved</option><option value="rejected">Rejected</option></select></div><div><label for="coordSearch">Search</label><input id="coordSearch" placeholder="Name, email, phone or district"></div></div>
+<button id="reloadCoordinators">Refresh Applications</button><div id="coordinatorList">Load applications to begin.</div>
+</section>
+</div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+"use strict";
+const SUPABASE_URL="https://oqelvpojoaylmwdbmwcn.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_rgbSAlgeSBnVaBtYWlQOdA_ltIW3Hka";
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+const $=id=>document.getElementById(id);let user=null,complaintRows=[],coordRows=[];
+function message(text,bad=false){$("message").replaceChildren();const d=document.createElement("div");d.className=bad?"error":"status";d.textContent=text;$("message").append(d)}
+function txt(v){return v===null||v===undefined||v===""?"—":String(v)}
+async function checkAdmin(u){
+ const {data,error}=await db.from("ngsf_admins").select("user_id").eq("user_id",u.id).maybeSingle();
+ if(error||!data){await db.auth.signOut();message("Admin verification failed: "+(error?error.message:"ਇਹ account authorized Admin ਨਹੀਂ ਹੈ।"),true);return false}
+ user=u;$("loginCard").querySelector("form").classList.add("hidden");$("logoutBtn").classList.remove("hidden");$("tools").classList.remove("hidden");message("Authorized Admin: "+u.email);
+ await Promise.all([loadComplaints(),loadCoordinators()]);return true
+}
+async function loadComplaints(){
+ $("complaintList").textContent="Loading…";
+ let q=db.from("ngsf_complaints").select("id,complaint_code,user_id,category,subject,description,status,assigned_coordinator_id,coordinator_note,resolution_summary,created_at,updated_at,resolved_at").order("created_at",{ascending:false}).limit(200);
+ const {data,error}=await q;
+ if(error){$("complaintList").textContent="Load failed: "+error.message+" — Supabase RLS policy may need to allow the authorized Admin.";return}
+ complaintRows=data||[];renderComplaints()
+}
+function renderComplaints(){
+ const f=$("complaintFilter").value.toLowerCase(),s=$("complaintSearch").value.trim().toLowerCase();
+ const rows=complaintRows.filter(r=>(!f||r.status.toLowerCase()===f)&&(!s||[r.complaint_code,r.subject,r.category,r.user_id,r.description].some(v=>String(v||"").toLowerCase().includes(s))));
+ $("complaintList").replaceChildren();
+ if(!rows.length){$("complaintList").textContent="ਕੋਈ complaint ਨਹੀਂ ਮਿਲੀ।";return}
+ rows.forEach(r=>{
+ const el=document.createElement("article");el.className="item";
+ const h=document.createElement("h3");h.textContent=txt(r.complaint_code)+" — "+txt(r.subject);el.append(h);
+ const info=document.createElement("div");info.className="details";info.textContent="Category: "+txt(r.category)+"\nUser ID: "+txt(r.user_id)+"\nSubmitted: "+new Date(r.created_at).toLocaleString()+"\nDescription: "+txt(r.description);el.append(info);
+ const lab=document.createElement("label");lab.textContent="Complaint status";el.append(lab);
+ const sel=document.createElement("select");["Pending","In Progress","Resolved","Closed"].forEach(v=>{const o=document.createElement("option");o.value=v;o.textContent=v;sel.append(o)});sel.value=r.status;el.append(sel);
+ const nlab=document.createElement("label");nlab.textContent="Coordinator note";el.append(nlab);const note=document.createElement("textarea");note.rows=2;note.maxLength=5000;note.value=r.coordinator_note||"";el.append(note);
+ const rlab=document.createElement("label");rlab.textContent="Resolution summary";el.append(rlab);const summary=document.createElement("textarea");summary.rows=2;summary.maxLength=5000;summary.value=r.resolution_summary||"";el.append(summary);
+ const b=document.createElement("button");b.textContent="Save Complaint";b.onclick=async()=>{b.disabled=true;const update={status:sel.value,coordinator_note:note.value.trim()||null,resolution_summary:summary.value.trim()||null,updated_at:new Date().toISOString()};if(sel.value==="Resolved"||sel.value==="Closed")update.resolved_at=new Date().toISOString();else update.resolved_at=null;const {error}=await db.from("ngsf_complaints").update(update).eq("id",r.id);b.disabled=false;if(error){alert("Save failed: "+error.message)}else{alert("Complaint updated.");await loadComplaints()}};el.append(b);$("complaintList").append(el)
+ })
+}
+async function loadCoordinators(){
+ $("coordinatorList").textContent="Loading…";
+ const {data,error}=await db.from("coordinator_id_applications").select("id,user_id,full_name,phone,email,photo_url,designation,district,state,address,application_status,rejection_reason,id_card_number,approved_at,created_at").order("created_at",{ascending:false}).limit(200);
+ if(error){$("coordinatorList").textContent="Load failed: "+error.message+" — Supabase RLS policy may need to allow the authorized Admin.";return}
+ coordRows=data||[];renderCoordinators()
+}
+function renderCoordinators(){
+ const f=$("coordFilter").value,s=$("coordSearch").value.trim().toLowerCase();
+ const rows=coordRows.filter(r=>(!f||r.application_status===f)&&(!s||[r.full_name,r.email,r.phone,r.district,r.state,r.id_card_number].some(v=>String(v||"").toLowerCase().includes(s))));
+ $("coordinatorList").replaceChildren();if(!rows.length){$("coordinatorList").textContent="ਕੋਈ coordinator application ਨਹੀਂ ਮਿਲੀ।";return}
+ rows.forEach(r=>{const el=document.createElement("article");el.className="item";const h=document.createElement("h3");h.textContent=txt(r.full_name);el.append(h);const info=document.createElement("div");info.className="details";info.textContent="Application ID: "+r.id+"\nUser ID: "+r.user_id+"\nPhone: "+txt(r.phone)+"\nEmail: "+txt(r.email)+"\nDesignation: "+txt(r.designation)+"\nDistrict: "+txt(r.district)+"\nState: "+txt(r.state)+"\nAddress: "+txt(r.address)+"\nSubmitted: "+new Date(r.created_at).toLocaleString()+"\nCurrent ID Card: "+txt(r.id_card_number);el.append(info);
+ const lab=document.createElement("label");lab.textContent="Decision";el.append(lab);const sel=document.createElement("select");[["pending","Pending"],["approved","Approved"],["rejected","Rejected"]].forEach(([v,t])=>{const o=document.createElement("option");o.value=v;o.textContent=t;sel.append(o)});sel.value=r.application_status;el.append(sel);
+ const reasonLabel=document.createElement("label");reasonLabel.textContent="Rejection reason (required when rejected)";el.append(reasonLabel);const reason=document.createElement("textarea");reason.rows=2;reason.maxLength=2000;reason.value=r.rejection_reason||"";el.append(reason);
+ const idLabel=document.createElement("label");idLabel.textContent="Coordinator ID card number (required when approved)";el.append(idLabel);const idno=document.createElement("input");idno.maxLength=60;idno.value=r.id_card_number||"";idno.placeholder="Example: NGSF-CO-0001";el.append(idno);
+ const b=document.createElement("button");b.textContent="Save Decision";b.onclick=async()=>{if(sel.value==="rejected"&&!reason.value.trim()){alert("ਕਿਰਪਾ ਕਰਕੇ rejection reason ਭਰੋ।");return}if(sel.value==="approved"&&!idno.value.trim()){alert("Approved ਕਰਨ ਲਈ Coordinator ID number ਭਰੋ।");return}b.disabled=true;const update={application_status:sel.value,rejection_reason:sel.value==="rejected"?reason.value.trim():null,id_card_number:sel.value==="approved"?idno.value.trim():null,approved_at:sel.value==="approved"?new Date().toISOString():null};const {error}=await db.from("coordinator_id_applications").update(update).eq("id",r.id);b.disabled=false;if(error){alert("Save failed: "+error.message)}else{alert("Coordinator application updated.");await loadCoordinators()}};el.append(b);$("coordinatorList").append(el)})
+}
+$("loginForm").addEventListener("submit",async e=>{e.preventDefault();$("loginBtn").disabled=true;const {data,error}=await db.auth.signInWithPassword({email:$("email").value.trim(),password:$("password").value});$("loginBtn").disabled=false;if(error){message("Login failed: "+error.message,true);return}await checkAdmin(data.user)});
+$("logoutBtn").addEventListener("click",async()=>{await db.auth.signOut();user=null;$("tools").classList.add("hidden");$("loginCard").querySelector("form").classList.remove("hidden");$("logoutBtn").classList.add("hidden");message("Signed out.")});
+$("reloadComplaints").addEventListener("click",loadComplaints);$("reloadCoordinators").addEventListener("click",loadCoordinators);
+["complaintFilter","complaintSearch"].forEach(id=>$(id).addEventListener(id==="complaintSearch"?"input":"change",renderComplaints));
+["coordFilter","coordSearch"].forEach(id=>$(id).addEventListener(id==="coordSearch"?"input":"change",renderCoordinators));
+db.auth.getSession().then(({data,error})=>{if(error){message(error.message,true);return}if(data.session)checkAdmin(data.session.user)});
+</script></body></html>
