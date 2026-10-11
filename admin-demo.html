@@ -1,487 +1,658 @@
-
 <!DOCTYPE html>
 <html lang="pa">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#071426">
 <title>NGSF Admin Panel</title>
 <style>
 :root {
-  --blue:#0b2d59; --dark:#071426; --black:#080a0e;
-  --gold:#d6b15c; --white:#fff; --light:#f3f6fb;
-  --text:#17243b; --muted:#667085; --border:#dce2eb;
+  --blue:#123b72;
+  --black:#07111f;
+  --gold:#d4af37;
+  --white:#fff;
+  --muted:#c5cfdd;
 }
 * { box-sizing:border-box; }
-body { margin:0; font-family:Arial,Helvetica,sans-serif; background:var(--light); color:var(--text); }
-header { background:var(--dark); color:white; padding:16px; border-bottom:3px solid var(--gold); }
-.brand { display:flex; align-items:center; gap:12px; }
-.logo { width:54px; height:54px; border-radius:50%; object-fit:contain; background:white; border:2px solid var(--gold); }
-.brand h1 { font-size:19px; margin:0 0 5px; }
-.brand p { margin:0; color:var(--gold); font-size:12px; }
-nav { display:flex; gap:8px; flex-wrap:wrap; margin-top:15px; }
-nav a { color:white; text-decoration:none; font-size:13px; padding:8px 10px; border:1px solid #34435b; border-radius:8px; }
-nav a:hover { border-color:var(--gold); }
-main { width:min(1100px,100%); margin:auto; padding:16px; }
-.card { background:white; border:1px solid var(--border); border-radius:14px; padding:18px; margin-bottom:16px; box-shadow:0 3px 12px #0714260b; }
-h2 { font-size:19px; margin:0 0 14px; color:var(--blue); }
-h3 { font-size:16px; margin:0 0 12px; }
-p { line-height:1.5; }
-.small { font-size:13px; color:var(--muted); }
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px; }
-.stat { padding:16px; border-radius:12px; background:#f7f9fd; border:1px solid var(--border); }
-.stat strong { display:block; font-size:25px; color:var(--blue); margin-top:7px; }
-label { display:block; font-size:13px; font-weight:700; margin:10px 0 6px; }
-input,select,button { font:inherit; }
-input,select { width:100%; min-height:44px; padding:10px; border:1px solid #cbd3df; border-radius:8px; background:white; }
-input:focus,select:focus { outline:2px solid #9abbe8; border-color:var(--blue); }
-button,.button { display:inline-block; padding:11px 14px; border:0; border-radius:8px; background:var(--blue); color:white; cursor:pointer; font-weight:700; text-decoration:none; }
-button.gold { background:#a57b20; }
-button.secondary { background:#e9edf5; color:var(--dark); }
-button.danger { background:#a32b32; }
-button:disabled { opacity:.55; cursor:not-allowed; }
-.actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
-.notice { padding:12px; border-radius:8px; background:#f1f5fb; border:1px solid var(--border); white-space:pre-wrap; overflow-wrap:anywhere; font-size:14px; }
-.notice.error { background:#fff0f0; border-color:#efb6b6; color:#8b1d24; }
-.notice.success { background:#eefaf1; border-color:#a8dfb5; color:#176331; }
-.hidden { display:none !important; }
-.table-wrap { overflow-x:auto; }
-table { border-collapse:collapse; width:100%; font-size:13px; }
-th,td { padding:10px; text-align:left; border-bottom:1px solid var(--border); white-space:nowrap; }
-th { background:#f2f5fa; color:var(--blue); }
-footer { text-align:center; padding:20px; background:var(--dark); color:#dce3ee; font-size:12px; }
-hr { border:0; border-top:1px solid var(--border); margin:18px 0; }
-@media(max-width:520px) {
-  main { padding:10px; }
-  .card { padding:14px; }
-  .brand h1 { font-size:16px; }
-  .logo { width:46px; height:46px; }
-  button { min-height:42px; }
+body {
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:var(--black);
+  color:var(--white);
 }
+header {
+  padding:20px 15px;
+  text-align:center;
+  background:var(--blue);
+  border-bottom:3px solid var(--gold);
+}
+header h1 { margin:0 0 8px; color:#ffe18a; }
+header p { margin:0; }
+main { max-width:1000px; margin:auto; padding:18px; }
+.card {
+  background:#101e32;
+  border:1px solid #35465d;
+  border-radius:12px;
+  padding:18px;
+  margin-bottom:18px;
+}
+h2 { color:#f0d16b; margin-top:0; }
+label { display:block; margin:12px 0 6px; }
+input,select,button {
+  width:100%;
+  padding:12px;
+  border-radius:7px;
+  font-size:16px;
+}
+input,select {
+  background:#07111f;
+  color:white;
+  border:1px solid #53657d;
+}
+button {
+  border:0;
+  background:var(--gold);
+  color:#101827;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:12px;
+}
+button.secondary { background:var(--blue); color:white; border:1px solid var(--gold); }
+button:disabled { opacity:.6; }
+.row {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+}
+.status { white-space:pre-wrap; overflow-wrap:anywhere; line-height:1.5; }
+table { width:100%; border-collapse:collapse; margin-top:14px; }
+th,td { text-align:left; padding:10px; border-bottom:1px solid #35465d; }
+th { color:#f0d16b; }
+.table-wrap { overflow-x:auto; }
+.hidden { display:none !important; }
+.note { color:var(--muted); font-size:14px; line-height:1.5; }
+a { color:#ffe18a; }
+footer { text-align:center; padding:20px; color:var(--muted); }
 </style>
 </head>
 <body>
 <header>
-  <div class="brand">
-    <img class="logo" src="assets/ngsf-logo.jpg" alt="NGSF Logo"
-         onerror="this.style.display='none'">
-    <div>
-      <h1>New Granthi Singh Federation</h1>
-      <p>ADMINISTRATION PANEL</p>
-    </div>
-  </div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="membership.html">Membership</a>
-    <a href="news.html">News</a>
-    <a href="events.html">Events</a>
-    <a href="team.html">Team</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+  <h1>New Granthi Singh Federation</h1>
+  <p>Secure Administration Panel</p>
 </header>
 
 <main>
-  <section class="card">
+  <section id="loginCard" class="card">
     <h2>Admin Login</h2>
-    <p class="small">ਇਸ ਪੈਨਲ ਲਈ ਸਿਰਫ਼ ਅਧਿਕਾਰਤ Admin ਖਾਤਾ ਵਰਤੋ।</p>
-
-    <div id="configNotice" class="notice">
-      Supabase ਕਨਫਿਗਰੇਸ਼ਨ ਭਰਨੀ ਬਾਕੀ ਹੈ।
-    </div>
-
     <form id="loginForm">
       <label for="email">Admin Email</label>
       <input id="email" type="email" autocomplete="username"
              value="helpline.ngsf@gmail.com" required>
 
       <label for="password">Password</label>
-      <input id="password" type="password" autocomplete="current-password"
-             placeholder="ਆਪਣਾ Supabase password ਭਰੋ" required>
+      <input id="password" type="password"
+             autocomplete="current-password" required>
 
-      <div class="actions">
-        <button id="loginBtn" type="submit">Login</button>
-        <button id="logoutBtn" type="button" class="secondary hidden">Logout</button>
-      </div>
+      <button id="loginButton" type="submit">Login</button>
     </form>
-    <div id="loginStatus" class="notice" style="margin-top:12px" aria-live="polite">
-      Login ਕਰਨ ਤੋਂ ਬਾਅਦ Admin ਅਧਿਕਾਰ ਜਾਂਚੇ ਜਾਣਗੇ।
-    </div>
+
+    <button id="forgotButton" class="secondary" type="button">
+      Forgot Password?
+    </button>
+
+    <p id="loginMessage" class="status" role="status"></p>
+    <p class="note">
+      Password reset email will link to the official reset-password page.
+    </p>
   </section>
 
-  <div id="adminArea" class="hidden">
-    <section class="card">
+  <section id="dashboard" class="hidden">
+    <div class="card">
       <h2>Dashboard</h2>
-      <p id="welcome" class="small">Admin session active</p>
-      <div class="grid">
-        <div class="stat">ਪੁਰਾਣੇ ਮੈਂਬਰ<strong id="memberCount">—</strong></div>
-        <div class="stat">Active ਮੈਂਬਰ<strong id="activeCount">—</strong></div>
-        <div class="stat">ਖੋਜ ਨਤੀਜੇ<strong id="resultCount">0</strong></div>
-      </div>
-      <div class="actions">
-        <button type="button" id="refreshBtn">ਮੈਂਬਰ ਗਿਣਤੀ Refresh ਕਰੋ</button>
-      </div>
-    </section>
+      <p id="welcome" class="status"></p>
+      <button id="logoutButton" class="secondary" type="button">
+        Logout
+      </button>
+    </div>
 
-    <section class="card">
-      <h2>ਪੁਰਾਣੇ ਮੈਂਬਰ ਦੀ ਖੋਜ</h2>
-      <p class="small">ਮੈਂਬਰ ID, ਨਾਮ ਜਾਂ ਮੋਬਾਈਲ ਨੰਬਰ ਨਾਲ ਖੋਜ ਕਰੋ। ਨਤੀਜਿਆਂ ਵਿੱਚ ਸੰਵੇਦਨਸ਼ੀਲ ਜਾਣਕਾਰੀ ਸਿਰਫ਼ Admin ਨੂੰ ਦਿਖਾਈ ਜਾਂਦੀ ਹੈ।</p>
-      <label for="searchTerm">Member ID / Name / Mobile</label>
-      <input id="searchTerm" placeholder="ਉਦਾਹਰਨ: 190 ਜਾਂ Bhai Jasvinder Singh Khalsa">
-      <div class="actions">
-        <button type="button" id="searchBtn">Search</button>
-        <button type="button" id="clearBtn" class="secondary">Clear</button>
-        <button type="button" id="exportBtn" class="gold">ਨਤੀਜੇ CSV Export ਕਰੋ</button>
-      </div>
-      <div id="searchStatus" class="notice" style="margin-top:12px" aria-live="polite">
-        ਖੋਜ ਲਈ Member ID ਜਾਂ ਨਾਮ ਭਰੋ।
-      </div>
-      <div class="table-wrap" style="margin-top:12px">
-        <table>
-          <thead><tr>
-            <th>ID No.</th><th>Name</th><th>Mobile</th>
-            <th>City</th><th>State</th><th>Status</th>
-          </tr></thead>
-          <tbody id="resultsBody">
-            <tr><td colspan="6">ਹਾਲੇ ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ।</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>CSV Import — ਪੁਰਾਣੇ ਮੈਂਬਰ</h2>
-      <p class="small">
-        ਆਪਣੀ CSV ਫ਼ਾਈਲ ਚੁਣੋ। ਪਹਿਲਾਂ Preview ਦੇਖੋ, ਫਿਰ Import ਕਰੋ।
-        CSV ਦੇ ਕਾਲਮ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ:
-        id_no, name, father_name, gender, mobile_no, email, city, state, address, status, authority.
-        ਇਹ Import ਮੌਜੂਦਾ ਮੈਂਬਰ ਦੇ id_no ਨਾਲ ਮੇਲ ਕਰਦਾ ਹੈ ਅਤੇ duplicate ID ਨੂੰ ਨਵਾਂ ਰਿਕਾਰਡ ਨਹੀਂ ਬਣਾਉਂਦਾ।
+    <div class="card">
+      <h2>Search Existing Members</h2>
+      <p class="note">
+        Search by member ID number, name, mobile number, or city.
       </p>
-      <label for="csvFile">CSV ਫ਼ਾਈਲ ਚੁਣੋ</label>
-      <input id="csvFile" type="file" accept=".csv,text/csv">
-      <div class="actions">
-        <button type="button" id="previewCsvBtn" class="secondary">Preview CSV</button>
-        <button type="button" id="importCsvBtn" class="gold" disabled>Preview ਤੋਂ ਬਾਅਦ Import</button>
-      </div>
-      <div id="csvStatus" class="notice" style="margin-top:12px" aria-live="polite">
-        CSV ਫ਼ਾਈਲ ਚੁਣ ਕੇ Preview ਕਰੋ।
-      </div>
-      <div class="table-wrap" style="margin-top:12px">
-        <table>
-          <thead><tr><th>ID No.</th><th>Name</th><th>City</th><th>State</th><th>Status</th></tr></thead>
-          <tbody id="csvPreviewBody"><tr><td colspan="5">Preview ਇੱਥੇ ਦਿਖੇਗਾ।</td></tr></tbody>
+      <form id="searchForm">
+        <label for="searchTerm">Search</label>
+        <input id="searchTerm" placeholder="e.g. 190 or member name" required>
+        <button type="submit">Search Members</button>
+      </form>
+      <p id="searchMessage" class="status"></p>
+      <div class="table-wrap">
+        <table id="resultsTable" class="hidden">
+          <thead>
+            <tr>
+              <th>ID No.</th>
+              <th>Name</th>
+              <th>Mobile</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody"></tbody>
         </table>
       </div>
-    </section>
+    </div>
 
-    <section class="card">
-      <h2>ਅਗਲੇ ਮੋਡੀਊਲ</h2>
-      <div class="grid">
-        <div class="stat"><h3>Membership Applications</h3><p class="small">ਨਵੀਆਂ ਅਰਜ਼ੀਆਂ ਦੀ ਜਾਂਚ ਅਤੇ ਸਥਿਤੀ ਬਦਲਣ ਦਾ ਮੋਡੀਊਲ ਅਗਲੇ ਪੜਾਅ ਵਿੱਚ ਜੋੜਨਾ ਹੈ।</p></div>
-        <div class="stat"><h3>News & Events</h3><p class="small">ਖ਼ਬਰਾਂ ਅਤੇ ਸਮਾਗਮ ਜੋੜਨ/ਸੋਧਣ ਦੀ ਸਹੂਲਤ ਅਜੇ ਜੋੜਨੀ ਹੈ।</p></div>
-        <div class="stat"><h3>Donations & Campaigns</h3><p class="small">ਦਾਨ ਅਤੇ crowdfunding ਰਿਕਾਰਡ ਲਈ ਵੱਖਰਾ ਸੁਰੱਖਿਅਤ ਮੋਡੀਊਲ ਲੋੜੀਂਦਾ ਹੈ।</p></div>
-        <div class="stat"><h3>Certificates & QR</h3><p class="small">ਵਿਲੱਖਣ ਨੰਬਰ, ਸਰਟੀਫਿਕੇਟ ਅਤੇ ਆਨਲਾਈਨ QR verification ਅਗਲਾ ਪੜਾਅ ਹੈ।</p></div>
-        <div class="stat"><h3>Photos & Videos</h3><p class="small">ਸੁਰੱਖਿਅਤ Storage bucket ਅਤੇ upload policies ਸੈੱਟ ਕਰਨ ਤੋਂ ਬਾਅਦ ਜੋੜਿਆ ਜਾਵੇਗਾ।</p></div>
-      </div>
-    </section>
-  </div>
+    <div class="card">
+      <h2>Import Members from CSV</h2>
+      <p class="note">
+        First preview the CSV. Existing member ID numbers will not be
+        overwritten by this import. New IDs are inserted only if they
+        do not already exist.
+      </p>
+      <label for="csvFile">Choose CSV file</label>
+      <input id="csvFile" type="file" accept=".csv,text/csv">
+      <button id="previewButton" type="button">Preview CSV</button>
+      <p id="importMessage" class="status"></p>
+      <div id="previewArea" class="table-wrap hidden"></div>
+      <button id="importButton" type="button" disabled>
+        Import New Members
+      </button>
+    </div>
+
+    <div class="card">
+      <h2>Export Members</h2>
+      <p class="note">Download the member records as a CSV file.</p>
+      <button id="exportButton" type="button">Export CSV</button>
+      <p id="exportMessage" class="status"></p>
+    </div>
+
+    <div class="card">
+      <h2>Other Admin Modules</h2>
+      <p class="note">
+        Membership applications, News and Events, Team management,
+        Donations, Crowdfunding, media uploads, certificates, appointment
+        letters, QR verification and ID card generation are not yet
+        implemented in this version.
+      </p>
+    </div>
+  </section>
 </main>
 
 <footer>
-  New Granthi Singh Federation · Sri Muktsar Sahib, Punjab, India<br>
-  Official contact: helpline.ngsf@gmail.com
+  NGSF Admin Panel | Authorized administrators only
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+"use strict";
+
 /*
-  STEP 1: Replace the two placeholder values below with your own
-  Supabase Project URL and Publishable Key.
-  Never put a service_role or sb_secret key in website code.
+ IMPORTANT:
+ Replace these two placeholders with the SAME values from your
+ existing admin-demo.html. Use the project URL and publishable key
+ (or legacy anon key), never a service_role or sb_secret key.
 */
 const SUPABASE_URL = "https://oqelvpojoaylmwdbmwcn.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_rgbSAlgeSBnVaBtYWlQOdA_ltIW3Hka";
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_rgbSAlgeSBnVaBtYWlQOdA_ltIW3Hka";
 
-const $ = (id) => document.getElementById(id);
-let db = null;
-let currentResults = [];
+const RESET_URL =
+  "https://helplinengsf-dotcom.github.io/New-Granthi-Singh-Federation/reset-password.html";
+
+const $ = id => document.getElementById(id);
+const loginCard = $("loginCard");
+const dashboard = $("dashboard");
+let supabaseClient = null;
 let csvRows = [];
 let csvHeaders = [];
-let previewReady = false;
-let adminUser = null;
 
-function setNotice(id, message, kind = "") {
-  const el = $(id);
-  el.textContent = message;
-  el.className = "notice" + (kind ? " " + kind : "");
+function message(id, text) {
+  $(id).textContent = text;
 }
-function escapeHtml(value) {
-  return String(value ?? "").replace(/[&<>"']/g, c => ({
-    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
-  })[c]);
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, ch => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[ch]);
 }
-function configIsReady() {
-  return SUPABASE_URL.startsWith("https://") &&
-    !SUPABASE_URL.includes("PASTE_") &&
-    SUPABASE_PUBLISHABLE_KEY &&
-    !SUPABASE_PUBLISHABLE_KEY.includes("PASTE_");
+
+function init() {
+  if (
+    SUPABASE_URL.includes("PASTE_") ||
+    SUPABASE_PUBLISHABLE_KEY.includes("PASTE_")
+  ) {
+    message(
+      "loginMessage",
+      "Setup needed: copy your Project URL and Publishable Key into this file."
+    );
+    $("loginButton").disabled = true;
+    $("forgotButton").disabled = true;
+    return;
+  }
+
+  supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+  supabaseClient.auth.onAuthStateChange((event, session) => {
+    if (event === "SIGNED_OUT") showLogin();
+    if (event === "SIGNED_IN" && session) {
+      setTimeout(() => checkAdmin(), 0);
+    }
+  });
+
+  checkAdmin();
 }
-function normalizeHeader(s) {
-  return String(s || "").trim().toLowerCase().replace(/^\uFEFF/, "");
+
+function showLogin() {
+  loginCard.classList.remove("hidden");
+  dashboard.classList.add("hidden");
 }
+
+async function checkAdmin() {
+  if (!supabaseClient) return;
+
+  const { data, error } = await supabaseClient.auth.getSession();
+  if (error || !data.session) {
+    showLogin();
+    return;
+  }
+
+  const user = data.session.user;
+
+  const { data: adminRecord, error: adminError } =
+    await supabaseClient
+      .from("ngsf_admins")
+      .select("user_id")
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+  if (adminError || !adminRecord) {
+    await supabaseClient.auth.signOut();
+    showLogin();
+    message(
+      "loginMessage",
+      "Access denied: this account is not listed as an authorized NGSF admin."
+    );
+    return;
+  }
+
+  loginCard.classList.add("hidden");
+  dashboard.classList.remove("hidden");
+  $("welcome").textContent = "Signed in as " + user.email;
+}
+
+$("loginForm").addEventListener("submit", async event => {
+  event.preventDefault();
+  if (!supabaseClient) return;
+
+  $("loginButton").disabled = true;
+  message("loginMessage", "Signing in...");
+
+  const email = $("email").value.trim();
+  const password = $("password").value;
+
+  const { error } = await supabaseClient.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  $("loginButton").disabled = false;
+
+  if (error) {
+    message("loginMessage", "Login failed: " + error.message);
+    return;
+  }
+
+  await checkAdmin();
+});
+
+$("forgotButton").addEventListener("click", async () => {
+  if (!supabaseClient) return;
+
+  const email = $("email").value.trim();
+  if (!email) {
+    message("loginMessage", "Enter your admin email first.");
+    $("email").focus();
+    return;
+  }
+
+  $("forgotButton").disabled = true;
+  message("loginMessage", "Sending password reset email...");
+
+  const { error } = await supabaseClient.auth.resetPasswordForEmail(
+    email,
+    { redirectTo: RESET_URL }
+  );
+
+  $("forgotButton").disabled = false;
+
+  if (error) {
+    message("loginMessage", "Reset request failed: " + error.message);
+  } else {
+    message(
+      "loginMessage",
+      "Reset email requested. Check your inbox and spam folder. If you see an email rate-limit error, wait before trying again."
+    );
+  }
+});
+
+$("logoutButton").addEventListener("click", async () => {
+  const { error } = await supabaseClient.auth.signOut();
+  if (error) message("welcome", "Logout error: " + error.message);
+  else showLogin();
+});
+
+async function searchMembers(term) {
+  const fields = [
+    "id_no", "name", "mobile_no", "city", "state", "status"
+  ];
+
+  const safeTerm = term.replace(/[,%()]/g, " ").trim();
+  if (!safeTerm) throw new Error("Enter a search term.");
+
+  // Exact ID lookup first; this is the most reliable lookup.
+  let { data, error } = await supabaseClient
+    .from("ngsf_legacy_members")
+    .select(fields.join(","))
+    .eq("id_no", safeTerm)
+    .limit(50);
+
+  if (error) throw error;
+  if (data && data.length) return data;
+
+  const pattern = "%" + safeTerm + "%";
+  const result = await supabaseClient
+    .from("ngsf_legacy_members")
+    .select(fields.join(","))
+    .or(
+      "name.ilike." + pattern +
+      ",mobile_no.ilike." + pattern +
+      ",city.ilike." + pattern +
+      ",state.ilike." + pattern
+    )
+    .limit(50);
+
+  if (result.error) throw result.error;
+  return result.data || [];
+}
+
+$("searchForm").addEventListener("submit", async event => {
+  event.preventDefault();
+  message("searchMessage", "Searching...");
+  $("resultsTable").classList.add("hidden");
+  $("resultsBody").replaceChildren();
+
+  try {
+    const rows = await searchMembers($("searchTerm").value);
+    if (!rows.length) {
+      message("searchMessage", "No matching members found.");
+      return;
+    }
+
+    $("resultsBody").innerHTML = rows.map(row => `
+      <tr>
+        <td>${escapeHTML(row.id_no)}</td>
+        <td>${escapeHTML(row.name)}</td>
+        <td>${escapeHTML(row.mobile_no)}</td>
+        <td>${escapeHTML(row.city)}</td>
+        <td>${escapeHTML(row.state)}</td>
+        <td>${escapeHTML(row.status)}</td>
+      </tr>
+    `).join("");
+
+    $("resultsTable").classList.remove("hidden");
+    message("searchMessage", "Found " + rows.length + " record(s).");
+  } catch (error) {
+    message("searchMessage", "Search error: " + error.message);
+  }
+});
+
+// CSV parser supporting commas, quotes and line breaks inside quoted fields.
 function parseCSV(text) {
   const rows = [];
-  let row = [], field = "", quoted = false;
-  text = text.replace(/^\uFEFF/, "");
+  let row = [], cell = "", quoted = false;
+
   for (let i = 0; i < text.length; i++) {
     const c = text[i];
+
     if (quoted) {
-      if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
-      else if (c === '"') quoted = false;
-      else field += c;
+      if (c === '"' && text[i + 1] === '"') {
+        cell += '"';
+        i++;
+      } else if (c === '"') {
+        quoted = false;
+      } else {
+        cell += c;
+      }
+    } else if (c === '"' && cell.length === 0) {
+      quoted = true;
+    } else if (c === ",") {
+      row.push(cell);
+      cell = "";
+    } else if (c === "\n") {
+      row.push(cell.replace(/\r$/, ""));
+      if (row.some(v => v.trim() !== "")) rows.push(row);
+      row = [];
+      cell = "";
     } else {
-      if (c === '"' && field === "") quoted = true;
-      else if (c === ",") { row.push(field); field = ""; }
-      else if (c === "\n") {
-        row.push(field); rows.push(row); row = []; field = "";
-      } else if (c !== "\r") field += c;
+      cell += c;
     }
   }
-  if (quoted) throw new Error("CSV ਵਿੱਚ quotation mark ਠੀਕ ਨਹੀਂ ਹੈ।");
-  if (field.length || row.length) { row.push(field); rows.push(row); }
-  return rows.filter(r => r.some(v => String(v).trim() !== ""));
-}
-function downloadCSV(rows, filename) {
-  if (!rows.length) {
-    setNotice("searchStatus", "Export ਲਈ ਕੋਈ ਰਿਕਾਰਡ ਨਹੀਂ।", "error");
-    return;
-  }
-  const columns = ["id_no","name","father_name","gender","mobile_no","email","city","state","address","status","authority"];
-  const csv = [
-    columns.join(","),
-    ...rows.map(r => columns.map(c => {
-      const value = String(r[c] ?? "");
-      return '"' + value.replace(/"/g, '""') + '"';
-    }).join(","))
-  ].join("\r\n");
-  const blob = new Blob(["\uFEFF" + csv], {type:"text/csv;charset=utf-8"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url; a.download = filename; a.click();
-  URL.revokeObjectURL(url);
-}
-function showResults(rows) {
-  currentResults = rows;
-  $("resultCount").textContent = rows.length;
-  const body = $("resultsBody");
-  if (!rows.length) {
-    body.innerHTML = '<tr><td colspan="6">ਕੋਈ ਰਿਕਾਰਡ ਨਹੀਂ ਮਿਲਿਆ।</td></tr>';
-    return;
-  }
-  body.innerHTML = rows.map(r => `<tr>
-    <td>${escapeHtml(r.id_no)}</td><td>${escapeHtml(r.name)}</td>
-    <td>${escapeHtml(r.mobile_no)}</td><td>${escapeHtml(r.city)}</td>
-    <td>${escapeHtml(r.state)}</td><td>${escapeHtml(r.status)}</td>
-  </tr>`).join("");
-}
-async function checkAdmin(user) {
-  const {data, error} = await db
-    .from("ngsf_admins")
-    .select("user_id")
-    .eq("user_id", user.id)
-    .maybeSingle();
-  if (error) throw error;
-  if (!data) throw new Error("ਇਸ ਖਾਤੇ ਨੂੰ NGSF Admin ਅਧਿਕਾਰ ਨਹੀਂ ਮਿਲੇ।");
-}
-async function loadDashboard() {
-  const [all, active] = await Promise.all([
-    db.from("ngsf_legacy_members").select("id", {count:"exact", head:true}),
-    db.from("ngsf_legacy_members").select("id", {count:"exact", head:true}).eq("status","Active")
-  ]);
-  if (all.error) throw all.error;
-  if (active.error) throw active.error;
-  $("memberCount").textContent = all.count ?? 0;
-  $("activeCount").textContent = active.count ?? 0;
-}
-async function openAdmin(user) {
-  await checkAdmin(user);
-  adminUser = user;
-  $("adminArea").classList.remove("hidden");
-  $("logoutBtn").classList.remove("hidden");
-  $("loginBtn").classList.add("hidden");
-  $("password").value = "";
-  $("welcome").textContent = "Login: " + (user.email || "Admin");
-  setNotice("loginStatus", "Login ਸਫਲ। Admin ਅਧਿਕਾਰ ਦੀ ਪੁਸ਼ਟੀ ਹੋ ਗਈ ਹੈ।", "success");
-  await loadDashboard();
-}
-async function searchMembers() {
-  if (!adminUser) return;
-  const term = $("searchTerm").value.trim();
-  if (!term) {
-    setNotice("searchStatus", "ਕਿਰਪਾ ਕਰਕੇ Member ID, ਨਾਮ ਜਾਂ ਮੋਬਾਈਲ ਭਰੋ।", "error");
-    return;
-  }
-  setNotice("searchStatus", "ਖੋਜ ਜਾਰੀ ਹੈ…");
-  let query = db.from("ngsf_legacy_members")
-    .select("id_no,name,father_name,gender,mobile_no,email,city,state,address,status,authority")
-    .limit(100);
-  if (/^\d+$/.test(term)) {
-    query = query.eq("id_no", term);
-  } else {
-    const safe = term.replace(/[,%()]/g, " ").trim();
-    query = query.or(`name.ilike.%${safe}%,mobile_no.ilike.%${safe}%,id_no.ilike.%${safe}%`);
-  }
-  const {data, error} = await query;
-  if (error) {
-    setNotice("searchStatus", "ਖੋਜ ਵਿੱਚ ਸਮੱਸਿਆ: " + error.message, "error");
-    return;
-  }
-  showResults(data || []);
-  setNotice("searchStatus", `${(data || []).length} ਰਿਕਾਰਡ ਮਿਲੇ। ਵੱਧ ਤੋਂ ਵੱਧ 100 ਨਤੀਜੇ ਦਿਖਾਏ ਜਾਂਦੇ ਹਨ.`, "success");
-}
-async function previewCSV() {
-  previewReady = false;
-  $("importCsvBtn").disabled = true;
-  const file = $("csvFile").files[0];
-  if (!file) {
-    setNotice("csvStatus", "ਪਹਿਲਾਂ CSV ਫ਼ਾਈਲ ਚੁਣੋ।", "error");
-    return;
-  }
-  try {
-    const raw = parseCSV(await file.text());
-    if (raw.length < 2) throw new Error("CSV ਵਿੱਚ ਡਾਟਾ ਨਹੀਂ ਮਿਲਿਆ।");
-    csvHeaders = raw[0].map(normalizeHeader);
-    const required = ["id_no","name","father_name","gender","mobile_no","email","city","state","address","status","authority"];
-    const missing = required.filter(c => !csvHeaders.includes(c));
-    if (missing.length) throw new Error("ਇਹ ਕਾਲਮ ਨਹੀਂ ਮਿਲੇ: " + missing.join(", "));
-    csvRows = raw.slice(1).map(r => {
-      const obj = {};
-      csvHeaders.forEach((h, i) => { obj[h] = String(r[i] ?? "").trim(); });
-      return Object.fromEntries(required.map(k => [k, obj[k] || null]));
-    }).filter(r => r.id_no);
-    if (!csvRows.length) throw new Error("ਕੋਈ valid id_no ਨਹੀਂ ਮਿਲਿਆ।");
-    const ids = csvRows.map(r => r.id_no);
-    if (new Set(ids).size !== ids.length) throw new Error("CSV ਵਿੱਚ duplicate id_no ਹਨ। ਪਹਿਲਾਂ duplicate IDs ਠੀਕ ਕਰੋ।");
-    $("csvPreviewBody").innerHTML = csvRows.slice(0,10).map(r => `<tr>
-      <td>${escapeHtml(r.id_no)}</td><td>${escapeHtml(r.name)}</td>
-      <td>${escapeHtml(r.city)}</td><td>${escapeHtml(r.state)}</td>
-      <td>${escapeHtml(r.status)}</td></tr>`).join("");
-    previewReady = true;
-    $("importCsvBtn").disabled = false;
-    setNotice("csvStatus", `${csvRows.length} ਰਿਕਾਰਡ Preview ਹੋਏ। ਪਹਿਲੇ 10 ਹੇਠਾਂ ਦਿਖਾਏ ਹਨ। Import ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਫ਼ਾਈਲ ਦੀ ਜਾਂਚ ਕਰੋ।`, "success");
-  } catch (e) {
-    csvRows = [];
-    $("csvPreviewBody").innerHTML = '<tr><td colspan="5">Preview ਉਪਲਬਧ ਨਹੀਂ।</td></tr>';
-    setNotice("csvStatus", e.message || "CSV ਪੜ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕੀ।", "error");
-  }
-}
-async function importCSV() {
-  if (!adminUser || !previewReady || !csvRows.length) return;
-  const ok = confirm(
-    `${csvRows.length} ਰਿਕਾਰਡ Import ਕਰਨੇ ਹਨ?\n\n` +
-    "ਮੌਜੂਦਾ id_no ਮਿਲਣ 'ਤੇ ਉਹ ਰਿਕਾਰਡ ਅਪਡੇਟ ਹੋ ਸਕਦਾ ਹੈ। " +
-    "ਪਹਿਲਾਂ ਆਪਣੀ CSV ਦੀ backup ਰੱਖੋ।"
+
+  if (quoted) throw new Error("CSV contains an unclosed quotation mark.");
+
+  row.push(cell.replace(/\r$/, ""));
+  if (row.some(v => v.trim() !== "")) rows.push(row);
+
+  if (rows.length < 2) throw new Error("CSV has no data rows.");
+
+  const headers = rows.shift().map(h =>
+    h.replace(/^\uFEFF/, "").trim().toLowerCase()
   );
-  if (!ok) return;
-  $("importCsvBtn").disabled = true;
-  setNotice("csvStatus", "Import ਜਾਰੀ ਹੈ… ਕਿਰਪਾ ਕਰਕੇ ਪੇਜ ਬੰਦ ਨਾ ਕਰੋ।");
-  try {
-    let insertedOrUpdated = 0;
-    for (let i = 0; i < csvRows.length; i += 50) {
-      const batch = csvRows.slice(i, i + 50);
-      const {error} = await db.from("ngsf_legacy_members")
-        .upsert(batch, {onConflict:"id_no"});
-      if (error) throw error;
-      insertedOrUpdated += batch.length;
-    }
-    previewReady = false;
-    csvRows = [];
-    $("csvFile").value = "";
-    $("importCsvBtn").disabled = true;
-    setNotice("csvStatus", `${insertedOrUpdated} ਰਿਕਾਰਡ Import/Update ਹੋਏ।`, "success");
-    await loadDashboard();
-  } catch (e) {
-    setNotice("csvStatus", "Import ਪੂਰਾ ਨਹੀਂ ਹੋ ਸਕਿਆ: " + e.message +
-      "\nਕੁਝ batch ਪਹਿਲਾਂ ਹੀ Import ਹੋਏ ਹੋ ਸਕਦੇ ਹਨ। ਦੁਬਾਰਾ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ID ਦੀ ਜਾਂਚ ਕਰੋ।", "error");
-    $("importCsvBtn").disabled = false;
-  }
+
+  return {
+    headers,
+    rows: rows.map(values => {
+      const item = {};
+      headers.forEach((h, i) => item[h] = (values[i] || "").trim());
+      return item;
+    })
+  };
 }
 
-$("loginForm").addEventListener("submit", async (event) => {
-  event.preventDefault();
-  if (!db) {
-    setNotice("loginStatus", "ਪਹਿਲਾਂ Supabase URL ਅਤੇ Publishable Key ਸੈੱਟ ਕਰੋ।", "error");
-    return;
-  }
-  $("loginBtn").disabled = true;
-  setNotice("loginStatus", "Login ਦੀ ਜਾਂਚ ਹੋ ਰਹੀ ਹੈ…");
-  try {
-    const {data, error} = await db.auth.signInWithPassword({
-      email:$("email").value.trim(),
-      password:$("password").value
-    });
-    if (error) throw error;
-    await openAdmin(data.user);
-  } catch (e) {
-    await db.auth.signOut();
-    $("adminArea").classList.add("hidden");
-    setNotice("loginStatus", e.message || "Login ਅਸਫਲ ਹੋਇਆ।", "error");
-  } finally {
-    $("loginBtn").disabled = false;
-  }
-});
-$("logoutBtn").addEventListener("click", async () => {
-  if (db) await db.auth.signOut();
-  adminUser = null;
-  currentResults = [];
-  $("adminArea").classList.add("hidden");
-  $("logoutBtn").classList.add("hidden");
-  $("loginBtn").classList.remove("hidden");
-  showResults([]);
-  setNotice("loginStatus", "ਤੁਸੀਂ Logout ਕਰ ਦਿੱਤਾ ਹੈ।");
-});
-$("searchBtn").addEventListener("click", searchMembers);
-$("searchTerm").addEventListener("keydown", e => {
-  if (e.key === "Enter") { e.preventDefault(); searchMembers(); }
-});
-$("clearBtn").addEventListener("click", () => {
-  $("searchTerm").value = "";
-  showResults([]);
-  setNotice("searchStatus", "ਖੋਜ ਸਾਫ਼ ਕਰ ਦਿੱਤੀ ਗਈ।");
-});
-$("exportBtn").addEventListener("click", () => downloadCSV(currentResults, "ngsf-member-search.csv"));
-$("refreshBtn").addEventListener("click", async () => {
-  try { await loadDashboard(); setNotice("loginStatus", "Dashboard refresh ਹੋ ਗਿਆ।", "success"); }
-  catch (e) { setNotice("loginStatus", e.message, "error"); }
-});
-$("previewCsvBtn").addEventListener("click", previewCSV);
-$("importCsvBtn").addEventListener("click", importCSV);
+$("previewButton").addEventListener("click", async () => {
+  const file = $("csvFile").files[0];
+  $("importButton").disabled = true;
+  $("previewArea").classList.add("hidden");
 
-async function init() {
-  if (!window.supabase) {
-    setNotice("configNotice", "Supabase library ਲੋਡ ਨਹੀਂ ਹੋਈ। Internet connection ਜਾਂ CDN ਜਾਂਚੋ।", "error");
+  if (!file) {
+    message("importMessage", "Choose a CSV file first.");
     return;
   }
-  if (!configIsReady()) {
-    setNotice("configNotice",
-      "ਕਨਫਿਗਰੇਸ਼ਨ ਬਾਕੀ ਹੈ: ਕੋਡ ਵਿੱਚ SUPABASE_URL ਅਤੇ SUPABASE_PUBLISHABLE_KEY ਦੀਆਂ ਦੋਵੇਂ placeholder values ਬਦਲੋ।", "error");
-    return;
-  }
+
   try {
-    db = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
-    setNotice("configNotice", "Supabase client ਤਿਆਰ ਹੈ। Login ਕਰਨ ਲਈ ਆਪਣੇ Admin credentials ਵਰਤੋ।", "success");
-    const {data, error} = await db.auth.getSession();
-    if (error) throw error;
-    if (data.session?.user) {
-      try { await openAdmin(data.session.user); }
-      catch (e) {
-        await db.auth.signOut();
-        setNotice("loginStatus", e.message || "Admin ਅਧਿਕਾਰ ਦੀ ਪੁਸ਼ਟੀ ਨਹੀਂ ਹੋਈ।", "error");
+    const parsed = parseCSV(await file.text());
+    csvHeaders = parsed.headers;
+
+    if (!csvHeaders.includes("id_no")) {
+      throw new Error("CSV must contain an id_no column.");
+    }
+
+    const valid = parsed.rows.filter(row => row.id_no);
+    const missing = parsed.rows.length - valid.length;
+    const seen = new Set();
+    const duplicates = [];
+
+    valid.forEach(row => {
+      if (seen.has(row.id_no)) duplicates.push(row.id_no);
+      seen.add(row.id_no);
+    });
+
+    csvRows = valid.filter(row => !duplicates.includes(row.id_no));
+
+    const preview = csvRows.slice(0, 10);
+    const cols = csvHeaders.slice(0, 6);
+
+    $("previewArea").innerHTML =
+      "<p>First " + preview.length + " row(s) shown:</p>" +
+      "<table><thead><tr>" +
+      cols.map(h => "<th>" + escapeHTML(h) + "</th>").join("") +
+      "</tr></thead><tbody>" +
+      preview.map(row => "<tr>" +
+        cols.map(h => "<td>" + escapeHTML(row[h]) + "</td>").join("") +
+        "</tr>").join("") +
+      "</tbody></table>";
+
+    $("previewArea").classList.remove("hidden");
+    $("importButton").disabled = csvRows.length === 0;
+
+    message(
+      "importMessage",
+      "CSV rows: " + parsed.rows.length +
+      "\nRows ready: " + csvRows.length +
+      "\nRows missing ID: " + missing +
+      "\nDuplicate IDs inside CSV excluded: " + duplicates.length +
+      "\nExisting database IDs will be skipped."
+    );
+  } catch (error) {
+    csvRows = [];
+    message("importMessage", "CSV preview error: " + error.message);
+  }
+});
+
+$("importButton").addEventListener("click", async () => {
+  if (!csvRows.length) return;
+
+  if (!confirm(
+    "Import new member IDs only? Existing IDs will be skipped."
+  )) return;
+
+  $("importButton").disabled = true;
+  let inserted = 0, skipped = 0, failed = 0;
+  const errors = [];
+
+  try {
+    // Only use columns supported by the existing legacy-member table.
+    const allowed = [
+      "id_no", "name", "father_name", "gender", "mobile_no",
+      "email", "city", "state", "address", "status", "authority"
+    ];
+
+    for (const row of csvRows) {
+      const record = {};
+      allowed.forEach(key => {
+        if (Object.prototype.hasOwnProperty.call(row, key)) {
+          record[key] = row[key] || null;
+        }
+      });
+
+      if (!record.id_no) {
+        skipped++;
+        continue;
+      }
+
+      // Check existing ID; do not overwrite an existing member.
+      const { data: existing, error: lookupError } =
+        await supabaseClient
+          .from("ngsf_legacy_members")
+          .select("id_no")
+          .eq("id_no", record.id_no)
+          .maybeSingle();
+
+      if (lookupError) throw lookupError;
+
+      if (existing) {
+        skipped++;
+        continue;
+      }
+
+      const { error: insertError } = await supabaseClient
+        .from("ngsf_legacy_members")
+        .insert(record);
+
+      if (insertError) {
+        failed++;
+        if (errors.length < 5) {
+          errors.push(record.id_no + ": " + insertError.message);
+        }
+      } else {
+        inserted++;
       }
     }
-  } catch (e) {
-    setNotice("configNotice", "Supabase setup error: " + e.message, "error");
+
+    message(
+      "importMessage",
+      "Import finished.\nInserted: " + inserted +
+      "\nSkipped existing IDs: " + skipped +
+      "\nFailed: " + failed +
+      (errors.length ? "\nErrors:\n" + errors.join("\n") : "")
+    );
+  } catch (error) {
+    message("importMessage", "Import stopped: " + error.message);
+  } finally {
+    $("importButton").disabled = false;
   }
+});
+
+function csvCell(value) {
+  const s = String(value ?? "");
+  return '"' + s.replace(/"/g, '""') + '"';
 }
+
+$("exportButton").addEventListener("click", async () => {
+  message("exportMessage", "Preparing CSV export...");
+
+  try {
+    const columns = [
+      "id_no", "name", "father_name", "gender", "mobile_no",
+      "email", "city", "state", "address", "status", "authority"
+    ];
+
+    let all = [], from = 0, pageSize = 500;
+
+    while (true) {
+      const { data, error } = await supabaseClient
+        .from("ngsf_legacy_members")
+        .select(columns.join(","))
+        .order("id_no")
+        .range(from, from + pageSize - 1);
+
+      if (error) throw error;
+
+      all = all.concat(data || []);
+      if (!data || data.length < pageSize) break;
+      from += pageSize;
+    }
+
+    const lines = [
+      columns.map(csvCell).join(","),
+      ...all.map(row => columns.map(col => csvCell(row[col])).join(","))
+    ];
+
+    const blob = new Blob(
+      ["\uFEFF" + lines.join("\r\n")],
+      { type: "text/csv;charset=utf-8;" }
+    );
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "ngsf_members_export.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+
+    message("exportMessage", "Exported " + all.length + " member records.");
+  } catch (error) {
+    message("exportMessage", "Export error: " + error.message);
+  }
+});
+
 init();
 </script>
 </body>
