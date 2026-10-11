@@ -127,26 +127,18 @@
                  autocomplete="email">
         </div>
         <div>
-          <label for="city">City / District</label>
-          <input id="city" maxlength="100"
-                 autocomplete="address-level2">
+          <label for="state">State</label>
+          <input id="state" maxlength="100" autocomplete="address-level1">
+        </div>
+        <div>
+          <label for="district">District *</label>
+          <input id="district" maxlength="100" autocomplete="address-level2" required>
         </div>
       </div>
 
-      <label for="interest">Area of Interest *</label>
-      <select id="interest" required>
-        <option value="">Select an area</option>
-        <option>Community Service</option>
-        <option>Social Welfare</option>
-        <option>Educational Activities</option>
-        <option>Volunteer Participation</option>
-        <option>Community Awareness</option>
-        <option>General Membership</option>
-      </select>
-
-      <label for="message">Message (Optional)</label>
-      <textarea id="message" maxlength="1500"
-        placeholder="Write a short message..."></textarea>
+      <label for="address">Full Address (Optional)</label>
+      <textarea id="address" maxlength="500" autocomplete="street-address"
+        placeholder="House number, street, village or town..."></textarea>
 
       <label>
         <input id="consent" type="checkbox"
@@ -194,7 +186,7 @@
 
   // Use the SAME project URL and publishable key as member-login.html.
   const SUPABASE_URL = "https://oqelvpojoaylmwdbmwcn.supabase.co";
-  const SUPABASE_PUBLISHABLE_KEY = "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_rgbSAlgeSBnVaBtYWlQOdA_ltIW3Hka";
 
   const $ = (id) => document.getElementById(id);
 
@@ -311,8 +303,9 @@
     }
 
     if (
-      SUPABASE_PUBLISHABLE_KEY ===
-      "sb_publishable_rgbSAlgeSBnVaBtYWlQOdA_ltIW3Hka"
+      !SUPABASE_PUBLISHABLE_KEY ||
+      SUPABASE_PUBLISHABLE_KEY.includes("PASTE_YOUR_") ||
+      SUPABASE_PUBLISHABLE_KEY.startsWith("sb_secret_")
     ) {
       showStatus(authStatus,
         "Setup required: paste your Supabase publishable key in this file.",
@@ -377,11 +370,11 @@
     const fullName = $("fullName").value.trim();
     const phone = $("phone").value.trim();
     const email = $("email").value.trim();
-    const city = $("city").value.trim();
-    const interest = $("interest").value;
-    const message = $("message").value.trim();
+    const state = $("state").value.trim();
+    const district = $("district").value.trim();
+    const address = $("address").value.trim();
 
-    if (!fullName || !phone || !interest || !$("consent").checked) {
+    if (!fullName || !phone || !district || !$("consent").checked) {
       showSubmitStatus("Please complete all required fields.", "error");
       return;
     }
@@ -397,11 +390,11 @@
         .insert({
           user_id: currentUser.id,
           full_name: fullName,
-          phone: phone,
+          mobile: phone,
           email: email || null,
-          city: city || null,
-          interest: interest,
-          message: message || null
+          state: state || null,
+          district: district,
+          address: address || null
         })
         .select("id, status, created_at")
         .single();
