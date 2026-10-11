@@ -1,79 +1,464 @@
-
 <!DOCTYPE html>
 <html lang="pa">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NGSF Complaint Portal</title>
+  <meta name="theme-color" content="#071323">
+  <title>NGSF | Complaint System</title>
+
   <style>
+    :root {
+      --bg: #071323;
+      --card: #101f32;
+      --blue: #173f72;
+      --gold: #d9b438;
+      --text: #f5f7fb;
+      --muted: #c3cede;
+      --border: #34475d;
+    }
+
     * { box-sizing: border-box; }
+
     body {
-      margin: 0; padding: 20px;
-      background: #07111f; color: #fff;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
       font-family: Arial, sans-serif;
+      line-height: 1.6;
     }
+
+    header {
+      padding: 24px 16px;
+      text-align: center;
+      background: var(--blue);
+      border-bottom: 4px solid var(--gold);
+    }
+
+    header h1 {
+      margin: 0;
+      color: #f1d16b;
+      font-size: 25px;
+    }
+
+    header p { margin: 6px 0 0; }
+
+    main {
+      width: min(700px, 94%);
+      margin: 28px auto;
+    }
+
     .card {
-      max-width: 600px; margin: 35px auto;
-      padding: 24px; border: 1px solid #d8b338;
-      border-radius: 18px; background: #101f32;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 20px;
     }
-    h1 { color: #f0d16a; }
-    p { line-height: 1.6; color: #d3dbea; }
-    label { display: block; margin-top: 16px; }
+
+    h2 { color: #f1d16b; margin-top: 0; }
+
+    label {
+      display: block;
+      margin: 15px 0 6px;
+      font-weight: bold;
+    }
+
     input, select, textarea {
-      width: 100%; padding: 13px; margin-top: 7px;
-      border: 1px solid #52647b; border-radius: 8px;
-      background: #07111f; color: white; font-size: 16px;
+      display: block;
+      width: 100%;
+      padding: 13px;
+      border-radius: 8px;
+      border: 1px solid #53677f;
+      background: #071323;
+      color: white;
+      font: inherit;
     }
+
+    textarea { resize: vertical; }
+
     button {
-      width: 100%; padding: 14px; margin-top: 20px;
-      border: 0; border-radius: 8px;
-      background: #d8b338; color: #07111f;
-      font-size: 17px; font-weight: bold;
+      display: block;
+      width: 100%;
+      padding: 13px;
+      margin-top: 16px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--gold);
+      color: #101827;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
     }
-    .note { font-size: 14px; }
-    a { color: #f0d16a; }
+
+    button.secondary {
+      background: var(--blue);
+      color: white;
+      border: 1px solid var(--gold);
+    }
+
+    button:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    .muted { color: var(--muted); }
+    .hidden { display: none !important; }
+
+    #message, #complaintResult {
+      overflow-wrap: anywhere;
+      margin-top: 15px;
+    }
+
+    .success {
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      padding: 14px;
+      background: #0b2b28;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 12px;
+      color: var(--muted);
+    }
+
+    a { color: #f1d16b; }
   </style>
 </head>
+
 <body>
-  <main class="card">
-    <h1>NGSF ਸ਼ਿਕਾਇਤ ਪੋਰਟਲ</h1>
-    <p>New Granthi Singh Federation ਨੂੰ ਆਪਣੀ ਸ਼ਿਕਾਇਤ ਭੇਜਣ ਲਈ ਹੇਠਾਂ ਜਾਣਕਾਰੀ ਭਰੋ।</p>
+  <header>
+    <h1>New Granthi Singh Federation</h1>
+    <p>ਸੁਰੱਖਿਅਤ ਸ਼ਿਕਾਇਤ ਪ੍ਰਣਾਲੀ</p>
+  </header>
 
-    <form id="complaintForm">
-      <label for="category">ਸ਼ਿਕਾਇਤ ਦੀ ਕਿਸਮ</label>
-      <select id="category" required>
-        <option value="">ਚੁਣੋ</option>
-        <option>Membership</option>
-        <option>Coordinator</option>
-        <option>Donation</option>
-        <option>Event or Service</option>
-        <option>Other</option>
-      </select>
+  <main>
+    <section class="card">
+      <h2>ਯੂਜ਼ਰ ਲੌਗਇਨ</h2>
+      <p class="muted">
+        ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰਨ ਲਈ ਆਪਣੇ ਰਜਿਸਟਰਡ ਖਾਤੇ ਨਾਲ ਲੌਗਇਨ ਕਰੋ।
+      </p>
 
-      <label for="subject">ਸ਼ਿਕਾਇਤ ਦਾ ਵਿਸ਼ਾ</label>
-      <input id="subject" maxlength="150" required>
+      <form id="loginForm">
+        <label for="email">ਈਮੇਲ</label>
+        <input id="email" type="email" autocomplete="username"
+               required maxlength="254">
 
-      <label for="description">ਪੂਰੀ ਜਾਣਕਾਰੀ</label>
-      <textarea id="description" rows="6" maxlength="5000" required></textarea>
+        <label for="password">ਪਾਸਵਰਡ</label>
+        <input id="password" type="password"
+               autocomplete="current-password" required>
 
-      <button type="submit">ਸ਼ਿਕਾਇਤ ਅੱਗੇ ਭੇਜੋ</button>
-      <p id="message" role="status"></p>
-    </form>
+        <button id="loginButton" type="submit">Login</button>
+      </form>
 
-    <p class="note">
-      ਇਹ ਪੇਜ ਹਾਲੇ ਫਾਰਮ ਦਾ ਡਿਜ਼ਾਇਨ ਹੈ। ਸ਼ਿਕਾਇਤ ਅਜੇ ਡਾਟਾਬੇਸ ਵਿੱਚ ਜਮ੍ਹਾਂ ਨਹੀਂ ਹੁੰਦੀ।
-      ਅਸਲ ਸਬਮਿਸ਼ਨ ਲਈ ਸੁਰੱਖਿਅਤ ਲੌਗਇਨ ਅਤੇ Supabase ਕਨੈਕਸ਼ਨ ਜੋੜਨਾ ਬਾਕੀ ਹੈ।
-    </p>
-    <p><a href="index.html">ਮੁੱਖ ਪੇਜ ’ਤੇ ਵਾਪਸ ਜਾਓ</a></p>
+      <button id="logoutButton" class="secondary hidden" type="button">
+        Logout
+      </button>
+
+      <p id="authStatus" class="muted" aria-live="polite">
+        Supabase ਨਾਲ ਕੁਨੈਕਸ਼ਨ ਚੈੱਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…
+      </p>
+    </section>
+
+    <section id="complaintSection" class="card hidden">
+      <h2>ਨਵੀਂ ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰੋ</h2>
+
+      <p class="muted">
+        ਆਪਣੀ ਸਮੱਸਿਆ ਸਪਸ਼ਟ ਲਿਖੋ। ਸ਼ਿਕਾਇਤ ਸਿਰਫ਼ ਲੌਗਇਨ ਕੀਤੇ ਖਾਤੇ ਨਾਲ
+        ਜੁੜੇਗੀ।
+      </p>
+
+      <form id="complaintForm">
+        <label for="category">ਸ਼ਿਕਾਇਤ ਦੀ ਕਿਸਮ</label>
+        <select id="category" required>
+          <option value="">ਕਿਸਮ ਚੁਣੋ</option>
+          <option value="Membership">ਮੈਂਬਰਸ਼ਿਪ</option>
+          <option value="Donation">ਦਾਨ</option>
+          <option value="Event or Service">ਸਮਾਗਮ ਜਾਂ ਸੇਵਾ</option>
+          <option value="Other">ਹੋਰ</option>
+        </select>
+
+        <label for="subject">ਸ਼ਿਕਾਇਤ ਦਾ ਵਿਸ਼ਾ</label>
+        <input id="subject" type="text" maxlength="150" required>
+
+        <label for="description">ਪੂਰੀ ਜਾਣਕਾਰੀ</label>
+        <textarea id="description" rows="6" maxlength="5000"
+                  required></textarea>
+
+        <button id="submitButton" type="submit">
+          ਸ਼ਿਕਾਇਤ ਜਮ੍ਹਾਂ ਕਰੋ
+        </button>
+      </form>
+
+      <div id="complaintResult" aria-live="polite"></div>
+    </section>
+
+    <section class="card">
+      <h2>ਮਹੱਤਵਪੂਰਨ ਜਾਣਕਾਰੀ</h2>
+      <p class="muted">
+        ਤੁਹਾਡੀ ਸ਼ਿਕਾਇਤ ਸਫਲਤਾਪੂਰਵਕ ਸੇਵ ਹੋਣ ’ਤੇ Complaint ID ਦਿਖਾਈ ਜਾਵੇਗੀ।
+        ਇਸਨੂੰ ਸੰਭਾਲ ਕੇ ਰੱਖੋ।
+      </p>
+      <p class="muted">
+        ਇਹ ਪੰਨਾ ਆਪਣੇ ਆਪ OTP ਜਾਂ ਈਮੇਲ ਰਾਹੀਂ ਸ਼ਿਕਾਇਤ ਦੀ ਪੁਸ਼ਟੀ ਨਹੀਂ ਕਰਦਾ।
+        ਅਜਿਹੀ ਸਹੂਲਤ ਵੱਖਰੇ ਤੌਰ ’ਤੇ ਬਣਾਉਣੀ ਪਵੇਗੀ।
+      </p>
+    </section>
+
+    <p id="message" role="status" aria-live="polite"></p>
+
+    <p><a href="index.html">ਮੁੱਖ ਪੰਨੇ ’ਤੇ ਵਾਪਸ ਜਾਓ</a></p>
   </main>
 
+  <footer>
+    New Granthi Singh Federation<br>
+    Helpline: +91 70879-93724<br>
+    Email: helpline.ngsf@gmail.com
+  </footer>
+
+  <!-- Supabase JavaScript library -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script>
-    document.getElementById("complaintForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      document.getElementById("message").textContent =
-        "ਫਾਰਮ ਦਾ ਡਿਜ਼ਾਇਨ ਤਿਆਰ ਹੈ। ਅਸਲ ਸਬਮਿਸ਼ਨ ਲਈ ਸੁਰੱਖਿਅਤ ਕਨੈਕਸ਼ਨ ਹਾਲੇ ਜੋੜਨਾ ਬਾਕੀ ਹੈ।";
+    // ==========================================
+    // ਆਪਣਾ Supabase Project URL ਇੱਥੇ ਪਾਓ
+    // ਉਦਾਹਰਨ: https://YOUR_PROJECT_ID.supabase.co
+    // ==========================================
+    const SUPABASE_URL = "https://oqelvpojoaylmwdbmwcn.supabase.co";
+
+    // ==========================================
+    // ਆਪਣੀ Supabase Publishable key ਇੱਥੇ ਪਾਓ
+    // sb_publishable_... ਜਾਂ dashboard ਦੀ publishable key
+    // ==========================================
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_rgbSAlgeSBnVaBtYWlQOdA_ltIW3Hka";
+
+    const message = document.getElementById("message");
+    const authStatus = document.getElementById("authStatus");
+    const loginForm = document.getElementById("loginForm");
+    const loginButton = document.getElementById("loginButton");
+    const logoutButton = document.getElementById("logoutButton");
+    const complaintSection = document.getElementById("complaintSection");
+    const complaintForm = document.getElementById("complaintForm");
+    const submitButton = document.getElementById("submitButton");
+    const complaintResult = document.getElementById("complaintResult");
+
+    let supabaseClient = null;
+    let currentUser = null;
+    let submitting = false;
+
+    function showMessage(text, isError = false) {
+      message.textContent = text;
+      message.style.color = isError ? "#ffb4b4" : "#f1d16b";
+    }
+
+    function setLoggedInUI(user) {
+      currentUser = user || null;
+
+      loginForm.classList.toggle("hidden", !!user);
+      logoutButton.classList.toggle("hidden", !user);
+      complaintSection.classList.toggle("hidden", !user);
+
+      if (user) {
+        authStatus.textContent = "ਲੌਗਇਨ ਹੈ: " + user.email;
+      } else {
+        authStatus.textContent = "ਕਿਰਪਾ ਕਰਕੇ ਲੌਗਇਨ ਕਰੋ।";
+      }
+    }
+
+    async function startApp() {
+      if (!window.supabase) {
+        authStatus.textContent =
+          "Supabase ਲਾਇਬ੍ਰੇਰੀ ਲੋਡ ਨਹੀਂ ਹੋਈ। ਇੰਟਰਨੈੱਟ ਚੈੱਕ ਕਰੋ।";
+        loginButton.disabled = true;
+        return;
+      }
+
+      if (
+        SUPABASE_URL.includes("PASTE_YOUR_") ||
+        SUPABASE_PUBLISHABLE_KEY.includes("PASTE_YOUR_")
+      ) {
+        authStatus.textContent =
+          "ਪਹਿਲਾਂ ਕੋਡ ਵਿੱਚ Supabase URL ਅਤੇ Publishable key ਭਰੋ।";
+        loginButton.disabled = true;
+        return;
+      }
+
+      try {
+        const parsedUrl = new URL(SUPABASE_URL);
+
+        if (
+          parsedUrl.protocol !== "https:" ||
+          !parsedUrl.hostname.endsWith(".supabase.co")
+        ) {
+          throw new Error("Project URL ਸਹੀ ਨਹੀਂ ਹੈ।");
+        }
+
+        supabaseClient = window.supabase.createClient(
+          SUPABASE_URL,
+          SUPABASE_PUBLISHABLE_KEY,
+          {
+            auth: {
+              persistSession: true,
+              autoRefreshToken: true,
+              detectSessionInUrl: true
+            }
+          }
+        );
+
+        const { data, error } = await supabaseClient.auth.getSession();
+        if (error) throw error;
+
+        setLoggedInUI(data.session?.user || null);
+
+        supabaseClient.auth.onAuthStateChange((_event, session) => {
+          setLoggedInUI(session?.user || null);
+        });
+      } catch (error) {
+        authStatus.textContent =
+          "ਕੁਨੈਕਸ਼ਨ ਵਿੱਚ ਸਮੱਸਿਆ: " + error.message;
+        loginButton.disabled = true;
+      }
+    }
+
+    loginForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!supabaseClient) return;
+
+      loginButton.disabled = true;
+      showMessage("");
+
+      try {
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+
+        const { data, error } =
+          await supabaseClient.auth.signInWithPassword({
+            email,
+            password
+          });
+
+        if (error) throw error;
+
+        setLoggedInUI(data.user);
+        showMessage("ਲੌਗਇਨ ਸਫਲ ਹੋ ਗਿਆ ਹੈ।");
+      } catch (error) {
+        showMessage(
+          "ਲੌਗਇਨ ਨਹੀਂ ਹੋਇਆ। ਈਮੇਲ, ਪਾਸਵਰਡ ਅਤੇ Supabase Auth ਸੈਟਿੰਗ ਚੈੱਕ ਕਰੋ।",
+          true
+        );
+      } finally {
+        loginButton.disabled = false;
+      }
     });
+
+    logoutButton.addEventListener("click", async () => {
+      if (!supabaseClient) return;
+
+      const { error } = await supabaseClient.auth.signOut();
+
+      if (error) {
+        showMessage("Logout ਨਹੀਂ ਹੋਇਆ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।", true);
+        return;
+      }
+
+      setLoggedInUI(null);
+      complaintResult.textContent = "";
+      showMessage("ਤੁਸੀਂ Logout ਹੋ ਗਏ ਹੋ।");
+    });
+
+    complaintForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (!supabaseClient || !currentUser || submitting) {
+        showMessage("ਪਹਿਲਾਂ ਲੌਗਇਨ ਕਰੋ।", true);
+        return;
+      }
+
+      submitting = true;
+      submitButton.disabled = true;
+      complaintResult.textContent = "";
+      showMessage("");
+
+      try {
+        // Session ਨੂੰ ਮੁੜ ਚੈੱਕ ਕਰੋ; ਸਿਰਫ਼ ਮੌਜੂਦਾ ਯੂਜ਼ਰ ਦੀ ID ਵਰਤੋ।
+        const { data: sessionData, error: sessionError } =
+          await supabaseClient.auth.getSession();
+
+        if (sessionError) throw sessionError;
+
+        const user = sessionData.session?.user;
+        if (!user || user.id !== currentUser.id) {
+          throw new Error("ਤੁਹਾਡਾ ਸੈਸ਼ਨ ਖਤਮ ਹੋ ਗਿਆ ਹੈ। ਮੁੜ ਲੌਗਇਨ ਕਰੋ।");
+        }
+
+        // ਸਿਰਫ਼ ਮਨਜ਼ੂਰਸ਼ੁਦਾ fields ਭੇਜੇ ਜਾਂਦੇ ਹਨ।
+        // complaint_code, status ਅਤੇ assigned_coordinator_id
+        // ਦੀਆਂ ਸੁਰੱਖਿਅਤ default values ਡਾਟਾਬੇਸ ਸੰਭਾਲੇਗਾ।
+        const complaint = {
+          user_id: user.id,
+          category: document.getElementById("category").value,
+          subject: document.getElementById("subject").value.trim(),
+          description: document.getElementById("description").value.trim()
+        };
+
+        if (!complaint.subject || !complaint.description) {
+          throw new Error("ਸਾਰੇ ਲਾਜ਼ਮੀ ਖਾਨੇ ਭਰੋ।");
+        }
+
+        const { data, error } = await supabaseClient
+          .from("ngsf_complaints")
+          .insert(complaint)
+          .select("complaint_code, created_at")
+          .single();
+
+        if (error) throw error;
+
+        complaintResult.className = "success";
+
+        const heading = document.createElement("strong");
+        heading.textContent = "ਸ਼ਿਕਾਇਤ ਸਫਲਤਾਪੂਰਵਕ ਜਮ੍ਹਾਂ ਹੋ ਗਈ ਹੈ।";
+
+        const codeLine = document.createElement("p");
+        codeLine.textContent = "ਤੁਹਾਡਾ Complaint ID: " +
+          data.complaint_code;
+
+        const note = document.createElement("p");
+        note.textContent =
+          "ਇਸ ID ਨੂੰ ਸੰਭਾਲ ਕੇ ਰੱਖੋ। ਇਸਨੂੰ ਕਿਸੇ ਹੋਰ ਨਾਲ ਸਾਂਝਾ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਸਾਵਧਾਨ ਰਹੋ।";
+
+        const copyButton = document.createElement("button");
+        copyButton.type = "button";
+        copyButton.textContent = "Complaint ID ਕਾਪੀ ਕਰੋ";
+        copyButton.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(data.complaint_code);
+            showMessage("Complaint ID ਕਾਪੀ ਹੋ ਗਈ ਹੈ।");
+          } catch {
+            showMessage("ID ਨੂੰ ਹੱਥ ਨਾਲ ਕਾਪੀ ਕਰ ਲਵੋ।");
+          }
+        });
+
+        complaintResult.replaceChildren(
+          heading, codeLine, note, copyButton
+        );
+
+        complaintForm.reset();
+        showMessage("ਤੁਹਾਡੀ ਸ਼ਿਕਾਇਤ ਡਾਟਾਬੇਸ ਵਿੱਚ ਸੇਵ ਹੋ ਗਈ ਹੈ।");
+      } catch (error) {
+        complaintResult.className = "";
+        showMessage(
+          "ਸ਼ਿਕਾਇਤ ਸੇਵ ਨਹੀਂ ਹੋਈ। ਲੌਗਇਨ, ਟੇਬਲ ਅਤੇ RLS Policies ਚੈੱਕ ਕਰੋ। " +
+          (error.message || ""),
+          true
+        );
+      } finally {
+        submitting = false;
+        submitButton.disabled = false;
+      }
+    });
+
+    startApp();
   </script>
 </body>
 </html>
