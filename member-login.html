@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102d46">
+  <meta name="description" content="NGSF Member Login and Registration">
+  <title>Member Login | NGSF</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #edf3f8;
+      color: #102d46;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #102d46;
+      color: white;
+      padding: 18px 5%;
+      border-bottom: 4px solid #d3a52b;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 25px;
+    }
+
+    header p {
+      margin: 5px 0 0;
+      color: #ffdc7a;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 12px;
+      color: #ffdc7a;
+    }
+
+    main {
+      width: min(100% - 28px, 480px);
+      margin: 32px auto;
+    }
+
+    .panel {
+      background: white;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 6px 24px #102d4614;
+      border-top: 5px solid #d3a52b;
+    }
+
+    h2 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    button, .button {
+      font: inherit;
+      font-weight: bold;
+      border-radius: 9px;
+      padding: 12px;
+      cursor: pointer;
+    }
+
+    .tab {
+      border: 1px solid #cbd5e1;
+      background: #edf3f8;
+      color: #102d46;
+    }
+
+    .tab.active {
+      background: #102d46;
+      color: white;
+      border-color: #d3a52b;
+    }
+
+    label {
+      display: block;
+      margin: 13px 0 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #bdcbd8;
+      border-radius: 8px;
+      font: inherit;
+    }
+
+    input:focus {
+      outline: 2px solid #d3a52b;
+      border-color: #102d46;
+    }
+
+    .primary {
+      width: 100%;
+      margin-top: 20px;
+      background: #f5c957;
+      color: #102d46;
+      border: 2px solid #d3a52b;
+    }
+
+    .primary:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    .secondary {
+      width: 100%;
+      margin-top: 10px;
+      background: white;
+      color: #102d46;
+      border: 1px solid #102d46;
+    }
+
+    .help {
+      font-size: 14px;
+      color: #526579;
+    }
+
+    .message {
+      display: none;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 16px;
+      overflow-wrap: anywhere;
+    }
+
+    .message.show { display: block; }
+
+    .notice {
+      background: #fff8df;
+      border-left: 4px solid #d3a52b;
+      padding: 12px;
+      margin-top: 18px;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 22px;
+      color: #526579;
+      font-size: 14px;
+    }
+
+    footer a { color: #174e78; }
+
+    .hidden { display: none; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>New Granthi Singh Federation</h1>
+    <p>ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ</p>
+    <a class="back" href="index.html">← Back to Home</a>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>Member Services</h2>
+      <p class="help">
+        Sign in to your member account or register as an ordinary member.
+      </p>
+
+      <div class="tabs">
+        <button type="button" id="loginTab" class="tab active">
+          Member Login
+        </button>
+        <button type="button" id="signupTab" class="tab">
+          Sign Up
+        </button>
+      </div>
+
+      <form id="loginForm">
+        <label for="loginEmail">Email Address</label>
+        <input id="loginEmail" type="email" autocomplete="email"
+          placeholder="Enter your email" required>
+
+        <label for="loginPassword">Password</label>
+        <input id="loginPassword" type="password"
+          autocomplete="current-password"
+          placeholder="Enter your password" required>
+
+        <button class="primary" type="submit">Login</button>
+        <button class="secondary" id="forgotButton" type="button">
+          Forgot Password?
+        </button>
+      </form>
+
+      <form id="signupForm" class="hidden">
+        <label for="fullName">Full Name</label>
+        <input id="fullName" type="text" autocomplete="name"
+          maxlength="100" placeholder="Enter your full name" required>
+
+        <label for="signupEmail">Email Address</label>
+        <input id="signupEmail" type="email" autocomplete="email"
+          placeholder="Enter your email" required>
+
+        <label for="signupPhone">Mobile Number (optional)</label>
+        <input id="signupPhone" type="tel" autocomplete="tel"
+          maxlength="20" placeholder="Enter your mobile number">
+
+        <label for="signupPassword">Create Password</label>
+        <input id="signupPassword" type="password"
+          autocomplete="new-password" minlength="8"
+          placeholder="At least 8 characters" required>
+
+        <label for="confirmPassword">Confirm Password</label>
+        <input id="confirmPassword" type="password"
+          autocomplete="new-password" minlength="8"
+          placeholder="Re-enter your password" required>
+
+        <button class="primary" type="submit">Create Member Account</button>
+      </form>
+
+      <div id="message" class="message" role="status"
+        aria-live="polite"></div>
+
+      <div class="notice">
+        <strong>Important:</strong> Registration creates an ordinary member
+        account only. It does not automatically approve membership or grant
+        Coordinator, Manager or Admin access. ID cards and official documents
+        require verification and approval.
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Help:
+      <a href="mailto:helpline.ngsf@gmail.com">
+        helpline.ngsf@gmail.com
+      </a>
+    </p>
+    <p>© <span id="year"></span> New Granthi Singh Federation</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    // Replace both values with your Supabase project details.
+    const SUPABASE_URL = "PASTE_YOUR_SUPABASE_PROJECT_URL_HERE";
+    const SUPABASE_PUBLISHABLE_KEY =
+      "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE";
+
+    let supabaseClient = null;
+
+    const loginForm = document.getElementById("loginForm");
+    const signupForm = document.getElementById("signupForm");
+    const loginTab = document.getElementById("loginTab");
+    const signupTab = document.getElementById("signupTab");
+    const message = document.getElementById("message");
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    function showMessage(text, success = false) {
+      message.textContent = text;
+      message.style.background = success ? "#e5f7e9" : "#fff0f0";
+      message.style.color = success ? "#14532d" : "#991b1b";
+      message.classList.add("show");
+    }
+
+    function clearMessage() {
+      message.textContent = "";
+      message.classList.remove("show");
+    }
+
+    function setBusy(form, busy) {
+      const button = form.querySelector('button[type="submit"]');
+      button.disabled = busy;
+      button.textContent = busy ? "Please wait..." :
+        (form === loginForm ? "Login" : "Create Member Account");
+    }
+
+    function switchTab(showSignup) {
+      clearMessage();
+      loginForm.classList.toggle("hidden", showSignup);
+      signupForm.classList.toggle("hidden", !showSignup);
+      loginTab.classList.toggle("active", !showSignup);
+      signupTab.classList.toggle("active", showSignup);
+    }
+
+    loginTab.addEventListener("click", () => switchTab(false));
+    signupTab.addEventListener("click", () => switchTab(true));
+
+    function getClient() {
+      if (!window.supabase) {
+        throw new Error("Login service did not load. Check your internet connection.");
+      }
+
+      if (
+        SUPABASE_URL.includes("PASTE_YOUR_") ||
+        SUPABASE_PUBLISHABLE_KEY.includes("PASTE_YOUR_")
+      ) {
+        throw new Error("Please add your Supabase URL and publishable key in the code.");
+      }
+
+      if (!supabaseClient) {
+        supabaseClient = window.supabase.createClient(
+          SUPABASE_URL,
+          SUPABASE_PUBLISHABLE_KEY
+        );
+      }
+
+      return supabaseClient;
+    }
+
+    loginForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      clearMessage();
+      setBusy(loginForm, true);
+
+      try {
+        const client = getClient();
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value;
+
+        const { data, error } = await client.auth.signInWithPassword({
+          email,
+          password
+        });
+
+        if (error) throw error;
+
+        showMessage(
+          "Login successful. Your account is signed in. Member services must still verify your permissions.",
+          true
+        );
+
+        // Do not grant admin/coordinator/manager access from this page.
+        // Add a verified member dashboard here after its access rules are configured.
+      } catch (error) {
+        showMessage(error.message || "Login failed. Please try again.");
+      } finally {
+        setBusy(loginForm, false);
+      }
+    });
+
+    signupForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      clearMessage();
+
+      const password = document.getElementById("signupPassword").value;
+      const confirm = document.getElementById("confirmPassword").value;
+
+      if (password !== confirm) {
+        showMessage("Passwords do not match. Please check again.");
+        return;
+      }
+
+      setBusy(signupForm, true);
+
+      try {
+        const client = getClient();
+        const fullName = document.getElementById("fullName").value.trim();
+        const email = document.getElementById("signupEmail").value.trim();
+        const phone = document.getElementById("signupPhone").value.trim();
+
+        const { data, error } = await client.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              full_name: fullName,
+              phone: phone,
+              account_type: "member"
+            },
+            emailRedirectTo:
+              "https://helplinengsf-dotcom.github.io/New-Granthi-Singh-Federation/"
+          }
+        });
+
+        if (error) throw error;
+
+        showMessage(
+          data.session
+            ? "Your account has been created. Please sign in."
+            : "Registration submitted. Check your email for the confirmation link before signing in.",
+          true
+        );
+
+        signupForm.reset();
+      } catch (error) {
+        showMessage(error.message || "Registration failed. Please try again.");
+      } finally {
+        setBusy(signupForm, false);
+      }
+    });
+
+    document.getElementById("forgotButton").addEventListener("click", async () => {
+      clearMessage();
+
+      const email = document.getElementById("loginEmail").value.trim();
+
+      if (!email) {
+        showMessage("Please enter your email address first.");
+        document.getElementById("loginEmail").focus();
+        return;
+      }
+
+      try {
+        const client = getClient();
+        const { error } = await client.auth.resetPasswordForEmail(email, {
+          redirectTo:
+            "https://helplinengsf-dotcom.github.io/New-Granthi-Singh-Federation/reset-password.html"
+        });
+
+        if (error) throw error;
+
+        showMessage(
+          "If this email is registered, a password reset link will be sent. Check your inbox and spam folder.",
+          true
+        );
+      } catch (error) {
+        showMessage(error.message || "Could not request a password reset.");
+      }
+    });
+  </script>
+</body>
+</html>
