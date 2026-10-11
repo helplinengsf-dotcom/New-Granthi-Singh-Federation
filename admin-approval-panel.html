@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<html lang="pa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Approval | NGSF</title>
+  <style>
+    body{margin:0;background:#edf3fa;color:#12283c;font-family:Arial,sans-serif}
+    header{background:#102e46;color:white;text-align:center;padding:22px}
+    main{max-width:1000px;margin:24px auto;padding:16px}
+    .card{background:white;border-top:7px solid #f4c644;border-radius:16px;padding:22px;margin-bottom:20px;overflow-wrap:anywhere}
+    input,button,select{box-sizing:border-box;width:100%;padding:12px;margin:7px 0;border-radius:8px;font-size:16px}
+    input,select{border:1px solid #bcc8d6}
+    button{background:#f4c644;border:0;font-weight:bold;cursor:pointer}
+    .dark{background:#102e46;color:white}
+    .row{border:1px solid #d6dfeb;border-radius:10px;padding:14px;margin:12px 0}
+    .msg{padding:12px;background:#fff4d4;border-radius:8px;overflow-wrap:anywhere}
+    @media(min-width:700px){.controls{display:grid;grid-template-columns:1fr 1fr;gap:12px}}
+  </style>
+</head>
+<body>
+<header>
+  <h1>NGSF Admin Approval</h1>
+  <p>Authorized administrators only</p>
+</header>
+<main>
+  <section class="card">
+    <h2>Admin Login</h2>
+    <form id="loginForm">
+      <label>Email</label>
+      <input id="email" type="email" autocomplete="username" required>
+      <label>Password</label>
+      <input id="password" type="password" autocomplete="current-password" required>
+      <button type="submit">Login</button>
+    </form>
+    <button id="logout" class="dark" hidden>Sign Out</button>
+    <p id="message" class="msg" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="card" id="panel" hidden>
+    <h2>Membership Applications</h2>
+    <div class="controls">
+      <input id="search" placeholder="Search name, email or phone">
+      <select id="filter">
+        <option value="all">All statuses</option>
+        <option>Pending</option>
+        <option>Under Review</option>
+        <option>Approved</option>
+        <option>Rejected</option>
+      </select>
+    </div>
+    <button id="load" class="dark">Load / Refresh Applications</button>
+    <div id="list"></div>
+  </section>
+  <p><a href="index.html">← Home</a></p>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://oqelvpojoaylmwdbmwcn.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_rgbSAlgeSBnVaBtYWlQOdA_ltIW3Hka";
+
+const db = window.supabase.createClient(
+  SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY
+);
+
+const $ = id => document.getElementById(id);
+const say = text => { $("message").textContent = text; };
+let rows = [];
+
+$("loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  say("Login ਅਤੇ Admin permission ਜਾਂਚ ਰਹੇ ਹਾਂ...");
+
+  const { error } = await db.auth.signInWithPassword({
+    email: $("email").value.trim(),
+    password: $("password").value
+  });
+
+  if (error) { say("Login error: " + error.message); return; }
+  await verifyAdmin();
+});
+
+async function verifyAdmin() {
+  const { data: { user }, error } = await db.auth.getUser();
+
+  if (error || !user) {
+    say("Login session ਨਹੀਂ ਮਿਲਿਆ।");
+    return;
+  }
+
+  // The role must be in trusted app_metadata, not user_metadata.
+  if (user.app_metadata?.role !== "admin") {
+    await db.auth.signOut();
+    say("Access denied. ਇਹ account authorized Admin ਨਹੀਂ ਹੈ।");
+    return;
+  }
+
+  $("loginForm").hidden = true;
+  $("logout").hidden = false;
+  $("panel").hidden = false;
+  say("Admin verification successful.");
+  await loadRows();
+}
+
+$("logout").addEventListener("click", async () => {
+  await db.auth.signOut();
+  rows = [];
+  $("list").replaceChildren();
+  $("panel").hidden = true;
+  $("logout").hidden = true;
+  $("loginForm").hidden = false;
+  say("Signed out.");
+});
+
+$("load").addEventListener("click", loadRows);
+$("search").addEventListener("input", render);
+$("filter").addEventListener("change", render);
+
+async function loadRows() {
+  say("Applications ਲੋਡ ਹੋ ਰਹੀਆਂ ਹਨ...");
+
+  // Re-check trusted role before reading data.
+  const { data: { user }, error: authError } = await db.auth.getUser();
+  if (authError || !user || user.app_metadata?.role !== "admin") {
+    say("Admin verification failed.");
+    return;
+  }
+
+  const { data, error } = await db
+    .from("ngsf_member_registrations")
+    .select("id,user_id,full_name,phone,email,city,interest,message,status,created_at")
+    .order("created_at", { ascending: false })
+    .limit(500);
+
+  if (error) {
+    say("Load error: " + error.message);
+    return;
+  }
+
+  rows = data || [];
+  render();
+  say(rows.length + " applications loaded.");
+}
+
+function render() {
+  const list = $("list");
+  list.replaceChildren();
+
+  const term = $("search").value.trim().toLowerCase();
+  const statusFilter = $("filter").value;
+
+  const visible = rows.filter(r => {
+    const haystack = [
+      r.full_name, r.email, r.phone, r.city, r.interest
+    ].join(" ").toLowerCase();
+
+    return haystack.includes(term) &&
+      (statusFilter === "all" || r.status === statusFilter);
+  });
+
+  if (!visible.length) {
+    list.textContent = "ਕੋਈ application ਨਹੀਂ ਮਿਲੀ।";
+    return;
+  }
+
+  visible.forEach(r => {
+    const card = document.createElement("article");
+    card.className = "row";
+
+    const title = document.createElement("h3");
+    title.textContent = r.full_name || "Unnamed Applicant";
+
+    const details = document.createElement("p");
+    details.textContent =
+      "Email: " + (r.email || "—") +
+      " | Phone: " + (r.phone || "—") +
+      " | City: " + (r.city || "—");
+
+    const interest = document.createElement("p");
+    interest.textContent = "Interest: " + (r.interest || "—");
+
+    const current = document.createElement("p");
+    current.textContent = "Current status: " + r.status;
+
+    const select = document.createElement("select");
+    ["Pending", "Under Review", "Approved", "Rejected"].forEach(s => {
+      const option = document.createElement("option");
+      option.value = s;
+      option.textContent = s;
+      option.selected = s === r.status;
+      select.append(option);
+    });
+
+    const save = document.createElement("button");
+    save.textContent = "Save Status";
+    save.addEventListener("click", () => updateStatus(r, select.value, save));
+
+    card.append(title, details, interest, current, select, save);
+    list.append(card);
+  });
+}
+
+async function updateStatus(row, newStatus, button) {
+  if (!["Pending", "Under Review", "Approved", "Rejected"].includes(newStatus)) {
+    say("Invalid status.");
+    return;
+  }
+
+  const { data: { user }, error: authError } = await db.auth.getUser();
+  if (authError || !user || user.app_metadata?.role !== "admin") {
+    say("Admin permission required.");
+    return;
+  }
+
+  if (!confirm("ਕੀ ਤੁਸੀਂ status '" + newStatus + "' ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?")) {
+    return;
+  }
+
+  button.disabled = true;
+  say("Status save ਹੋ ਰਿਹਾ ਹੈ...");
+
+  // RLS and the database column grant enforce authorization.
+  const { data, error } = await db
+    .from("ngsf_member_registrations")
+    .update({ status: newStatus })
+    .eq("id", row.id)
+    .select("id,status")
+    .single();
+
+  button.disabled = false;
+
+  if (error) {
+    say("Update failed: " + error.message);
+    return;
+  }
+
+  row.status = data.status;
+  render();
+  say("Status updated successfully: " + data.status);
+}
+
+(async () => {
+  const { data: { session } } = await db.auth.getSession();
+  if (session) await verifyAdmin();
+})();
+</script>
+</body>
+</html>
