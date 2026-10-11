@@ -365,7 +365,7 @@ async function loadApplications() {
   const { data, error } = await db
     .from("ngsf_member_registrations")
     .select(
-      "id, user_id, full_name, phone, email, city, interest, message, status, created_at"
+      "id, user_id, full_name, gender, date_of_birth, father_name, profession, blood_group, state, district, mobile, whatsapp, address, pin_code, email, id_type, status, created_at"
     )
     .order("created_at", { ascending: false })
     .limit(200);
@@ -403,10 +403,13 @@ function renderApplications() {
       app.id,
       app.user_id,
       app.full_name,
-      app.phone,
+      app.mobile,
+      app.whatsapp,
       app.email,
-      app.city,
-      app.interest,
+      app.district,
+      app.state,
+      app.father_name,
+      app.profession,
       app.status
     ].map(safeText).join(" ").toLowerCase();
 
@@ -438,11 +441,13 @@ function renderApplications() {
 
     const details = document.createElement("pre");
     details.textContent =
-      "Phone: " + safeText(app.phone) + "\n" +
+      "Mobile: " + safeText(app.mobile) + "\n" +
+      "WhatsApp: " + safeText(app.whatsapp) + "\n" +
       "Email: " + safeText(app.email) + "\n" +
-      "City / District: " + safeText(app.city) + "\n" +
-      "Interest: " + safeText(app.interest) + "\n" +
-      "Message: " + safeText(app.message);
+      "District / State: " + safeText(app.district) + " / " + safeText(app.state) + "\n" +
+      "Father name: " + safeText(app.father_name) + "\n" +
+      "Profession: " + safeText(app.profession) + "\n" +
+      "ID type: " + safeText(app.id_type);
 
     const currentStatus = document.createElement("p");
     currentStatus.append("Current Status: ");
