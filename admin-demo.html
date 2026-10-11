@@ -1,7 +1,309 @@
+<!DOCTYPE html>
+<html lang="pa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071426">
+<title>NGSF Admin Approval</title>
+
+<style>
+:root {
+  --navy:#071426;
+  --blue:#0B2D59;
+  --gold:#F5C542;
+  --light:#F3F6FB;
+  --text:#26364B;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:var(--light);
+  color:var(--text);
+  line-height:1.6;
+}
+header {
+  background:var(--navy);
+  color:white;
+  padding:18px 5%;
+  border-bottom:4px solid var(--gold);
+}
+header a {
+  color:var(--gold);
+  text-decoration:none;
+  margin-right:12px;
+}
+main { width:min(1100px,94%); margin:24px auto; }
+.card {
+  background:white;
+  border:1px solid #d9e2ef;
+  border-top:5px solid var(--gold);
+  border-radius:12px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 5px 18px #0714260d;
+}
+h1,h2,h3 { color:var(--navy); }
+label {
+  display:block;
+  font-weight:bold;
+  margin:12px 0 5px;
+}
+input,select {
+  width:100%;
+  padding:12px;
+  border:1px solid #bbc8d8;
+  border-radius:8px;
+  font-size:16px;
+  background:white;
+}
+button {
+  border:0;
+  border-radius:8px;
+  padding:11px 15px;
+  margin:8px 5px 0 0;
+  background:var(--gold);
+  color:var(--navy);
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+}
+button:disabled { opacity:.55; cursor:not-allowed; }
+button.secondary { background:var(--blue); color:white; }
+button.danger { background:#8d2020; color:white; }
+.status {
+  padding:12px;
+  border-radius:8px;
+  background:#e8f6ec;
+  margin:12px 0;
+  overflow-wrap:anywhere;
+}
+.error {
+  padding:12px;
+  border-radius:8px;
+  background:#ffeded;
+  color:#8d2020;
+  margin:12px 0;
+  overflow-wrap:anywhere;
+}
+.hidden { display:none!important; }
+.muted { font-size:13px; color:#657386; }
+.item {
+  border:1px solid #d9e2ef;
+  border-radius:10px;
+  padding:16px;
+  margin:14px 0;
+  overflow-wrap:anywhere;
+}
+.item p { margin:7px 0; }
+.grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+pre {
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  font-family:Arial,sans-serif;
+  background:#f5f7fa;
+  padding:12px;
+  border-radius:8px;
+}
+@media(max-width:650px) {
+  .grid { grid-template-columns:1fr; }
+  main { width:94%; }
+  .card { padding:15px; }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <strong>NGSF — Admin Approval</strong><br>
+  <a href="index.html">Home</a>
+  <a href="membership.html">Membership</a>
+</header>
+
+<main>
+  <section class="card">
+    <h1>Membership Approval Dashboard</h1>
+    <p>ਇਹ ਪੇਜ ਸਿਰਫ਼ ਅਧਿਕਾਰਤ NGSF Admin ਲਈ ਹੈ।</p>
+
+    <div id="loginArea">
+      <label for="email">Admin Email</label>
+      <input id="email" type="email"
+             autocomplete="username"
+             placeholder="Admin email">
+
+      <label for="password">Password</label>
+      <input id="password" type="password"
+             autocomplete="current-password"
+             placeholder="Password">
+
+      <button id="loginBtn">Admin Login</button>
+      <button id="resetBtn" class="secondary">Forgot Password</button>
+    </div>
+
+    <div id="adminArea" class="hidden">
+      <p class="status" id="adminIdentity"></p>
+      <button id="reloadBtn">Refresh Applications</button>
+      <button id="logoutBtn" class="danger">Sign Out</button>
+    </div>
+
+    <div id="message" role="status" aria-live="polite"></div>
+  </section>
+
+  <section id="dashboard" class="card hidden">
+    <h2>Membership Applications</h2>
+
+    <div class="grid">
+      <div>
+        <label for="filterStatus">Filter by Status</label>
+        <select id="filterStatus">
+          <option value="">All statuses</option>
+          <option value="Pending">Pending</option>
+          <option value="Under Review">Under Review</option>
+          <option value="Approved">Approved</option>
+          <option value="Rejected">Rejected</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="search">Search Applications</label>
+        <input id="search" type="search"
+               placeholder="Name, email, mobile or ID">
+      </div>
+    </div>
+
+    <p class="muted">
+      ਸਿਰਫ਼ ਉਹੀ applications ਦਿਖਣਗੀਆਂ ਜਿਨ੍ਹਾਂ ਨੂੰ Supabase RLS policies
+      ਅਧਿਕਾਰਤ Admin ਲਈ ਪੜ੍ਹਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿੰਦੀਆਂ ਹਨ।
+    </p>
+
+    <div id="applications">Applications ਲੋਡ ਹੋ ਰਹੀਆਂ ਹਨ…</div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+"use strict";
+
+/* Supabase project settings */
+const SUPABASE_URL =
+  "https://oqelvpojoaylmwdbmwcn.supabase.co";
+
+/*
+  ਇੱਥੇ ਆਪਣੀ ਅਸਲੀ Supabase Publishable Key ਪਾਓ।
+  sb_publishable_... ਜਾਂ ਪੁਰਾਣੀ anon public key ਵਰਤ ਸਕਦੇ ਹੋ।
+  service_role ਜਾਂ sb_secret_ key ਕਦੇ ਵੀ ਇੱਥੇ ਨਾ ਪਾਓ।
+*/
+const SUPABASE_PUBLISHABLE_KEY =
+  "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE";
+
+const db = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
+
+const $ = id => document.getElementById(id);
+
+const allowedStatuses = [
+  "Pending",
+  "Under Review",
+  "Approved",
+  "Rejected"
+];
+
+let currentUser = null;
+let allApplications = [];
+let busy = false;
+
+function showMessage(text, isError = false) {
+  const box = document.createElement("div");
+  box.className = isError ? "error" : "status";
+  box.textContent = text;
+
+  $("message").replaceChildren(box);
+}
+
+function clearMessage() {
+  $("message").replaceChildren();
+}
+
+function setLoggedIn(user, isAdmin) {
+  currentUser = isAdmin ? user : null;
+
+  $("loginArea").classList.toggle("hidden", !!isAdmin);
+  $("adminArea").classList.toggle("hidden", !isAdmin);
+  $("dashboard").classList.toggle("hidden", !isAdmin);
+
+  $("adminIdentity").textContent = isAdmin
+    ? "Authorized Admin: " + user.email
+    : "";
+}
+
+function safeText(value) {
+  return value === null || value === undefined || value === ""
+    ? "—"
+    : String(value);
+}
+
+/*
+  Admin permission is checked against ngsf_admins.
+  Public signup metadata is NOT trusted for authorization.
+*/
+async function verifyAdmin(user) {
+  const { data, error } = await db
+    .from("ngsf_admins")
+    .select("user_id")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  if (error) {
+    setLoggedIn(null, false);
+    showMessage(
+      "Admin verification failed: " + error.message,
+      true
+    );
+    await db.auth.signOut();
+    return false;
+  }
+
+  if (!data) {
+    setLoggedIn(null, false);
+    showMessage(
+      "Access denied. ਇਹ account ngsf_admins ਟੇਬਲ ਵਿੱਚ authorized Admin ਵਜੋਂ ਦਰਜ ਨਹੀਂ ਹੈ।",
+      true
+    );
+    await db.auth.signOut();
+    return false;
+  }
+
+  setLoggedIn(user, true);
+  showMessage("Admin verification successful.");
+  await loadApplications();
+
+  return true;
+}
+
+/*
+  IMPORTANT:
+  Actual columns confirmed from your screenshots:
+  id, user_id, full_name, gender, date_of_birth, father_name,
+  profession, blood_group, state, district, mobile, whatsapp,
+  address, pin_code, email, profile_photo_path, id_type,
+  id_document_path, other_document_path, status, created_at,
+  updated_at, identity_fingerprint, identity_verified_at,
+  identity_consent_at, aadhaar_fingerprint.
+
+  This query deliberately does not request a phone column.
+*/
 async function loadApplications() {
   if (!currentUser) return;
 
-  $("applications").textContent = "Applications ਲੋਡ ਹੋ ਰਹੀਆਂ ਹਨ…";
+  $("applications").textContent =
+    "Applications ਲੋਡ ਹੋ ਰਹੀਆਂ ਹਨ…";
 
   const { data, error } = await db
     .from("ngsf_member_registrations")
@@ -23,18 +325,305 @@ async function loadApplications() {
       email,
       id_type,
       status,
-      created_at,
-      updated_at
+      created_at
     `)
     .order("created_at", { ascending: false })
     .limit(200);
 
   if (error) {
     $("applications").textContent = "";
-    message("Applications ਲੋਡ ਨਹੀਂ ਹੋਈਆਂ: " + error.message, true);
+    showMessage(
+      "Applications ਲੋਡ ਨਹੀਂ ਹੋਈਆਂ: " + error.message,
+      true
+    );
     return;
   }
 
   allApplications = data || [];
   renderApplications();
+
+  showMessage(
+    "Applications ਲੋਡ ਹੋ ਗਈਆਂ: " +
+    allApplications.length
+  );
 }
+
+function renderApplications() {
+  const target = $("applications");
+  target.replaceChildren();
+
+  const filter = $("filterStatus").value;
+  const query = $("search").value.trim().toLowerCase();
+
+  const rows = allApplications.filter(app => {
+    const statusMatch =
+      !filter || app.status === filter;
+
+    const searchable = [
+      app.id,
+      app.user_id,
+      app.full_name,
+      app.mobile,
+      app.whatsapp,
+      app.email,
+      app.state,
+      app.district,
+      app.id_type,
+      app.status
+    ].map(safeText).join(" ").toLowerCase();
+
+    return statusMatch &&
+      (!query || searchable.includes(query));
+  });
+
+  if (!rows.length) {
+    target.textContent =
+      "ਇਸ filter ਲਈ ਕੋਈ application ਨਹੀਂ ਮਿਲੀ।";
+    return;
+  }
+
+  rows.forEach(app => {
+    const card = document.createElement("article");
+    card.className = "item";
+
+    const title = document.createElement("h3");
+    title.textContent = safeText(app.full_name);
+
+    const id = document.createElement("p");
+    id.textContent = "Application ID: " + safeText(app.id);
+
+    const submitted = document.createElement("p");
+    submitted.textContent = "Submitted: " +
+      (app.created_at
+        ? new Date(app.created_at).toLocaleString()
+        : "—");
+
+    const details = document.createElement("pre");
+    details.textContent =
+      "User ID: " + safeText(app.user_id) + "\n" +
+      "Gender: " + safeText(app.gender) + "\n" +
+      "Date of Birth: " + safeText(app.date_of_birth) + "\n" +
+      "Father's Name: " + safeText(app.father_name) + "\n" +
+      "Profession: " + safeText(app.profession) + "\n" +
+      "Blood Group: " + safeText(app.blood_group) + "\n" +
+      "Mobile: " + safeText(app.mobile) + "\n" +
+      "WhatsApp: " + safeText(app.whatsapp) + "\n" +
+      "Email: " + safeText(app.email) + "\n" +
+      "State: " + safeText(app.state) + "\n" +
+      "District: " + safeText(app.district) + "\n" +
+      "Address: " + safeText(app.address) + "\n" +
+      "PIN Code: " + safeText(app.pin_code) + "\n" +
+      "ID Type: " + safeText(app.id_type);
+
+    const statusLabel = document.createElement("label");
+    statusLabel.textContent = "Application Status";
+
+    const statusSelect = document.createElement("select");
+
+    allowedStatuses.forEach(status => {
+      const option = document.createElement("option");
+      option.value = status;
+      option.textContent = status;
+      statusSelect.appendChild(option);
+    });
+
+    statusSelect.value =
+      allowedStatuses.includes(app.status)
+        ? app.status
+        : "Pending";
+
+    const save = document.createElement("button");
+    save.textContent = "Save Status";
+
+    save.addEventListener("click", () => {
+      updateStatus(app, statusSelect, save);
+    });
+
+    card.append(
+      title,
+      id,
+      submitted,
+      details,
+      statusLabel,
+      statusSelect,
+      save
+    );
+
+    target.appendChild(card);
+  });
+}
+
+async function updateStatus(app, select, button) {
+  if (busy || !currentUser) return;
+
+  const newStatus = select.value;
+
+  if (!allowedStatuses.includes(newStatus)) {
+    showMessage("Invalid status.", true);
+    return;
+  }
+
+  if (!confirm(
+    "Application status ਨੂੰ '" + newStatus +
+    "' ਕਰਨਾ ਹੈ?"
+  )) return;
+
+  busy = true;
+  button.disabled = true;
+  clearMessage();
+
+  /*
+    Supabase RLS must independently authorize this update.
+    Frontend Admin check alone is not sufficient security.
+  */
+  const { data, error } = await db
+    .from("ngsf_member_registrations")
+    .update({ status: newStatus })
+    .eq("id", app.id)
+    .select("id, status")
+    .maybeSingle();
+
+  busy = false;
+  button.disabled = false;
+
+  if (error) {
+    showMessage(
+      "Status update ਨਹੀਂ ਹੋਇਆ: " + error.message,
+      true
+    );
+    return;
+  }
+
+  if (!data) {
+    showMessage(
+      "ਕੋਈ row update ਨਹੀਂ ਹੋਈ। Supabase RLS UPDATE policy ਅਤੇ Admin access ਜਾਂਚੋ।",
+      true
+    );
+    return;
+  }
+
+  showMessage(
+    "Application status updated: " + data.status
+  );
+
+  await loadApplications();
+}
+
+$("loginBtn").addEventListener("click", async () => {
+  if (busy) return;
+
+  const email = $("email").value.trim();
+  const password = $("password").value;
+
+  if (!email || !password) {
+    showMessage("Admin email ਅਤੇ password ਭਰੋ।", true);
+    return;
+  }
+
+  busy = true;
+  $("loginBtn").disabled = true;
+  clearMessage();
+
+  const { data, error } = await db.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  busy = false;
+  $("loginBtn").disabled = false;
+
+  if (error) {
+    showMessage("Login failed: " + error.message, true);
+    return;
+  }
+
+  await verifyAdmin(data.user);
+});
+
+$("resetBtn").addEventListener("click", async () => {
+  const email = $("email").value.trim();
+
+  if (!email) {
+    showMessage("ਪਹਿਲਾਂ Admin email ਭਰੋ।", true);
+    return;
+  }
+
+  const redirectTo =
+    location.origin +
+    location.pathname.replace(
+      /[^/]*$/,
+      "reset-password.html"
+    );
+
+  const { error } = await db.auth.resetPasswordForEmail(
+    email,
+    { redirectTo }
+  );
+
+  if (error) {
+    showMessage(
+      "Password reset request failed: " + error.message,
+      true
+    );
+    return;
+  }
+
+  showMessage(
+    "ਜੇ ਇਹ email account ਮੌਜੂਦ ਹੈ, ਤਾਂ password reset instructions ਭੇਜਣ ਦੀ ਬੇਨਤੀ ਹੋ ਗਈ ਹੈ। Inbox ਅਤੇ Spam ਚੈੱਕ ਕਰੋ।"
+  );
+});
+
+$("reloadBtn").addEventListener("click", loadApplications);
+$("filterStatus").addEventListener("change", renderApplications);
+$("search").addEventListener("input", renderApplications);
+
+$("logoutBtn").addEventListener("click", async () => {
+  await db.auth.signOut();
+
+  currentUser = null;
+  allApplications = [];
+
+  setLoggedIn(null, false);
+  $("applications").textContent = "";
+  showMessage("ਤੁਸੀਂ Sign Out ਹੋ ਗਏ ਹੋ।");
+});
+
+async function initialize() {
+  if (
+    !SUPABASE_PUBLISHABLE_KEY ||
+    SUPABASE_PUBLISHABLE_KEY ===
+      "sb_publishable_rgbSAlgeSBnVaBtYWlQOdA_ltIW3Hka"
+  ) {
+    showMessage(
+      "ਕੋਡ ਵਿੱਚ ਆਪਣੀ Supabase Publishable Key ਪਾਓ।",
+      true
+    );
+    return;
+  }
+
+  const { data, error } = await db.auth.getSession();
+
+  if (error) {
+    showMessage(error.message, true);
+    return;
+  }
+
+  if (data.session) {
+    await verifyAdmin(data.session.user);
+  } else {
+    setLoggedIn(null, false);
+  }
+}
+
+db.auth.onAuthStateChange((event) => {
+  if (event === "SIGNED_OUT") {
+    currentUser = null;
+    allApplications = [];
+    setLoggedIn(null, false);
+  }
+});
+
+initialize();
+</script>
+</body>
+</html>
