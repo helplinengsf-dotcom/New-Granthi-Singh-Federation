@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="pa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NGSF Complaint Portal</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 20px;
+      background: #07111f; color: #fff;
+      font-family: Arial, sans-serif;
+    }
+    .card {
+      max-width: 600px; margin: 35px auto;
+      padding: 24px; border: 1px solid #d8b338;
+      border-radius: 18px; background: #101f32;
+    }
+    h1 { color: #f0d16a; }
+    p { line-height: 1.6; color: #d3dbea; }
+    label { display: block; margin-top: 16px; }
+    input, select, textarea {
+      width: 100%; padding: 13px; margin-top: 7px;
+      border: 1px solid #52647b; border-radius: 8px;
+      background: #07111f; color: white; font-size: 16px;
+    }
+    button {
+      width: 100%; padding: 14px; margin-top: 20px;
+      border: 0; border-radius: 8px;
+      background: #d8b338; color: #07111f;
+      font-size: 17px; font-weight: bold;
+    }
+    .note { font-size: 14px; }
+    a { color: #f0d16a; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>NGSF ਸ਼ਿਕਾਇਤ ਪੋਰਟਲ</h1>
+    <p>New Granthi Singh Federation ਨੂੰ ਆਪਣੀ ਸ਼ਿਕਾਇਤ ਭੇਜਣ ਲਈ ਹੇਠਾਂ ਜਾਣਕਾਰੀ ਭਰੋ।</p>
+
+    <form id="complaintForm">
+      <label for="category">ਸ਼ਿਕਾਇਤ ਦੀ ਕਿਸਮ</label>
+      <select id="category" required>
+        <option value="">ਚੁਣੋ</option>
+        <option>Membership</option>
+        <option>Coordinator</option>
+        <option>Donation</option>
+        <option>Event or Service</option>
+        <option>Other</option>
+      </select>
+
+      <label for="subject">ਸ਼ਿਕਾਇਤ ਦਾ ਵਿਸ਼ਾ</label>
+      <input id="subject" maxlength="150" required>
+
+      <label for="description">ਪੂਰੀ ਜਾਣਕਾਰੀ</label>
+      <textarea id="description" rows="6" maxlength="5000" required></textarea>
+
+      <button type="submit">ਸ਼ਿਕਾਇਤ ਅੱਗੇ ਭੇਜੋ</button>
+      <p id="message" role="status"></p>
+    </form>
+
+    <p class="note">
+      ਇਹ ਪੇਜ ਹਾਲੇ ਫਾਰਮ ਦਾ ਡਿਜ਼ਾਇਨ ਹੈ। ਸ਼ਿਕਾਇਤ ਅਜੇ ਡਾਟਾਬੇਸ ਵਿੱਚ ਜਮ੍ਹਾਂ ਨਹੀਂ ਹੁੰਦੀ।
+      ਅਸਲ ਸਬਮਿਸ਼ਨ ਲਈ ਸੁਰੱਖਿਅਤ ਲੌਗਇਨ ਅਤੇ Supabase ਕਨੈਕਸ਼ਨ ਜੋੜਨਾ ਬਾਕੀ ਹੈ।
+    </p>
+    <p><a href="index.html">ਮੁੱਖ ਪੇਜ ’ਤੇ ਵਾਪਸ ਜਾਓ</a></p>
+  </main>
+
+  <script>
+    document.getElementById("complaintForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      document.getElementById("message").textContent =
+        "ਫਾਰਮ ਦਾ ਡਿਜ਼ਾਇਨ ਤਿਆਰ ਹੈ। ਅਸਲ ਸਬਮਿਸ਼ਨ ਲਈ ਸੁਰੱਖਿਅਤ ਕਨੈਕਸ਼ਨ ਹਾਲੇ ਜੋੜਨਾ ਬਾਕੀ ਹੈ।";
+    });
+  </script>
+</body>
+</html>
