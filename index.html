@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,36 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>New Granthi Singh Federation | NGSF</title>
-  <meta name="description" content="New Granthi Singh Federation — Service, Unity and Humanity. Community support, membership, donations and social welfare.">
+  <meta name="description" content="New Granthi Singh Federation — Service, Unity and Humanity. Membership, community service, ID cards and social welfare.">
+  <meta name="theme-color" content="#10304a">
 
   <link rel="stylesheet" href="assets/style.css">
 
   <style>
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 20px;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       color: #173e32;
       line-height: 1.6;
+      background: #ffffff;
     }
+
     a { color: inherit; }
+
     .topbar {
       background: #103e30;
-      color: white;
+      color: #ffffff;
       padding: 10px 5%;
       font-size: 14px;
     }
-    .topbar a { color: white; text-decoration: none; }
+
+    .topbar a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
     .contactline {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 8px 20px;
     }
-    .tagline { margin-top: 5px; }
+
+    .tagline {
+      margin-top: 5px;
+      color: #ffdc7a;
+      font-weight: 700;
+    }
+
     .header {
-      background: white;
+      background: #ffffff;
       padding: 18px 5%;
       display: flex;
       align-items: center;
@@ -44,7 +63,9 @@
       position: relative;
       z-index: 10;
       box-shadow: 0 2px 12px #0000000d;
+      border-bottom: 3px solid #d3a52b;
     }
+
     .brand {
       display: flex;
       align-items: center;
@@ -52,6 +73,7 @@
       text-decoration: none;
       min-width: 0;
     }
+
     .brand img {
       width: 78px;
       height: 78px;
@@ -59,112 +81,242 @@
       border-radius: 50%;
       flex-shrink: 0;
     }
+
     .brand-name {
       font-size: clamp(17px, 2.5vw, 28px);
       font-weight: 800;
       line-height: 1.25;
+      color: #102d46;
     }
-    .brand-subtitle { font-size: 15px; margin-top: 5px; }
+
+    .brand-subtitle {
+      font-size: 15px;
+      margin-top: 5px;
+      color: #43566a;
+    }
+
     .menu-toggle {
       display: none;
-      border: 0;
-      background: #103e30;
-      color: white;
-      border-radius: 13px;
-      font-size: 32px;
-      width: 62px;
-      height: 62px;
+      border: 2px solid #d3a52b;
+      background: #10304a;
+      color: #ffffff;
+      border-radius: 12px;
+      font-size: 30px;
+      width: 54px;
+      height: 54px;
       cursor: pointer;
       flex-shrink: 0;
     }
+
+    .menu-toggle:hover,
+    .menu-toggle:focus-visible {
+      background: #f5c957;
+      color: #102d46;
+    }
+
+    /* Main navigation: dark blue with readable white text */
     .nav {
-      background: white;
-      padding: 0 5% 18px;
+      background: #102d46;
+      padding: 12px 5%;
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       justify-content: center;
+      border-bottom: 3px solid #d3a52b;
     }
+
     .nav a {
+      display: block;
       text-decoration: none;
       font-weight: 700;
-      padding: 10px 13px;
-      border-radius: 7px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #ffffff;
+      background: #183e5b;
+      border: 1px solid #315570;
+      transition: background 0.2s ease, color 0.2s ease;
     }
-    .nav a:hover { background: #edf4ec; color: #b08019; }
+
+    .nav a:hover,
+    .nav a:focus-visible {
+      background: #f5c957;
+      color: #102d46;
+      border-color: #f5c957;
+      outline: none;
+    }
+
     .hero {
       padding: 85px 6%;
-      color: white;
+      color: #ffffff;
       background: linear-gradient(130deg, #103e30, #28654b);
     }
-    .hero-inner { max-width: 1100px; margin: auto; }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: auto;
+    }
+
     .eyebrow {
       color: #ffd36b;
       font-size: 20px;
       font-weight: bold;
     }
+
     .hero h1 {
       font-size: clamp(36px, 6vw, 62px);
       line-height: 1.12;
       max-width: 850px;
       margin: 20px 0;
     }
-    .hero p { font-size: 19px; max-width: 760px; }
+
+    .hero p {
+      font-size: 19px;
+      max-width: 760px;
+    }
+
     .actions {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
       margin-top: 28px;
     }
+
     .btn {
       display: inline-block;
-      padding: 14px 22px;
+      padding: 13px 21px;
       background: #f5c957;
       color: #173e32;
       text-decoration: none;
       border-radius: 10px;
       font-weight: bold;
       border: 2px solid #f5c957;
+      text-align: center;
+      cursor: pointer;
     }
+
+    .btn:hover,
+    .btn:focus-visible {
+      background: #ffdf83;
+      border-color: #ffdf83;
+      color: #102d46;
+    }
+
     .btn-outline {
       background: transparent;
-      color: white;
-      border-color: white;
+      color: #ffffff;
+      border-color: #ffffff;
     }
-    .section { padding: 55px 6%; }
-    .section-inner { max-width: 1100px; margin: auto; }
-    .section h2 { font-size: clamp(28px, 4vw, 40px); }
-    .muted { color: #61736b; }
+
+    .btn-outline:hover,
+    .btn-outline:focus-visible {
+      background: #ffffff;
+      color: #103e30;
+    }
+
+    .section {
+      padding: 55px 6%;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      color: #102d46;
+      line-height: 1.25;
+    }
+
+    .muted { color: #53675f; }
+
     .cards {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 20px;
     }
+
     .card {
       padding: 24px;
-      border: 1px solid #e0e8df;
+      border: 1px solid #dce5ed;
       border-radius: 15px;
-      background: white;
-      box-shadow: 0 5px 18px #103e3008;
+      background: #ffffff;
+      box-shadow: 0 5px 18px #102d460c;
+      min-width: 0;
     }
-    .card h3 { margin-top: 0; }
-    .card a { font-weight: bold; }
-    .tint { background: #f1f6ed; }
+
+    .card h3 {
+      margin-top: 0;
+      color: #123653;
+    }
+
+    .card a {
+      font-weight: bold;
+      color: #174e78;
+    }
+
+    .card a:hover { color: #986e08; }
+
+    .tint { background: #f2f6fa; }
+
+    /* Login and member services */
+    .portal-section {
+      background: #edf3f8;
+    }
+
+    .portal-intro {
+      max-width: 760px;
+      margin-bottom: 25px;
+    }
+
+    .portal-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-top: 4px solid #d3a52b;
+    }
+
+    .portal-card p {
+      color: #53675f;
+      margin-top: 0;
+      flex-grow: 1;
+    }
+
+    .portal-card .btn {
+      width: 100%;
+      margin-top: auto;
+    }
+
+    .portal-note {
+      margin-top: 22px;
+      padding: 15px 18px;
+      border-left: 4px solid #d3a52b;
+      border-radius: 8px;
+      background: #ffffff;
+      color: #344b60;
+    }
+
     .contact-box {
       background: #103e30;
-      color: white;
+      color: #ffffff;
       padding: 30px;
       border-radius: 16px;
       overflow-wrap: anywhere;
     }
-    .contact-box a { color: #ffdc7a; }
+
+    .contact-box a:not(.btn) {
+      color: #ffdc7a;
+    }
+
     footer {
       background: #092c22;
-      color: white;
+      color: #ffffff;
       padding: 28px 6%;
       text-align: center;
     }
+
     footer a { color: #ffdc7a; }
+
     .quick-contact {
       position: fixed;
       right: 14px;
@@ -174,46 +326,123 @@
       flex-direction: column;
       gap: 9px;
     }
+
     .quick-contact a {
       text-decoration: none;
-      color: white;
+      color: #ffffff;
       font-weight: bold;
       padding: 11px 14px;
       border-radius: 30px;
       background: #103e30;
+      border: 1px solid #d3a52b;
       box-shadow: 0 3px 12px #0002;
     }
+
+    .quick-contact a:hover {
+      background: #f5c957;
+      color: #102d46;
+    }
+
+    :focus-visible {
+      outline: 3px solid #d3a52b;
+      outline-offset: 3px;
+    }
+
     @media (max-width: 760px) {
       .topbar { padding: 10px 5%; }
-      .contactline { flex-direction: column; }
-      .header { padding: 15px 5%; }
-      .brand img { width: 62px; height: 62px; }
-      .brand-subtitle { font-size: 13px; }
-      .menu-toggle {
-        display: block;
-        width: 58px;
-        height: 58px;
-      }
-      .nav {
-        display: none;
-        padding: 15px 5%;
+
+      .contactline {
         flex-direction: column;
-        align-items: stretch;
         gap: 5px;
       }
-      .nav.open { display: flex; }
-      .nav a {
-        display: block;
-        padding: 12px 16px;
-        background: #f1f6ed;
+
+      .header { padding: 14px 5%; }
+
+      .brand { gap: 10px; }
+
+      .brand img {
+        width: 60px;
+        height: 60px;
+      }
+
+      .brand-name {
         font-size: 17px;
       }
+
+      .brand-subtitle {
+        font-size: 12px;
+      }
+
+      .menu-toggle {
+        display: block;
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+      }
+
+      .nav {
+        display: none;
+        padding: 14px 5%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 7px;
+      }
+
+      .nav.open { display: flex; }
+
+      .nav a {
+        display: block;
+        width: 100%;
+        padding: 12px 16px;
+        background: #183e5b;
+        color: #ffffff;
+        border: 1px solid #315570;
+        border-radius: 9px;
+        font-size: 16px;
+      }
+
+      .nav a:hover,
+      .nav a:focus-visible {
+        background: #f5c957;
+        color: #102d46;
+        border-color: #f5c957;
+      }
+
       .hero { padding: 55px 6%; }
+
       .hero p { font-size: 17px; }
+
       .section { padding: 40px 6%; }
+
       .cards { grid-template-columns: 1fr; }
-      .quick-contact { right: 8px; bottom: 12px; }
-      .quick-contact a { font-size: 12px; padding: 9px 11px; }
+
+      .card { padding: 21px; }
+
+      .actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .actions .btn { width: 100%; }
+
+      .contact-box { padding: 22px; }
+
+      .quick-contact {
+        right: 8px;
+        bottom: 12px;
+      }
+
+      .quick-contact a {
+        font-size: 12px;
+        padding: 9px 11px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
@@ -271,6 +500,87 @@
         <div class="actions">
           <a class="btn" href="membership.html">Become a Member</a>
           <a class="btn btn-outline" href="donations.html">Support Seva</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Member and staff portal links -->
+    <section class="section portal-section" id="member-portal">
+      <div class="section-inner">
+        <h2>Login & Member Services</h2>
+        <p class="muted portal-intro">
+          Sign in to access the services available for your account.
+          Official applications and documents are subject to verification
+          and approval by authorized NGSF personnel.
+        </p>
+
+        <div class="cards">
+          <article class="card portal-card">
+            <h3>👤 Member Login / Sign Up</h3>
+            <p>
+              Create an ordinary member account, sign in, apply for your own
+              ID card or submit an application for another person with their
+              permission.
+            </p>
+            <a class="btn" href="membership.html">Member Services</a>
+          </article>
+
+          <article class="card portal-card">
+            <h3>🤝 Coordinator Login</h3>
+            <p>
+              For authorized coordinators to access their assigned work
+              through the designated coordinator portal.
+            </p>
+            <a class="btn" href="admin-demo.html?role=coordinator">
+              Coordinator Portal
+            </a>
+          </article>
+
+          <article class="card portal-card">
+            <h3>📋 Manager Login</h3>
+            <p>
+              For authorized managers to access management services
+              according to their assigned permissions.
+            </p>
+            <a class="btn" href="admin-demo.html?role=manager">
+              Manager Portal
+            </a>
+          </article>
+
+          <article class="card portal-card">
+            <h3>🔐 Admin Login</h3>
+            <p>
+              Restricted entry for authorized NGSF administrators.
+              Admin access must be verified securely.
+            </p>
+            <a class="btn" href="admin-demo.html">Admin Login</a>
+          </article>
+
+          <article class="card portal-card">
+            <h3>🪪 Apply for an ID Card</h3>
+            <p>
+              Start your membership or ID card enquiry. Applications for
+              another person must be submitted with their permission.
+            </p>
+            <a class="btn" href="membership.html">Apply / Membership</a>
+          </article>
+
+          <article class="card portal-card">
+            <h3>📄 Application & Document Help</h3>
+            <p>
+              Get help with application status, approved ID cards,
+              appointment letters and certificates.
+            </p>
+            <a class="btn" href="contact.html">Contact NGSF</a>
+          </article>
+        </div>
+
+        <div class="portal-note">
+          <strong>Important:</strong>
+          ID cards, appointment letters and certificates are available
+          only when the relevant application has been verified and the
+          document has been officially issued. Never share your password
+          or login verification code with anyone.
         </div>
       </div>
     </section>
@@ -352,7 +662,8 @@
           </p>
           <p>
             <strong>WhatsApp:</strong>
-            <a href="https://wa.me/9175973384624" target="_blank" rel="noopener">
+            <a href="https://wa.me/9175973384624"
+               target="_blank" rel="noopener noreferrer">
               +91 75973-384624
             </a>
           </p>
@@ -375,37 +686,50 @@
       <a href="membership.html">Membership</a> ·
       <a href="contact.html">Contact</a>
     </p>
-    <p>© <span id="year"></span> New Granthi Singh Federation. All rights reserved.</p>
+    <p>
+      © <span id="year"></span> New Granthi Singh Federation.
+      All rights reserved.
+    </p>
   </footer>
 
   <div class="quick-contact">
     <a href="tel:+917087993724">☎ Call</a>
-    <a href="https://wa.me/9175973384624" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="https://wa.me/9175973384624"
+       target="_blank" rel="noopener noreferrer">WhatsApp</a>
   </div>
 
   <script>
-    const menuToggle = document.getElementById("menuToggle");
-    const mainNav = document.getElementById("mainNav");
+    (function () {
+      const menuToggle = document.getElementById("menuToggle");
+      const mainNav = document.getElementById("mainNav");
 
-    menuToggle.addEventListener("click", function () {
-      const isOpen = mainNav.classList.toggle("open");
-      menuToggle.textContent = isOpen ? "×" : "☰";
-      menuToggle.setAttribute("aria-expanded", String(isOpen));
-      menuToggle.setAttribute(
-        "aria-label",
-        isOpen ? "Close navigation menu" : "Open navigation menu"
-      );
-    });
+      if (menuToggle && mainNav) {
+        menuToggle.addEventListener("click", function () {
+          const isOpen = mainNav.classList.toggle("open");
 
-    mainNav.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function () {
-        mainNav.classList.remove("open");
-        menuToggle.textContent = "☰";
-        menuToggle.setAttribute("aria-expanded", "false");
-      });
-    });
+          menuToggle.textContent = isOpen ? "×" : "☰";
+          menuToggle.setAttribute("aria-expanded", String(isOpen));
+          menuToggle.setAttribute(
+            "aria-label",
+            isOpen ? "Close navigation menu" : "Open navigation menu"
+          );
+        });
 
-    document.getElementById("year").textContent = new Date().getFullYear();
+        mainNav.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            mainNav.classList.remove("open");
+            menuToggle.textContent = "☰";
+            menuToggle.setAttribute("aria-expanded", "false");
+            menuToggle.setAttribute("aria-label", "Open navigation menu");
+          });
+        });
+      }
+
+      const yearElement = document.getElementById("year");
+      if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+      }
+    })();
   </script>
 
 </body>
