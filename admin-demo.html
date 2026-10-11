@@ -114,6 +114,13 @@ pre {
   main { width:94%; }
   .card { padding:15px; }
 }
+
+.module-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.module-link{display:block;text-decoration:none;color:var(--text);border:1px solid #d9e2ef;border-radius:10px;padding:14px;background:#fff}
+.module-link strong{display:block;color:var(--navy);margin-bottom:4px}
+.module-link span{font-size:13px;color:#657386}
+.module-link:hover{border-color:var(--gold);box-shadow:0 3px 12px #07142612}
+@media(max-width:650px){.module-grid{grid-template-columns:1fr}}
 </style>
 </head>
 
@@ -147,6 +154,7 @@ pre {
     <div id="adminArea" class="hidden">
       <p class="status" id="adminIdentity"></p>
       <button id="reloadBtn">Refresh Applications</button>
+      <button id="modulesBtn" class="secondary">All Admin Modules</button>
       <button id="logoutBtn" class="danger">Sign Out</button>
     </div>
 
@@ -181,6 +189,30 @@ pre {
     </p>
 
     <div id="applications">Applications ਲੋਡ ਹੋ ਰਹੀਆਂ ਹਨ…</div>
+  </section>
+
+  <section id="moduleHub" class="card hidden">
+    <h2>NGSF Admin — All Modules</h2>
+    <p>ਹੇਠਾਂ ਦਿੱਤੇ modules ਨੂੰ ਖੋਲ੍ਹਣ ਲਈ ਸੰਬੰਧਿਤ ਪੇਜ ਚੁਣੋ। ਮੈਂਬਰਾਂ ਦੀ ਨਿੱਜੀ ਜਾਣਕਾਰੀ ਸਿਰਫ਼ ਅਧਿਕਾਰਤ ਵਰਤੋਂ ਲਈ ਵਰਤੋ।</p>
+    <div class="module-grid">
+      <a class="module-link" href="#dashboard"><strong>Membership Approvals</strong><span>ਮੈਂਬਰ ਅਰਜ਼ੀਆਂ, status ਅਤੇ ਮਨਜ਼ੂਰੀ</span></a>
+      <a class="module-link" href="admin-approval-panel.html"><strong>Alternate Approval Panel</strong><span>ਵਿਕਲਪਕ membership approval dashboard</span></a>
+      <a class="module-link" href="coordinator-id-application.html"><strong>Coordinator ID Applications</strong><span>ਕੋਆਰਡੀਨੇਟਰ ID ਲਈ ਅਰਜ਼ੀਆਂ</span></a>
+      <a class="module-link" href="complaint.html"><strong>Complaints</strong><span>ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰਨ ਵਾਲਾ ਪੋਰਟਲ</span></a>
+      <a class="module-link" href="membership.html"><strong>Membership Application</strong><span>ਮੈਂਬਰਸ਼ਿਪ ਅਰਜ਼ੀ ਪੇਜ</span></a>
+      <a class="module-link" href="member-status.html"><strong>Member Status</strong><span>ਮੈਂਬਰ ਆਪਣੀ ਅਰਜ਼ੀ ਦਾ status ਵੇਖਣ</span></a>
+      <a class="module-link" href="member-registration.html"><strong>Member Registration</strong><span>ਨਵੀਂ ਮੈਂਬਰ ਰਜਿਸਟ੍ਰੇਸ਼ਨ</span></a>
+      <a class="module-link" href="news.html"><strong>News & Updates</strong><span>ਸੰਸਥਾ ਦੀਆਂ ਖ਼ਬਰਾਂ</span></a>
+      <a class="module-link" href="events.html"><strong>Events</strong><span>ਪ੍ਰੋਗਰਾਮ ਅਤੇ ਸਮਾਗਮ</span></a>
+      <a class="module-link" href="activities.html"><strong>Activities</strong><span>ਸੰਸਥਾ ਦੀਆਂ ਗਤੀਵਿਧੀਆਂ</span></a>
+      <a class="module-link" href="team.html"><strong>Team & Coordinators</strong><span>ਟੀਮ ਅਤੇ ਅਹੁਦੇਦਾਰ</span></a>
+      <a class="module-link" href="about.html"><strong>About NGSF</strong><span>ਸੰਸਥਾ ਬਾਰੇ ਜਾਣਕਾਰੀ</span></a>
+      <a class="module-link" href="contact.html"><strong>Contact</strong><span>ਸੰਪਰਕ ਜਾਣਕਾਰੀ</span></a>
+      <a class="module-link" href="donations.html"><strong>Donations</strong><span>ਦਾਨ ਸਬੰਧੀ ਜਾਣਕਾਰੀ</span></a>
+      <a class="module-link" href="admin-approval.html"><strong>Legacy Admin Approval</strong><span>ਪੁਰਾਣਾ approval ਪੇਜ (ਕੇਵਲ ਲੋੜ ਹੋਣ ’ਤੇ)</span></a>
+      <a class="module-link" href="index.html"><strong>Main Website</strong><span>NGSF ਮੁੱਖ ਵੈੱਬਸਾਈਟ</span></a>
+    </div>
+    <p class="muted">ਨੋਟ: ਇਹ menu ਮੌਜੂਦਾ ਪੇਜਾਂ ਦੇ shortcuts ਹਨ। Certificates, complaints management, coordinator approvals, areas, media, CSR ਅਤੇ audit-log ਲਈ ਵੱਖਰੇ database-management screens ਅਗਲੇ ਪੜਾਅ ਵਿੱਚ ਜੋੜਣੇ ਹਨ; ਇਹ links ਆਪਣੇ ਆਪ ਉਹਨਾਂ records ਨੂੰ edit ਨਹੀਂ ਕਰਦੇ।</p>
   </section>
 </main>
 
@@ -574,6 +606,9 @@ $("resetBtn").addEventListener("click", async () => {
 });
 
 $("reloadBtn").addEventListener("click", loadApplications);
+$("modulesBtn").addEventListener("click", () => {
+  $("moduleHub").scrollIntoView({ behavior: "smooth", block: "start" });
+});
 $("filterStatus").addEventListener("change", renderApplications);
 $("search").addEventListener("input", renderApplications);
 
