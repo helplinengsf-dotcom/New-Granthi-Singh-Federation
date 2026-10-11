@@ -269,6 +269,8 @@ function setLoggedIn(user, isAdmin) {
   $("loginArea").classList.toggle("hidden", !!isAdmin);
   $("adminArea").classList.toggle("hidden", !isAdmin);
   $("dashboard").classList.toggle("hidden", !isAdmin);
+  $("moduleHub").classList.add("hidden");
+  $("modulesBtn").textContent = "All Admin Modules";
 
   $("adminIdentity").textContent = isAdmin
     ? "Authorized Admin: " + user.email
@@ -607,7 +609,13 @@ $("resetBtn").addEventListener("click", async () => {
 
 $("reloadBtn").addEventListener("click", loadApplications);
 $("modulesBtn").addEventListener("click", () => {
-  $("moduleHub").scrollIntoView({ behavior: "smooth", block: "start" });
+  const hub = $("moduleHub");
+  const willOpen = hub.classList.contains("hidden");
+  hub.classList.toggle("hidden", !willOpen);
+  $("modulesBtn").textContent = willOpen ? "Hide Admin Modules" : "All Admin Modules";
+  if (willOpen) {
+    window.setTimeout(() => hub.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+  }
 });
 $("filterStatus").addEventListener("change", renderApplications);
 $("search").addEventListener("input", renderApplications);
