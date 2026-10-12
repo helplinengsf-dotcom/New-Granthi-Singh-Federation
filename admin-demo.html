@@ -120,20 +120,26 @@ pre {
 .module-link strong{display:block;color:var(--navy);margin-bottom:5px;font-size:15px}
 .module-link span{font-size:13px;color:#657386}
 .module-link:hover{border-color:var(--gold);box-shadow:0 5px 16px #07142620}
-.admin-layout{display:grid;grid-template-columns:205px minmax(0,1fr);gap:16px;align-items:start}
-.admin-sidebar{background:#102d48;color:white;border-radius:12px;padding:12px;position:sticky;top:10px}
-.admin-sidebar a{display:block;color:white;text-decoration:none;padding:10px 9px;border-radius:7px;font-size:13px}
-.admin-sidebar a:hover{background:#234d70}
+.admin-layout{display:block}
+.admin-sidebar{display:none;position:fixed;z-index:1000;left:0;top:0;bottom:0;width:min(250px,82vw);overflow-y:auto;background:rgba(103,57,36,.97);color:#fff;padding:54px 10px 14px;box-shadow:6px 0 22px #07142630;border-radius:0}
+.admin-sidebar.open{display:block}
+.admin-sidebar a{display:block;color:#fff;text-decoration:none;padding:10px 8px;border-radius:5px;font-size:12px;font-weight:bold;text-transform:uppercase}
+.admin-sidebar a:hover,.admin-sidebar a:focus{background:#8b563b;outline:2px solid #f5c542;outline-offset:-2px}
 .admin-main{min-width:0}
-.admin-topline{background:#6c341b;color:white;padding:12px 16px;border-radius:10px;margin-bottom:14px;font-weight:bold}
+.admin-topline{background:#6c341b;color:white;padding:9px 12px;border-radius:0;margin:-20px -20px 14px;font-weight:bold;text-align:center;position:relative;min-height:44px}
+.admin-top-actions{position:absolute;left:8px;top:5px;display:flex;gap:6px}
+.admin-top-actions button{background:#fff;color:#b33a22;border-radius:5px;padding:3px 8px;margin:0;font-size:20px;line-height:1.25}
+.admin-top-actions a{display:inline-block;background:#fff;color:#b33a22;border-radius:5px;padding:3px 8px;text-decoration:none;font-size:20px;line-height:1.25}
+.admin-title{display:block;padding:2px 82px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:14px 0 18px}
-.metric{background:#fff;border:1px solid #d9e2ef;border-radius:12px;padding:15px 10px;text-align:center;box-shadow:0 5px 14px #07142615}
+.metric{background:#fff;border:1px solid #d9e2ef;border-radius:12px;padding:15px 10px;text-align:center;box-shadow:0 5px 14px #07142625}
 .metric span{display:block;color:#657386;font-size:13px}
 .metric strong{display:block;color:#071426;font-size:28px;margin:5px 0}
 .metric a{font-size:13px;color:#1769aa}
 .module-section-title{margin:18px 0 10px}
-.menu-toggle{display:none}
-@media(max-width:760px){.admin-layout{grid-template-columns:1fr}.admin-sidebar{display:none;position:static}.admin-sidebar.open{display:block}.menu-toggle{display:inline-block}.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.module-grid{grid-template-columns:1fr}}
+.menu-toggle{display:inline-block}
+@media(max-width:760px){.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.module-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.admin-topline{margin:-15px -15px 14px}.metric{padding:13px 6px}.metric strong{font-size:25px}}
+@media(max-width:390px){.module-grid{grid-template-columns:1fr}.admin-title{font-size:14px}}
 </style>
 </head>
 
@@ -205,7 +211,7 @@ pre {
   </section>
 
   <section id="moduleHub" class="card hidden">
-    <div class="admin-topline">NGSF — Admin Dashboard</div>
+    <div class="admin-topline"><span class="admin-top-actions"><button id="drawerClose" type="button" aria-label="Close menu">×</button><a href="index.html" aria-label="Home">⌂</a></span><span class="admin-title">Admin Dashboard</span></div>
     <div class="admin-layout">
       <nav id="adminSidebar" class="admin-sidebar" aria-label="Admin menu">
         <a href="#moduleHub">Dashboard</a>
@@ -657,6 +663,10 @@ $("modulesBtn").addEventListener("click", async () => {
   }
 });
 $("menuToggle").addEventListener("click", () => $("adminSidebar").classList.toggle("open"));
+$("drawerClose").addEventListener("click", () => $("adminSidebar").classList.remove("open"));
+$("adminSidebar").querySelectorAll("a").forEach(link => {
+  if (link.id !== "sidebarLogout") link.addEventListener("click", () => $("adminSidebar").classList.remove("open"));
+});
 $("sidebarLogout").addEventListener("click", async event => {
   event.preventDefault();
   await db.auth.signOut();
