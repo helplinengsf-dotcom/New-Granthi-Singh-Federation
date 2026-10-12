@@ -228,6 +228,8 @@
         <button class="primary" type="submit">Create Member Account</button>
       </form>
 
+      <button class="primary hidden" id="continueButton" type="button">Continue to Member Services →</button>
+
       <div id="message" class="message" role="status"
         aria-live="polite"></div>
 
@@ -265,6 +267,7 @@
     const loginTab = document.getElementById("loginTab");
     const signupTab = document.getElementById("signupTab");
     const message = document.getElementById("message");
+    const continueButton = document.getElementById("continueButton");
 
     document.getElementById("year").textContent =
       new Date().getFullYear();
@@ -295,6 +298,10 @@
       loginTab.classList.toggle("active", !showSignup);
       signupTab.classList.toggle("active", showSignup);
     }
+
+    continueButton.addEventListener("click", () => {
+      window.location.assign("./membership.html");
+    });
 
     loginTab.addEventListener("click", () => switchTab(false));
     signupTab.addEventListener("click", () => switchTab(true));
@@ -339,15 +346,15 @@
         if (error) throw error;
 
         showMessage(
-          "Login successful. Your account is signed in. Member services must still verify your permissions.",
+          "Login successful. Your account is signed in. Tap Continue to Member Services below if the next page does not open automatically.",
           true
         );
+        continueButton.classList.remove("hidden");
 
-        // Continue to the member services page after successful sign-in.
-        // That page checks the signed-in session and shows membership applications.
+        // Attempt automatic navigation, while keeping a visible fallback button.
         window.setTimeout(() => {
-          window.location.href = "membership.html";
-        }, 700);
+          window.location.assign("./membership.html");
+        }, 1500);
       } catch (error) {
         showMessage(error.message || "Login failed. Please try again.");
       } finally {
