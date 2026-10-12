@@ -116,11 +116,24 @@ pre {
 }
 
 .module-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.module-link{display:block;text-decoration:none;color:var(--text);border:1px solid #d9e2ef;border-radius:10px;padding:14px;background:#fff}
-.module-link strong{display:block;color:var(--navy);margin-bottom:4px}
+.module-link{display:block;text-decoration:none;color:var(--text);border:1px solid #d9e2ef;border-radius:12px;padding:16px;background:#fff;box-shadow:0 5px 14px #07142612;min-height:100px}
+.module-link strong{display:block;color:var(--navy);margin-bottom:5px;font-size:15px}
 .module-link span{font-size:13px;color:#657386}
-.module-link:hover{border-color:var(--gold);box-shadow:0 3px 12px #07142612}
-@media(max-width:650px){.module-grid{grid-template-columns:1fr}}
+.module-link:hover{border-color:var(--gold);box-shadow:0 5px 16px #07142620}
+.admin-layout{display:grid;grid-template-columns:205px minmax(0,1fr);gap:16px;align-items:start}
+.admin-sidebar{background:#102d48;color:white;border-radius:12px;padding:12px;position:sticky;top:10px}
+.admin-sidebar a{display:block;color:white;text-decoration:none;padding:10px 9px;border-radius:7px;font-size:13px}
+.admin-sidebar a:hover{background:#234d70}
+.admin-main{min-width:0}
+.admin-topline{background:#6c341b;color:white;padding:12px 16px;border-radius:10px;margin-bottom:14px;font-weight:bold}
+.metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:14px 0 18px}
+.metric{background:#fff;border:1px solid #d9e2ef;border-radius:12px;padding:15px 10px;text-align:center;box-shadow:0 5px 14px #07142615}
+.metric span{display:block;color:#657386;font-size:13px}
+.metric strong{display:block;color:#071426;font-size:28px;margin:5px 0}
+.metric a{font-size:13px;color:#1769aa}
+.module-section-title{margin:18px 0 10px}
+.menu-toggle{display:none}
+@media(max-width:760px){.admin-layout{grid-template-columns:1fr}.admin-sidebar{display:none;position:static}.admin-sidebar.open{display:block}.menu-toggle{display:inline-block}.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.module-grid{grid-template-columns:1fr}}
 </style>
 </head>
 
@@ -192,26 +205,42 @@ pre {
   </section>
 
   <section id="moduleHub" class="card hidden">
-    <h2>NGSF Admin — Central Control Panel</h2>
-    <p>ਇਹ NGSF ਦਾ ਇੱਕ ਮੁੱਖ Admin Panel ਹੈ। Membership, complaints, coordinator applications ਅਤੇ ਹੋਰ database modules ਇੱਥੋਂ ਖੋਲ੍ਹੋ। ਸਿਰਫ਼ ਇੱਕ authorized Admin account ਵਰਤੋ। ਮੈਂਬਰਾਂ ਦੀ ਨਿੱਜੀ ਜਾਣਕਾਰੀ ਸੁਰੱਖਿਅਤ ਰੱਖੋ।</p>
-    <div class="module-grid">
-      <a class="module-link" href="#dashboard"><strong>Membership Approvals</strong><span>ਮੈਂਬਰ ਅਰਜ਼ੀਆਂ, status ਅਤੇ ਮਨਜ਼ੂਰੀ</span></a>
-      <a class="module-link" href="admin-modules.html"><strong>All Database Modules</strong><span>Areas, Certificates, Content, Media, CSR, Audit Log ਅਤੇ Legacy Members</span></a>
-       <a class="module-link" href="admin-tools.html#coordinators"><strong>Coordinator ID Applications</strong><span>ਅਰਜ਼ੀਆਂ ਵੇਖੋ, ਮਨਜ਼ੂਰ/ਰੱਦ ਕਰੋ ਅਤੇ ID number ਦਿਓ</span></a>
-      <a class="module-link" href="admin-tools.html#complaints"><strong>Complaints Management</strong><span>ਸ਼ਿਕਾਇਤਾਂ ਵੇਖੋ, status ਅਤੇ resolution ਸੰਭਾਲੋ</span></a>
-      <a class="module-link" href="membership.html"><strong>Membership Application</strong><span>ਮੈਂਬਰਸ਼ਿਪ ਅਰਜ਼ੀ ਪੇਜ</span></a>
-      <a class="module-link" href="member-status.html"><strong>Member Status</strong><span>ਮੈਂਬਰ ਆਪਣੀ ਅਰਜ਼ੀ ਦਾ status ਵੇਖਣ</span></a>
-      <a class="module-link" href="member-registration.html"><strong>Member Registration</strong><span>ਨਵੀਂ ਮੈਂਬਰ ਰਜਿਸਟ੍ਰੇਸ਼ਨ</span></a>
-      <a class="module-link" href="news.html"><strong>News & Updates</strong><span>ਸੰਸਥਾ ਦੀਆਂ ਖ਼ਬਰਾਂ</span></a>
-      <a class="module-link" href="events.html"><strong>Events</strong><span>ਪ੍ਰੋਗਰਾਮ ਅਤੇ ਸਮਾਗਮ</span></a>
-      <a class="module-link" href="activities.html"><strong>Activities</strong><span>ਸੰਸਥਾ ਦੀਆਂ ਗਤੀਵਿਧੀਆਂ</span></a>
-      <a class="module-link" href="team.html"><strong>Team & Coordinators</strong><span>ਟੀਮ ਅਤੇ ਅਹੁਦੇਦਾਰ</span></a>
-      <a class="module-link" href="about.html"><strong>About NGSF</strong><span>ਸੰਸਥਾ ਬਾਰੇ ਜਾਣਕਾਰੀ</span></a>
-      <a class="module-link" href="contact.html"><strong>Contact</strong><span>ਸੰਪਰਕ ਜਾਣਕਾਰੀ</span></a>
-      <a class="module-link" href="donations.html"><strong>Donations</strong><span>ਦਾਨ ਸਬੰਧੀ ਜਾਣਕਾਰੀ</span></a>
-      <a class="module-link" href="index.html"><strong>Main Website</strong><span>NGSF ਮੁੱਖ ਵੈੱਬਸਾਈਟ</span></a>
+    <div class="admin-topline">NGSF — Admin Dashboard</div>
+    <div class="admin-layout">
+      <nav id="adminSidebar" class="admin-sidebar" aria-label="Admin menu">
+        <a href="#moduleHub">Dashboard</a>
+        <a href="#dashboard">Membership Applications</a>
+        <a href="admin-tools.html#coordinators">Coordinator ID Applications</a>
+        <a href="admin-tools.html#complaints">Complaints / Solution</a>
+        <a href="admin-modules.html">Database Modules</a>
+        <a href="member-status.html">Member Status Page</a>
+        <a href="index.html">Main Website</a>
+        <a href="#" id="sidebarLogout">Sign Out</a>
+      </nav>
+      <div class="admin-main">
+        <button id="menuToggle" class="secondary menu-toggle" type="button">☰ Menu</button>
+        <h2>Dashboard Overview</h2>
+        <p>ਅਸਲ database ਵਿੱਚੋਂ ਪੜ੍ਹੀ ਗਈ ਜਾਣਕਾਰੀ ਇੱਥੇ ਦਿਖਾਈ ਜਾਵੇਗੀ। ਜੇ ਕਿਸੇ module ਦੀ permission ਨਹੀਂ ਹੋਵੇਗੀ, ਤਾਂ ਗਿਣਤੀ ਉਪਲਬਧ ਨਹੀਂ ਦਿਖਾਈ ਜਾਵੇਗੀ।</p>
+        <div class="metric-grid">
+          <div class="metric"><span>Member Applications</span><strong id="metricMembers">—</strong><a href="#dashboard">View All</a></div>
+          <div class="metric"><span>Pending Applications</span><strong id="metricPending">—</strong><a href="#dashboard">Review</a></div>
+          <div class="metric"><span>Complaints</span><strong id="metricComplaints">—</strong><a href="admin-tools.html#complaints">View All</a></div>
+          <div class="metric"><span>Coordinator ID Requests</span><strong id="metricCoordinators">—</strong><a href="admin-tools.html#coordinators">View All</a></div>
+        </div>
+        <h3 class="module-section-title">Admin Services</h3>
+        <div class="module-grid">
+          <a class="module-link" href="#dashboard"><strong>Membership Approvals</strong><span>ਮੈਂਬਰ ਅਰਜ਼ੀਆਂ, status ਅਤੇ ਮਨਜ਼ੂਰੀ</span></a>
+          <a class="module-link" href="admin-tools.html#coordinators"><strong>Coordinator ID Applications</strong><span>ਅਰਜ਼ੀਆਂ ਵੇਖੋ ਅਤੇ ਕਾਰਵਾਈ ਕਰੋ</span></a>
+          <a class="module-link" href="admin-tools.html#complaints"><strong>Complaints Management</strong><span>ਸ਼ਿਕਾਇਤਾਂ ਅਤੇ resolution</span></a>
+          <a class="module-link" href="admin-modules.html"><strong>Database Modules</strong><span>Areas, Certificates, Content, Media ਅਤੇ Audit Log</span></a>
+          <a class="module-link" href="membership.html"><strong>Membership Application</strong><span>ਮੈਂਬਰਸ਼ਿਪ ਅਰਜ਼ੀ ਪੇਜ</span></a>
+          <a class="module-link" href="member-status.html"><strong>Member Status</strong><span>ਮੈਂਬਰ ਆਪਣੀ ਅਰਜ਼ੀ ਦਾ status ਵੇਖਣ</span></a>
+          <a class="module-link" href="news.html"><strong>News & Updates</strong><span>ਸੰਸਥਾ ਦੀਆਂ ਖ਼ਬਰਾਂ</span></a>
+          <a class="module-link" href="team.html"><strong>Team & Coordinators</strong><span>ਟੀਮ ਅਤੇ ਅਹੁਦੇਦਾਰ</span></a>
+        </div>
+        <p class="muted">ਨੋਟ: ਇਹ ਮੁੱਖ Dashboard ਹੈ। ਕੁਝ legacy modules ਹਾਲੇ ਵੱਖਰੇ HTML ਪੇਜਾਂ ਵਿੱਚ ਹਨ; ਉਨ੍ਹਾਂ ਨੂੰ ਇੱਕੋ session ਅਤੇ login ਨਾਲ ਜੋੜਨ ਲਈ ਵੱਖਰਾ code audit ਲੋੜੀਂਦਾ ਹੈ।</p>
+      </div>
     </div>
-    <p class="muted">ਨੋਟ: ਇਹ ਇੱਕੋ ਮੁੱਖ Admin Panel ਹੈ। ਕੁਝ modules ਤਕਨੀਕੀ ਤੌਰ ’ਤੇ ਵੱਖਰੇ ਪੇਜਾਂ ਵਿੱਚ ਹਨ, ਪਰ ਇੱਥੋਂ ਹੀ ਖੋਲ੍ਹੇ ਜਾ ਸਕਦੇ ਹਨ। ਜੇ ਕਿਸੇ module ਵਿੱਚ ਮੁੜ login ਮੰਗਿਆ ਜਾਵੇ ਤਾਂ ਇਹ ਵੱਖਰੇ ਪੇਜ ਦੀ login ਜਾਂਚ ਹੈ; ਅਗਲੇ ਸੁਧਾਰ ਵਿੱਚ session ਸਾਂਝਾ ਕਰਨਾ ਲੋੜੀਂਦਾ ਹੋ ਸਕਦਾ ਹੈ। ਹਰ Save ਕਾਰਵਾਈ ਤੋਂ ਬਾਅਦ success ਜਾਂ error ਸੁਨੇਹਾ ਜ਼ਰੂਰ ਵੇਖੋ।</p>
   </section>
 </main>
 
@@ -379,6 +408,16 @@ async function loadApplications() {
     "Applications ਲੋਡ ਹੋ ਗਈਆਂ: " +
     allApplications.length
   );
+  if (!$("moduleHub").classList.contains("hidden")) await loadDashboardMetrics();
+}
+
+async function loadDashboardMetrics() {
+  $("metricMembers").textContent = String(allApplications.length);
+  $("metricPending").textContent = String(allApplications.filter(row => row.status === "Pending" || !row.status).length);
+  const complaintResult = await db.from("ngsf_complaints").select("id", { count: "exact", head: true });
+  $("metricComplaints").textContent = complaintResult.error ? "—" : String(complaintResult.count ?? 0);
+  const coordinatorResult = await db.from("coordinator_id_applications").select("id", { count: "exact", head: true });
+  $("metricCoordinators").textContent = coordinatorResult.error ? "—" : String(coordinatorResult.count ?? 0);
 }
 
 function renderApplications() {
@@ -607,14 +646,25 @@ $("resetBtn").addEventListener("click", async () => {
 });
 
 $("reloadBtn").addEventListener("click", loadApplications);
-$("modulesBtn").addEventListener("click", () => {
+$("modulesBtn").addEventListener("click", async () => {
   const hub = $("moduleHub");
   const willOpen = hub.classList.contains("hidden");
   hub.classList.toggle("hidden", !willOpen);
-  $("modulesBtn").textContent = willOpen ? "Hide Admin Modules" : "All Admin Modules";
+  $("modulesBtn").textContent = willOpen ? "Hide Admin Dashboard" : "Open Admin Dashboard";
   if (willOpen) {
+    await loadDashboardMetrics();
     window.setTimeout(() => hub.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
   }
+});
+$("menuToggle").addEventListener("click", () => $("adminSidebar").classList.toggle("open"));
+$("sidebarLogout").addEventListener("click", async event => {
+  event.preventDefault();
+  await db.auth.signOut();
+  currentUser = null;
+  allApplications = [];
+  setLoggedIn(null, false);
+  $("applications").textContent = "";
+  showMessage("ਤੁਸੀਂ Sign Out ਹੋ ਗਏ ਹੋ।");
 });
 $("filterStatus").addEventListener("change", renderApplications);
 $("search").addEventListener("input", renderApplications);
