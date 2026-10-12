@@ -228,7 +228,7 @@ pre {
         <h2>Dashboard Overview</h2>
         <p>ਅਸਲ database ਵਿੱਚੋਂ ਪੜ੍ਹੀ ਗਈ ਜਾਣਕਾਰੀ ਇੱਥੇ ਦਿਖਾਈ ਜਾਵੇਗੀ। ਜੇ ਕਿਸੇ module ਦੀ permission ਨਹੀਂ ਹੋਵੇਗੀ, ਤਾਂ ਗਿਣਤੀ ਉਪਲਬਧ ਨਹੀਂ ਦਿਖਾਈ ਜਾਵੇਗੀ।</p>
         <div class="metric-grid">
-          <div class="metric"><span>Member Applications</span><strong id="metricMembers">—</strong><a href="#dashboard">View All</a></div>
+          <div class="metric"><span>Verified Members</span><strong id="metricMembers">—</strong><a href="admin-verified-members.html">View All</a></div>
           <div class="metric"><span>Pending Applications</span><strong id="metricPending">—</strong><a href="#dashboard">Review</a></div>
           <div class="metric"><span>Complaints</span><strong id="metricComplaints">—</strong><a href="admin-tools.html#complaints">View All</a></div>
           <div class="metric"><span>Coordinator ID Requests</span><strong id="metricCoordinators">—</strong><a href="admin-tools.html#coordinators">View All</a></div>
@@ -418,7 +418,8 @@ async function loadApplications() {
 }
 
 async function loadDashboardMetrics() {
-  $("metricMembers").textContent = String(allApplications.length);
+  const verifiedResult = await db.from("ngsf_member_registrations").select("id", { count: "exact", head: true }).eq("status", "Approved");
+  $("metricMembers").textContent = verifiedResult.error ? "—" : String(verifiedResult.count ?? 0);
   $("metricPending").textContent = String(allApplications.filter(row => row.status === "Pending" || !row.status).length);
   const complaintResult = await db.from("ngsf_complaints").select("id", { count: "exact", head: true });
   $("metricComplaints").textContent = complaintResult.error ? "—" : String(complaintResult.count ?? 0);
