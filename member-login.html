@@ -343,8 +343,11 @@
           true
         );
 
-        // Do not grant admin/coordinator/manager access from this page.
-        // Add a verified member dashboard here after its access rules are configured.
+        // Continue to the member services page after successful sign-in.
+        // That page checks the signed-in session and shows membership applications.
+        window.setTimeout(() => {
+          window.location.href = "membership.html";
+        }, 700);
       } catch (error) {
         showMessage(error.message || "Login failed. Please try again.");
       } finally {
