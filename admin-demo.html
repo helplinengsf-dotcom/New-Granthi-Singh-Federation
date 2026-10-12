@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#071426">
-<title>NGSF Admin Approval</title>
+<title>NGSF — Admin Dashboard</title>
 
 <style>
 :root {
@@ -145,14 +145,14 @@ pre {
 
 <body>
 <header>
-  <strong>NGSF — Admin Approval</strong><br>
+  <strong>NGSF — Admin Dashboard</strong><br>
   <a href="index.html">Home</a>
   <a href="membership.html">Membership</a>
 </header>
 
 <main>
   <section class="card">
-    <h1>Membership Approval Dashboard</h1>
+    <h1>NGSF — Admin Dashboard</h1>
     <p>ਇਹ ਪੇਜ ਸਿਰਫ਼ ਅਧਿਕਾਰਤ NGSF Admin ਲਈ ਹੈ।</p>
 
     <div id="loginArea">
@@ -235,7 +235,7 @@ pre {
         </div>
         <h3 class="module-section-title">Admin Services</h3>
         <div class="module-grid">
-          <a class="module-link" href="#dashboard"><strong>Membership Approvals</strong><span>ਮੈਂਬਰ ਅਰਜ਼ੀਆਂ, status ਅਤੇ ਮਨਜ਼ੂਰੀ</span></a>
+          <a class="module-link" href="#dashboard" id="openMembershipApprovals"><strong>Membership Approvals</strong><span>ਮੈਂਬਰ ਅਰਜ਼ੀਆਂ, status ਅਤੇ ਮਨਜ਼ੂਰੀ</span></a>
           <a class="module-link" href="admin-tools.html#coordinators"><strong>Coordinator ID Applications</strong><span>ਅਰਜ਼ੀਆਂ ਵੇਖੋ ਅਤੇ ਕਾਰਵਾਈ ਕਰੋ</span></a>
           <a class="module-link" href="admin-tools.html#complaints"><strong>Complaints Management</strong><span>ਸ਼ਿਕਾਇਤਾਂ ਅਤੇ resolution</span></a>
           <a class="module-link" href="admin-modules.html"><strong>Database Modules</strong><span>Areas, Certificates, Content, Media ਅਤੇ Audit Log</span></a>
@@ -302,9 +302,11 @@ function setLoggedIn(user, isAdmin) {
 
   $("loginArea").classList.toggle("hidden", !!isAdmin);
   $("adminArea").classList.toggle("hidden", !isAdmin);
-  $("dashboard").classList.toggle("hidden", !isAdmin);
-  $("moduleHub").classList.add("hidden");
-  $("modulesBtn").textContent = "All Admin Modules";
+  // Admin login opens the main dashboard first. Membership applications
+  // remain available from the dashboard's Membership Approvals card.
+  $("dashboard").classList.add("hidden");
+  $("moduleHub").classList.toggle("hidden", !isAdmin);
+  $("modulesBtn").textContent = "Hide Admin Dashboard";
 
   $("adminIdentity").textContent = isAdmin
     ? "Authorized Admin: " + user.email
@@ -653,6 +655,13 @@ $("resetBtn").addEventListener("click", async () => {
 });
 
 $("reloadBtn").addEventListener("click", loadApplications);
+$("openMembershipApprovals").addEventListener("click", (event) => {
+  event.preventDefault();
+  $("moduleHub").classList.add("hidden");
+  $("dashboard").classList.remove("hidden");
+  $("dashboard").scrollIntoView({behavior:"smooth",block:"start"});
+});
+
 $("modulesBtn").addEventListener("click", async () => {
   const hub = $("moduleHub");
   const willOpen = hub.classList.contains("hidden");
