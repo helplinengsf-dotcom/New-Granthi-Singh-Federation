@@ -252,7 +252,7 @@ pre {
         <p>ਅਸਲ database ਵਿੱਚੋਂ ਪੜ੍ਹੀ ਗਈ ਜਾਣਕਾਰੀ ਇੱਥੇ ਦਿਖਾਈ ਜਾਵੇਗੀ। ਜੇ ਕਿਸੇ module ਦੀ permission ਨਹੀਂ ਹੋਵੇਗੀ, ਤਾਂ ਗਿਣਤੀ ਉਪਲਬਧ ਨਹੀਂ ਦਿਖਾਈ ਜਾਵੇਗੀ।</p>
         <div class="metric-grid">
           <div class="metric"><span>Verified Members</span><strong id="metricMembers">—</strong><a href="admin-verified-members.html">View All</a></div>
-          <div class="metric"><span>Pending Applications</span><strong id="metricPending">—</strong><a href="#dashboard">Review</a></div>
+          <div class="metric"><span>Unverified Members</span><strong id="metricPending">—</strong><a href="admin-unverified-members.html">View All</a></div>
           <div class="metric"><span>Complaints</span><strong id="metricComplaints">—</strong><a href="admin-tools.html#complaints">View All</a></div>
           <div class="metric"><span>Coordinator ID Requests</span><strong id="metricCoordinators">—</strong><a href="admin-tools.html#coordinators">View All</a></div>
         </div>
@@ -444,12 +444,24 @@ async function loadApplications() {
 }
 
 async function loadDashboardMetrics() {
-  const verifiedResult = await db.from("ngsf_member_registrations").select("id", { count: "exact", head: true }).eq("status", "Approved");
+  const verifiedResult = await db.from("ngsf_member_registrations")
+    .select("id", { count: "exact", head: true })
+    .eq("status", "Approved");
   $("metricMembers").textContent = verifiedResult.error ? "—" : String(verifiedResult.count ?? 0);
-  $("metricPending").textContent = String(allApplications.filter(row => row.status === "Pending" || !row.status).length);
+
+  // Count all registrations that are not yet approved, including NULL status.
+  const unverifiedResult = await db.from("ngsf_member_registrations")
+    .select("id", { count: "exact", head: true })
+    .or("status.is.null,status.neq.Approved");
+  $("metricPending").textContent = unverifiedResult.error ? "—" : String(unverifiedResult.count ?? 0);
+
   const complaintResult = await db.from("ngsf_complaints").select("id", { count: "exact", head: true });
   $("metricComplaints").textContent = complaintResult.error ? "—" : String(complaintResult.count ?? 0);
-  const coordinatorResult = await db.from("coordinator_id_applications").select("id", { count: "exact", head: true });
+
+  // The card counts only requests still awaiting a decision.
+  const coordinatorResult = await db.from("coordinator_id_applications")
+    .select("id", { count: "exact", head: true })
+    .eq("application_status", "pending");
   $("metricCoordinators").textContent = coordinatorResult.error ? "—" : String(coordinatorResult.count ?? 0);
 }
 
