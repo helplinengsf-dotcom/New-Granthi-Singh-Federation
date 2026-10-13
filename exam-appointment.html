@@ -100,7 +100,7 @@ form.addEventListener("submit", async (event) => {
 });
 document.getElementById("printBtn").addEventListener("click", () => {
  const number = document.getElementById("appointmentNumber").textContent;
- const w = window.open("", "_blank", "noopener,noreferrer,width=700,height=600");
+ const w = window.open("", "_blank", "width=700,height=600");
  if (!w) { show("Print ਲਈ browser ਵਿੱਚ pop-ups allow ਕਰੋ। Appointment Number: " + number, "info"); return; }
  w.document.write("<!doctype html><html><head><title>NGSF Appointment Receipt</title><meta charset='utf-8'><style>body{font-family:Arial;padding:35px;text-align:center;color:#071426}h1{font-size:24px}strong{display:block;font-size:28px;margin:30px 0;color:#0b2d59;overflow-wrap:anywhere}.line{border-top:3px solid #f5c542;padding-top:20px}</style></head><body><h1>New Granthi Singh Federation</h1><p>Exam Appointment Receipt</p><div class='line'><p>Your Appointment Number</p><strong>" + number.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])) + "</strong><p>Keep this number for future reference.</p><p>This receipt is not an exam approval or certificate.</p></div><script>window.onload=function(){window.print()}<\/script></body></html>");
  w.document.close();
