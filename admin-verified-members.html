@@ -1,5 +1,40 @@
 <!doctype html><html lang="pa"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#6c341b"><title>Verified Members | NGSF</title><style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(120deg,#e8eaf0,#e0f2f1);color:#26364b}.bar{background:#6c341b;color:#fff;text-align:center;padding:7px;font-weight:bold;position:sticky;top:0}.bar button,.bar a{position:absolute;left:8px;top:4px;background:white;color:#b33;border:0;border-radius:4px;padding:2px 8px;text-decoration:none;font-size:18px}.bar a{left:50px}.wrap{max-width:1100px;margin:20px auto;padding:0 12px}.login,.panel{background:white;padding:18px;border-radius:10px;box-shadow:0 4px 15px #0001}.login{max-width:440px;margin:35px auto;border-top:5px solid #f5c542}h2{font-size:21px;margin:8px 0;color:#071426}.note{font-size:13px;color:#657386}label{display:block;margin:12px 0 5px;font-weight:bold}input{padding:11px;border:1px solid #cbd5e1;border-radius:6px;font-size:15px}input[type=email],input[type=password]{width:100%}button{cursor:pointer}.primary{background:#f5c542;color:#071426;border:0;border-radius:6px;padding:10px 15px;font-weight:bold;margin-top:12px}.toolbar{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0}.search{width:min(300px,100%)}.search input{width:100%}.table-wrap{overflow:auto;background:#fff;border:1px solid #bbc2ca}table{border-collapse:collapse;width:100%;min-width:700px;font-size:13px}thead{background:#20252b;color:#fff}th,td{padding:8px 7px;border:1px solid #d9dce2;text-align:center}tbody tr:nth-child(even){background:#f8f4f8}.actions{display:flex;justify-content:center;gap:4px}.act{border:0;border-radius:4px;color:#fff;padding:6px 9px}.view{background:#269b57}.print{background:#e9b51b}.badge{background:#e0f5e8;color:#146c3a;border-radius:12px;padding:3px 8px;font-size:11px;font-weight:bold}.pagination{display:flex;gap:4px;flex-wrap:wrap;margin:12px 0}.pagination button{padding:6px 9px;background:#fff;border:1px solid #ccd}.pagination .active{background:#1680dc;color:#fff}.export{display:block;margin:12px auto;background:#087fe3;color:white;border:0;border-radius:5px;padding:9px 14px}.message{padding:10px;background:#e6f6ea;color:#165d32;border-radius:6px;margin:10px 0}.error{background:#ffeded;color:#8d2020} .hidden{display:none!important}footer{text-align:center;font-size:12px;color:#657386;margin:30px 0}@media(max-width:600px){.wrap{padding:0 7px;margin:12px auto}h2{font-size:18px}th,td{padding:7px 5px}}
+*{box-sizing:border-box}
+:root{color-scheme:dark;--ink:#071426;--navy:#0b1730;--panel:#111f3d;--blue:#1769aa;--blue2:#2493e6;--gold:#e9bd4b;--gold-light:#ffe39a;--line:#294568;--muted:#b8c7dc}
+body{margin:0;font-family:Arial,sans-serif;background:radial-gradient(ellipse at top,#17365c 0,#0b1730 48%,#050b16 100%);color:#f2f6fc;min-height:100vh}
+.bar{background:linear-gradient(90deg,#050b16,#102d50,#050b16);color:var(--gold-light);text-align:center;padding:10px;font-weight:bold;position:sticky;top:0;z-index:5;border-bottom:2px solid var(--gold);box-shadow:0 5px 18px #0005}
+.bar button,.bar a{position:absolute;left:8px;top:5px;background:#132849;color:var(--gold-light);border:1px solid var(--gold);border-radius:6px;padding:3px 9px;text-decoration:none;font-size:18px}.bar a{left:50px}
+.wrap{max-width:1100px;margin:20px auto;padding:0 12px}
+.login,.panel{background:linear-gradient(145deg,#142746,#0d1a32);padding:18px;border:1px solid #294568;border-top:4px solid var(--gold);border-radius:14px;box-shadow:0 12px 30px #0004}
+.login{max-width:440px;margin:35px auto}
+h2{font-size:21px;margin:8px 0;color:var(--gold-light)}
+.note{font-size:13px;color:var(--muted)}
+label{display:block;margin:12px 0 5px;font-weight:bold;color:#e5edf8}
+input{padding:11px;border:1px solid #3d5d85;border-radius:8px;font-size:15px;background:#071426;color:#fff;max-width:100%}
+input:focus{outline:2px solid var(--gold);outline-offset:1px}
+input[type=email],input[type=password]{width:100%}
+button{cursor:pointer}
+.primary{background:linear-gradient(135deg,#f6d36f,#d8a82f);color:#101827;border:1px solid #ffe39a;border-radius:8px;padding:10px 16px;font-weight:bold;margin-top:12px}
+.primary:hover,.export:hover{filter:brightness(1.08)}
+.toolbar{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0}
+.search{width:min(300px,100%)}.search input{width:100%}
+.table-wrap{overflow:auto;background:#0a1427;border:1px solid #35577f;border-radius:9px}
+table{border-collapse:collapse;width:100%;min-width:700px;font-size:13px}
+thead{background:linear-gradient(90deg,#050b16,#183d66);color:var(--gold-light)}
+th,td{padding:9px 7px;border:1px solid #29415f;text-align:center}
+tbody tr{background:#101e37}tbody tr:nth-child(even){background:#142746}tbody tr:hover{background:#1b365a}
+.actions{display:flex;justify-content:center;gap:5px}
+.act{border:1px solid #47678d;border-radius:6px;color:#fff;padding:6px 9px}
+.view{background:#1769aa}.print{background:#9b7419;color:#fff1bd;border-color:#d5ad43}
+.badge{background:#183c60;color:#ffe39a;border:1px solid #9d7b2b;border-radius:12px;padding:3px 8px;font-size:11px;font-weight:bold}
+.pagination{display:flex;gap:4px;flex-wrap:wrap;margin:12px 0}
+.pagination button{padding:6px 9px;background:#10213d;color:#eaf2ff;border:1px solid #35577f;border-radius:5px}
+.pagination .active{background:var(--gold);border-color:var(--gold);color:#101827;font-weight:bold}
+.export{display:block;margin:12px auto;background:linear-gradient(135deg,#2186d5,#12528f);color:white;border:1px solid #58a9ec;border-radius:7px;padding:10px 16px}
+.message{padding:10px;background:#123d36;color:#b9f5d6;border:1px solid #2e8e73;border-radius:6px;margin:10px 0}
+.error{background:#481d28;color:#ffd8df;border-color:#9f4354}.hidden{display:none!important}
+footer{text-align:center;font-size:12px;color:#aabbd1;margin:30px 0}
+@media(max-width:600px){.wrap{padding:0 7px;margin:12px auto}h2{font-size:18px}.panel,.login{padding:13px}th,td{padding:7px 5px}}
 </style></head><body><div class="bar">Verified User<button id="back" aria-label="Back">×</button><a href="admin-demo.html" aria-label="Home">⌂</a></div>
 <section id="login" class="login"><h2>Admin Login</h2><p class="note">Verified Members ਵੇਖਣ ਲਈ Admin account ਨਾਲ Login ਕਰੋ।</p><label for="email">Email Address</label><input id="email" type="email" autocomplete="username" required><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required><button id="loginBtn" class="primary">Login</button><div id="loginMsg" aria-live="polite"></div></section>
 <main id="app" class="wrap hidden"><section class="panel"><h2>Verified Members</h2><p class="note">ਸਿਰਫ਼ Approved ਮੈਂਬਰ। ID documents ਅਤੇ ਸੰਵੇਦਨਸ਼ੀਲ ਜਾਣਕਾਰੀ ਇਸ ਸੂਚੀ ਵਿੱਚ ਨਹੀਂ ਦਿਖਾਈ ਜਾਂਦੀ।</p><div id="msg" aria-live="polite"></div><div class="toolbar"><strong id="count">Loading…</strong><div class="search"><input id="search" type="search" placeholder="User Search" aria-label="Search members"></div></div><div class="table-wrap"><table><thead><tr><th>USER ID</th><th>NAME</th><th>MOBILE NO.</th><th>DISTRICT / CITY</th><th>AUTHORITY</th><th>ACTION</th></tr></thead><tbody id="rows"><tr><td colspan="6">Loading…</td></tr></tbody></table></div><div id="pages" class="pagination"></div><button id="export" class="export">Export to CSV</button></section></main><footer>© 2026 New Granthi Singh Federation</footer>
