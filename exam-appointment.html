@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071426">
+<title>Exam Appointment | NGSF</title>
+<style>
+:root{--navy:#071426;--blue:#0b2d59;--gold:#f5c542;--light:#f3f6fb;--text:#26364b;--border:#d9e2ef}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--light);color:var(--text);line-height:1.6}
+header{background:var(--navy);color:#fff;padding:20px 5%;border-bottom:4px solid var(--gold)}header h1{margin:0;font-size:clamp(21px,4vw,30px)}header p{color:var(--gold);margin:5px 0 0}
+nav{background:#080b10;padding:12px 5%;display:flex;gap:16px;flex-wrap:wrap}nav a{color:#fff;text-decoration:none;font-weight:bold}nav a:hover{color:var(--gold)}
+main{max-width:850px;margin:28px auto;padding:0 16px}.panel{background:#fff;padding:24px;margin-bottom:20px;border:1px solid var(--border);border-top:5px solid var(--gold);border-radius:14px;box-shadow:0 5px 18px #0714260d}
+h2{color:var(--navy)}label{display:block;font-weight:bold;margin:14px 0 6px}input,select{display:block;width:100%;padding:12px;font:inherit;border:1px solid #bfcbdc;border-radius:8px;background:white}input:focus{outline:2px solid var(--gold)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}button,.btn{display:inline-block;border:0;border-radius:8px;background:var(--gold);color:var(--navy);font-weight:bold;font-size:16px;padding:12px 18px;margin-top:16px;cursor:pointer;text-decoration:none}button:disabled{opacity:.55;cursor:not-allowed}
+.small{font-size:14px;color:#637186}.status{padding:13px;border-radius:8px;overflow-wrap:anywhere;white-space:pre-wrap}.info{background:#eaf2ff}.success{background:#e5f7e9;color:#17572b}.error{background:#fff0f0;color:#8c2020}.hidden{display:none!important}.number{font-size:clamp(22px,5vw,32px);font-weight:bold;letter-spacing:.5px;color:#0b2d59;overflow-wrap:anywhere}.consent{display:flex;align-items:flex-start;gap:9px;margin-top:18px}.consent input{width:auto;margin-top:6px}.consent label{font-weight:normal;margin:0}footer{text-align:center;background:#080b10;color:#fff;padding:22px 12px;border-top:3px solid var(--gold)}footer a{color:var(--gold)}
+@media(max-width:600px){.grid{grid-template-columns:1fr}.panel{padding:18px}nav{gap:12px}.btn,button{width:100%;text-align:center}}
+</style>
+</head>
+<body>
+<header><h1>New Granthi Singh Federation</h1><p>Exam Appointment Form | ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ</p></header>
+<nav aria-label="Main navigation">
+<a href="index.html">Home</a><a href="membership.html">Membership</a><a href="verify-exam-certificate.html">Verify Exam Certificate</a><a href="contact.html">Contact</a>
+</nav>
+<main>
+<section class="panel">
+<h2>📝 Exam Appointment Application</h2>
+<p>ਵਿਦਿਆਰਥੀ ਦੀ ਸਹੀ ਜਾਣਕਾਰੀ ਭਰੋ ਅਤੇ ਹਾਲੀਆ ਫੋਟੋ ਅਪਲੋਡ ਕਰੋ। ਫਾਰਮ ਜਮ੍ਹਾਂ ਹੋਣ ਤੋਂ ਬਾਅਦ ਤੁਹਾਨੂੰ ਆਪਣਾ Appointment Number ਮਿਲੇਗਾ।</p>
+<p class="small">ਫੋਟੋ JPG, PNG ਜਾਂ WEBP ਹੋਵੇ ਅਤੇ 5 MB ਤੋਂ ਘੱਟ ਹੋਵੇ। ਆਪਣੀ ਜਾਣਕਾਰੀ ਜਮ੍ਹਾਂ ਕਰਕੇ ਤੁਸੀਂ NGSF ਨੂੰ ਇਸ ਅਰਜ਼ੀ ਦੀ ਪ੍ਰਕਿਰਿਆ ਲਈ ਵਰਤਣ ਦੀ ਸਹਿਮਤੀ ਦਿੰਦੇ ਹੋ।</p>
+<div id="result" class="status info" role="status" aria-live="polite">ਕਿਰਪਾ ਕਰਕੇ ਹੇਠਾਂ ਫਾਰਮ ਭਰੋ।</div>
+<form id="appointmentForm">
+<div class="grid">
+<div><label for="fullName">Student Full Name / ਵਿਦਿਆਰਥੀ ਦਾ ਨਾਮ *</label><input id="fullName" name="fullName" maxlength="120" autocomplete="name" required></div>
+<div><label for="fatherName">Father / Guardian Name</label><input id="fatherName" name="fatherName" maxlength="120" autocomplete="off"></div>
+<div><label for="dob">Date of Birth</label><input id="dob" name="dob" type="date"></div>
+<div><label for="examName">Exam / Course Name *</label><input id="examName" name="examName" maxlength="160" placeholder="Exam or course name" required></div>
+<div><label for="email">Email Address *</label><input id="email" name="email" type="email" maxlength="180" autocomplete="email" required></div>
+<div><label for="mobile">Mobile Number *</label><input id="mobile" name="mobile" type="tel" maxlength="25" autocomplete="tel" pattern="[0-9+() -]{7,25}" required></div>
+</div>
+<label for="photo">Student Photo *</label><input id="photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp" required>
+<div class="consent"><input id="consent" type="checkbox" required><label for="consent">ਮੈਂ ਪੁਸ਼ਟੀ ਕਰਦਾ/ਕਰਦੀ ਹਾਂ ਕਿ ਦਿੱਤੀ ਜਾਣਕਾਰੀ ਸਹੀ ਹੈ ਅਤੇ NGSF ਇਸ ਅਰਜ਼ੀ ਦੀ ਪ੍ਰਕਿਰਿਆ ਲਈ ਇਸਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੀ ਹੈ। *</label></div>
+<button id="submitBtn" type="submit">Submit Exam Appointment</button>
+</form>
+<div id="appointmentResult" class="panel hidden" style="margin-top:20px">
+<h2>ਅਰਜ਼ੀ ਸਫਲਤਾਪੂਰਵਕ ਜਮ੍ਹਾਂ ਹੋ ਗਈ</h2><p>ਆਪਣਾ Appointment Number ਸੰਭਾਲ ਕੇ ਰੱਖੋ:</p><div id="appointmentNumber" class="number"></div><button id="printBtn" type="button">Print / Save PDF</button>
+<p class="small">ਇਹ Appointment Number ਅਰਜ਼ੀ ਦੀ ਰਸੀਦ ਹੈ; ਇਹ ਆਪਣੇ ਆਪ Exam Approval ਜਾਂ Certificate ਨਹੀਂ ਹੈ।</p>
+</div>
+</section>
+<section class="panel"><h2>Need Help?</h2><p>Phone: <a href="tel:+917087993724">+91 70879-93724</a></p><p>Email: <a href="mailto:helpline.ngsf@gmail.com">helpline.ngsf@gmail.com</a></p></section>
+</main>
+<footer><p>New Granthi Singh Federation</p><p>© <span id="year"></span> NGSF</p></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(() => {
+"use strict";
+const SUPABASE_URL = "https://oqelvpojoaylmwdbmwcn.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_rgbSAlgeSBnVaBtYWlQOdA_ltIW3Hka";
+const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+const form = document.getElementById("appointmentForm");
+const submitBtn = document.getElementById("submitBtn");
+const result = document.getElementById("result");
+const appointmentResult = document.getElementById("appointmentResult");
+document.getElementById("year").textContent = new Date().getFullYear();
+function show(message, type) { result.textContent = message; result.className = "status " + type; }
+form.addEventListener("submit", async (event) => {
+ event.preventDefault();
+ if (!form.reportValidity()) return;
+ const file = document.getElementById("photo").files[0];
+ if (!file) { show("ਕਿਰਪਾ ਕਰਕੇ ਵਿਦਿਆਰਥੀ ਦੀ ਫੋਟੋ ਅਪਲੋਡ ਕਰੋ।", "error"); return; }
+ if (!["image/jpeg","image/png","image/webp"].includes(file.type) || file.size > 5*1024*1024) {
+   show("ਫੋਟੋ JPG, PNG ਜਾਂ WEBP ਹੋਵੇ ਅਤੇ 5 MB ਤੋਂ ਘੱਟ ਹੋਵੇ।", "error"); return;
+ }
+ submitBtn.disabled = true;
+ show("ਅਰਜ਼ੀ ਜਮ੍ਹਾਂ ਹੋ ਰਹੀ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ…", "info");
+ try {
+   const id = crypto.randomUUID();
+   const ext = file.type === "image/png" ? "png" : file.type === "image/webp" ? "webp" : "jpg";
+   const photoPath = id + "/photo." + ext;
+   const { error: uploadError } = await client.storage.from("ngsf-exam-photos").upload(photoPath, file, { contentType:file.type, upsert:false });
+   if (uploadError) throw uploadError;
+   const dobValue = document.getElementById("dob").value || null;
+   const { data, error } = await client.rpc("submit_ngsf_exam_appointment", {
+     p_full_name: document.getElementById("fullName").value.trim(),
+     p_father_name: document.getElementById("fatherName").value.trim() || null,
+     p_date_of_birth: dobValue,
+     p_exam_name: document.getElementById("examName").value.trim(),
+     p_email: document.getElementById("email").value.trim(),
+     p_mobile: document.getElementById("mobile").value.trim(),
+     p_photo_path: photoPath
+   });
+   if (error) throw error;
+   document.getElementById("appointmentNumber").textContent = data;
+   appointmentResult.classList.remove("hidden");
+   show("ਅਰਜ਼ੀ ਜਮ੍ਹਾਂ ਹੋ ਗਈ ਹੈ। ਤੁਹਾਡਾ Appointment Number ਹੇਠਾਂ ਦਿੱਤਾ ਗਿਆ ਹੈ।", "success");
+   form.reset();
+   appointmentResult.scrollIntoView({behavior:"smooth",block:"center"});
+ } catch (error) {
+   show("ਅਰਜ਼ੀ ਜਮ੍ਹਾਂ ਨਹੀਂ ਹੋ ਸਕੀ: " + (error.message || "ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"), "error");
+ } finally { submitBtn.disabled = false; }
+});
+document.getElementById("printBtn").addEventListener("click", () => {
+ const number = document.getElementById("appointmentNumber").textContent;
+ const w = window.open("", "_blank", "noopener,noreferrer,width=700,height=600");
+ if (!w) { show("Print ਲਈ browser ਵਿੱਚ pop-ups allow ਕਰੋ। Appointment Number: " + number, "info"); return; }
+ w.document.write("<!doctype html><html><head><title>NGSF Appointment Receipt</title><meta charset='utf-8'><style>body{font-family:Arial;padding:35px;text-align:center;color:#071426}h1{font-size:24px}strong{display:block;font-size:28px;margin:30px 0;color:#0b2d59;overflow-wrap:anywhere}.line{border-top:3px solid #f5c542;padding-top:20px}</style></head><body><h1>New Granthi Singh Federation</h1><p>Exam Appointment Receipt</p><div class='line'><p>Your Appointment Number</p><strong>" + number.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])) + "</strong><p>Keep this number for future reference.</p><p>This receipt is not an exam approval or certificate.</p></div><script>window.onload=function(){window.print()}<\/script></body></html>");
+ w.document.close();
+});
+})();
+</script>
+</body>
+</html>
