@@ -56,12 +56,14 @@ a{color:inherit}
 <label for="full_name">Name *</label>
 <input id="full_name" name="full_name" required maxlength="120" autocomplete="name">
 </div>
-<div class="field">
-<label for="gender">Gender *</label>
-<select id="gender" required>
-<option value="">Select Gender</option>
-<option>Male</option><option>Female</option><option>Other</option><option>Prefer not to say</option>
-</select>
+<div class="field gender-field">
+<label>Gender * / ਲਿੰਗ ਚੁਣੋ</label>
+<div class="gender-options" role="radiogroup" aria-label="Gender" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;">
+<label style="display:flex;align-items:center;gap:7px;border:1px solid #d7c77c;border-radius:8px;padding:10px;background:#fff;cursor:pointer;"><input type="radio" name="gender" value="Male" required style="width:auto;min-height:auto;"> Male / ਪੁਰਸ਼</label>
+<label style="display:flex;align-items:center;gap:7px;border:1px solid #d7c77c;border-radius:8px;padding:10px;background:#fff;cursor:pointer;"><input type="radio" name="gender" value="Female" required style="width:auto;min-height:auto;"> Female / ਇਸਤਰੀ</label>
+<label style="display:flex;align-items:center;gap:7px;border:1px solid #d7c77c;border-radius:8px;padding:10px;background:#fff;cursor:pointer;"><input type="radio" name="gender" value="Other" required style="width:auto;min-height:auto;"> Other / ਹੋਰ</label>
+<label style="display:flex;align-items:center;gap:7px;border:1px solid #d7c77c;border-radius:8px;padding:10px;background:#fff;cursor:pointer;"><input type="radio" name="gender" value="Prefer not to say" required style="width:auto;min-height:auto;"> Prefer not to say / ਨਹੀਂ ਦੱਸਣਾ</label>
+</div>
 </div>
 <div class="field">
 <label for="dob">Date of Birth *</label>
@@ -248,7 +250,7 @@ form.addEventListener("submit", async (event) => {
       throw new Error("The email address must match your signed-in Member account email, because the confirmation is sent to that account.");
     }
     const dob = document.getElementById("dob").value;
-    const gender = document.getElementById("gender")?.value?.trim();
+    const gender = document.querySelector('input[name="gender"]:checked')?.value?.trim();
 
     // Validate required fields explicitly before uploading documents or inserting.
     if (!gender) {
