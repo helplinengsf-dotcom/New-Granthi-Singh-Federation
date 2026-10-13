@@ -37,6 +37,7 @@ h2{color:var(--navy)}label{display:block;font-weight:bold;margin:14px 0 6px}inpu
 <div><label for="email">Email Address *</label><input id="email" name="email" type="email" maxlength="180" autocomplete="email" required></div>
 <div><label for="mobile">Mobile Number *</label><input id="mobile" name="mobile" type="tel" maxlength="25" autocomplete="tel" pattern="[0-9+() -]{7,25}" required></div>
 </div>
+<label for="address">Full Address / ਪੂਰਾ ਪਤਾ *</label><input id="address" name="address" maxlength="500" autocomplete="street-address" placeholder="House / Street / Village or City / District / State / PIN Code" required>
 <label for="photo">Student Photo *</label><input id="photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp" required>
 <div class="consent"><input id="consent" type="checkbox" required><label for="consent">ਮੈਂ ਪੁਸ਼ਟੀ ਕਰਦਾ/ਕਰਦੀ ਹਾਂ ਕਿ ਦਿੱਤੀ ਜਾਣਕਾਰੀ ਸਹੀ ਹੈ ਅਤੇ NGSF ਇਸ ਅਰਜ਼ੀ ਦੀ ਪ੍ਰਕਿਰਿਆ ਲਈ ਇਸਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੀ ਹੈ। *</label></div>
 <button id="submitBtn" type="submit">Submit Exam Appointment</button>
@@ -86,6 +87,7 @@ form.addEventListener("submit", async (event) => {
      p_exam_name: document.getElementById("examName").value.trim(),
      p_email: document.getElementById("email").value.trim(),
      p_mobile: document.getElementById("mobile").value.trim(),
+     p_address: document.getElementById("address").value.trim(),
      p_photo_path: photoPath
    });
    if (error) throw error;
