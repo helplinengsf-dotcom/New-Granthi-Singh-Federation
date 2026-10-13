@@ -296,9 +296,28 @@ form.addEventListener("submit", async (event) => {
       throw insertError;
     }
 
+    // Email delivery is handled server-side; API keys are never exposed in this page.
+    let emailNotice = "";
+    const { error: emailError } = await supabase.functions.invoke(
+      "ngsf-email-notifications",
+      {
+        body: {
+          type: "registration",
+          full_name: record.full_name,
+          student_email: user.email,
+          mobile: record.mobile
+        }
+      }
+    );
+
+    if (emailError) {
+      console.error("Registration saved, but email notification failed:", emailError);
+      emailNotice = " The registration is saved, but email notifications are not active yet. Please contact the Federation if needed.";
+    }
+
     form.reset();
     showMessage(
-      "Registration submitted successfully. Your application is Pending review. Please keep your account login details safe.",
+      "Registration submitted successfully. Your application is Pending review. Please keep your account login details safe." + emailNotice,
       true
     );
   } catch (error) {
