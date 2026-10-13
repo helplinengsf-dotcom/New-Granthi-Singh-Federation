@@ -248,6 +248,12 @@ form.addEventListener("submit", async (event) => {
       throw new Error("The email address must match your signed-in Member account email, because the confirmation is sent to that account.");
     }
     const dob = document.getElementById("dob").value;
+    const gender = document.getElementById("gender")?.value?.trim();
+
+    // Validate required fields explicitly before uploading documents or inserting.
+    if (!gender) {
+      throw new Error("Please select your Gender before submitting the registration form.");
+    }
 
     if (dob >= new Date().toISOString().slice(0, 10)) {
       throw new Error("Please enter a valid date of birth.");
@@ -271,7 +277,7 @@ form.addEventListener("submit", async (event) => {
     const record = {
       user_id: user.id,
       full_name: document.getElementById("full_name").value.trim(),
-      gender: document.getElementById("gender").value,
+      gender,
       date_of_birth: dob,
       father_name: document.getElementById("father_name").value.trim(),
       profession: document.getElementById("profession").value || null,
