@@ -243,6 +243,10 @@ form.addEventListener("submit", async (event) => {
     }
 
     const user = authData.user;
+    const enteredEmail = document.getElementById("email").value.trim().toLowerCase();
+    if (enteredEmail && user.email && enteredEmail !== user.email.toLowerCase()) {
+      throw new Error("The email address must match your signed-in Member account email, because the confirmation is sent to that account.");
+    }
     const dob = document.getElementById("dob").value;
 
     if (dob >= new Date().toISOString().slice(0, 10)) {
@@ -278,7 +282,7 @@ form.addEventListener("submit", async (event) => {
       whatsapp: document.getElementById("whatsapp").value.trim() || null,
       address: document.getElementById("address").value.trim(),
       pin_code: document.getElementById("pin_code").value.trim(),
-      email: document.getElementById("email").value.trim() || user.email || null,
+      email: user.email || enteredEmail || null,
       profile_photo_path: profilePath,
       id_type: document.getElementById("id_type").value,
       id_document_path: idPath,
