@@ -400,6 +400,30 @@
           </div>
         </div>
 
+        <div class="panel" style="grid-column:1 / -1">
+          <h3>Official Bank Details / ਅਧਿਕਾਰਤ ਬੈਂਕ ਜਾਣਕਾਰੀ</h3>
+          <p>Please verify the beneficiary name and payment details in your banking app before transferring money.</p>
+          <div class="donation-layout" style="grid-template-columns:minmax(0,1.2fr) minmax(260px,.8fr);align-items:center">
+            <div>
+              <p><strong>Account Name:</strong> New Granthi Singh Federation</p>
+              <p><strong>Bank Name:</strong> IDBI Bank Ltd.</p>
+              <p><strong>Account Number:</strong> 2096102000005135 <button type="button" class="amount" onclick="copyDonationText('2096102000005135')">Copy A/c No.</button></p>
+              <p><strong>IFSC Code:</strong> IBKL0002096 <button type="button" class="amount" onclick="copyDonationText('IBKL0002096')">Copy IFSC</button></p>
+              <p><strong>SWIFT Code:</strong> IBKLINBB041</p>
+              <p><strong>UPI ID:</strong> 1000221217000181.7087993724@idbi <button type="button" class="amount" onclick="copyDonationText('1000221217000181.7087993724@idbi')">Copy UPI ID</button></p>
+              <p><strong>Bank Address:</strong> GT Road, Opp. Panaj Mandi, Malout, District Muktsar, Punjab – 152107</p>
+              <div class="notice"><strong>Safety:</strong> Confirm the recipient name shown by your UPI/banking app before approving payment. Never share your UPI PIN or OTP.</div>
+            </div>
+            <div style="text-align:center;background:#f7f9fc;border:1px solid #dce4ef;border-radius:14px;padding:18px">
+              <h3>Scan to Pay / Donate</h3>
+              <div id="donationQr" style="display:inline-flex;justify-content:center;align-items:center;background:white;padding:12px;border:1px solid #dce4ef;border-radius:10px;min-width:230px;min-height:230px" aria-label="UPI donation QR code"></div>
+              <p style="font-weight:bold;overflow-wrap:anywhere">1000221217000181.7087993724@idbi</p>
+              <a id="upiPayLink" class="btn" href="upi://pay?pa=1000221217000181.7087993724%40idbi&amp;pn=New%20Granthi%20Singh%20Federation&amp;cu=INR">Open UPI App</a>
+              <button type="button" class="btn btn-blue" onclick="window.print()">Print Donation Details</button>
+            </div>
+          </div>
+        </div>
+
         <div class="panel">
           <h3>Ways to Donate</h3>
           <p>Please verify the official payment details with the Federation
@@ -513,6 +537,21 @@
         window.open(url, "_blank", "noopener");
       });
 
+    window.copyDonationText = async function(value) {
+      try { await navigator.clipboard.writeText(value); alert("Copied: " + value); }
+      catch (error) { window.prompt("Copy this value:", value); }
+    };
+    const upiUri = "upi://pay?pa=" + encodeURIComponent("1000221217000181.7087993724@idbi") + "&pn=" + encodeURIComponent("New Granthi Singh Federation") + "&cu=INR";
+    const upiLink = document.getElementById("upiPayLink");
+    if (upiLink) upiLink.href = upiUri;
+    const qrBox = document.getElementById("donationQr");
+    if (qrBox) {
+      const qr = document.createElement("img");
+      qr.alt = "UPI QR code for New Granthi Singh Federation donations";
+      qr.width = 220; qr.height = 220; qr.style.maxWidth = "100%";
+      qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(upiUri);
+      qrBox.appendChild(qr);
+    }
     document.getElementById("year").textContent =
       new Date().getFullYear();
   </script>
