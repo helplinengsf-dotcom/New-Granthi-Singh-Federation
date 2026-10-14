@@ -117,6 +117,16 @@
           <input id="fullName" maxlength="100" autocomplete="name" required>
         </div>
         <div>
+          <label for="gender">Gender / ਲਿੰਗ *</label>
+          <select id="gender" required>
+            <option value="">Select Gender / ਲਿੰਗ ਚੁਣੋ</option>
+            <option value="Male">Male / ਪੁਰਸ਼</option>
+            <option value="Female">Female / ਇਸਤਰੀ</option>
+            <option value="Other">Other / ਹੋਰ</option>
+            <option value="Prefer not to say">Prefer not to say / ਨਹੀਂ ਦੱਸਣਾ</option>
+          </select>
+        </div>
+        <div>
           <label for="phone">Phone Number *</label>
           <input id="phone" type="tel" maxlength="25"
                  autocomplete="tel" required>
@@ -368,13 +378,14 @@
     }
 
     const fullName = $("fullName").value.trim();
+    const gender = $("gender").value;
     const phone = $("phone").value.trim();
     const email = $("email").value.trim();
     const state = $("state").value.trim();
     const district = $("district").value.trim();
     const address = $("address").value.trim();
 
-    if (!fullName || !phone || !district || !$("consent").checked) {
+    if (!fullName || !gender || !phone || !district || !$("consent").checked) {
       showSubmitStatus("Please complete all required fields.", "error");
       return;
     }
@@ -390,6 +401,7 @@
         .insert({
           user_id: currentUser.id,
           full_name: fullName,
+          gender: gender,
           mobile: phone,
           email: email || null,
           state: state || null,
