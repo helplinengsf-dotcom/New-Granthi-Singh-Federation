@@ -47,6 +47,7 @@
       cursor:pointer; text-decoration:none;
     }
     button:disabled { opacity:.55; cursor:not-allowed; }
+    .btn { background:var(--gold); color:var(--navy); font-weight:bold; padding:12px 18px; border-radius:7px; text-decoration:none; display:inline-block; margin:12px 0; }
     .secondary { background:var(--blue); color:white; }
     .danger { background:#8c2020; color:white; }
     .status {
@@ -92,7 +93,8 @@
 <main>
   <section class="panel">
     <h2>Membership Application</h2>
-    <p>ਇਹ ਫਾਰਮ ਭਰਨ ਲਈ ਪਹਿਲਾਂ ਆਪਣੇ Member Account ਵਿੱਚ Login ਕਰੋ।</p>
+    <p>ਹੁਣ ਯੂਜ਼ਰ ਇਸ ਪੇਜ ਤੋਂ ਸਿੱਧਾ Membership ਲਈ ਅਰਜ਼ੀ ਸ਼ੁਰੂ ਕਰ ਸਕਦੇ ਹਨ। ਸੁਰੱਖਿਆ ਲਈ ਅਰਜ਼ੀ ਅਤੇ ID ਦਸਤਾਵੇਜ਼ ਜਮ੍ਹਾਂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ Member Account ਵਿੱਚ Login ਕਰਨਾ ਲਾਜ਼ਮੀ ਹੈ।</p>
+    <a class="btn" href="member-registration.html">Apply for Membership / ਮੈਂਬਰਸ਼ਿਪ ਲਈ ਅਪਲਾਈ ਕਰੋ</a>
     <div id="authStatus" class="status info" role="status" aria-live="polite">
       Checking your login...
     </div>
@@ -113,7 +115,7 @@
     <div class="status info">
       ਇਸ ਡਾਟਾਬੇਸ ਵਿੱਚ ਮੈਂਬਰਸ਼ਿਪ ਲਈ ਜਨਮ ਮਿਤੀ, ਪਿਤਾ ਦਾ ਨਾਮ, ਬਲੱਡ ਗਰੁੱਪ, ਪੂਰਾ ਪਤਾ, PIN ਕੋਡ ਅਤੇ ID ਦਸਤਾਵੇਜ਼ ਵੀ ਲਾਜ਼ਮੀ ਹਨ। ਕਿਰਪਾ ਕਰਕੇ ਪੂਰਾ ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਫਾਰਮ ਭਰੋ ਤਾਂ ਜੋ ਅਰਜ਼ੀ ਸਹੀ ਤਰ੍ਹਾਂ ਜਮ੍ਹਾਂ ਹੋ ਸਕੇ।
     </div>
-    <p><a class="button" href="member-registration.html">Open Complete Member Registration Form / ਪੂਰਾ ਫਾਰਮ ਖੋਲ੍ਹੋ</a></p>orm>
+    <p><a class="btn" href="member-registration.html">Open Complete Member Registration Form / ਪੂਰਾ ਫਾਰਮ ਖੋਲ੍ਹੋ</a></p>
 
     <div id="submitStatus" class="status hidden"
          role="status" aria-live="polite"></div>
