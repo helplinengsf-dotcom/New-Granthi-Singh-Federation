@@ -311,10 +311,8 @@ form.addEventListener("submit", async (event) => {
       .insert(record);
 
     if (insertError) {
-      if (insertError.code === "23505") {
-        throw new Error("A matching membership record or identity document may already exist. Your previous application has not been changed. Please contact helpline.ngsf@gmail.com so the Admin can check the duplicate safely.");
-      }
-      throw insertError;
+      console.error("Membership registration insert failed:", insertError);
+      throw new Error("Registration could not be saved. Please check the details and try again, or contact helpline.ngsf@gmail.com.");
     }
 
     // Email delivery is handled server-side; API keys are never exposed in this page.
