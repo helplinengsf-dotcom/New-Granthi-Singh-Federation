@@ -238,38 +238,24 @@ form.addEventListener("submit", async (event) => {
       throw new Error("Please add your Supabase publishable key in the code first.");
     }
 
-    let { data: authData, error: authError } = await supabase.auth.getUser();
-
-    // Direct applications: if this browser session already owns a registration,
-    // use a fresh anonymous applicant session so the new application is not blocked
-    // by the one-registration-per-user constraint. Existing records are untouched.
-    if (!authError && authData.user) {
-      const { data: existingApplication, error: existingLookupError } = await supabase
-        .from("ngsf_member_registrations")
-        .select("id")
-        .eq("user_id", authData.user.id)
-        .limit(1)
-        .maybeSingle();
-
-      if (existingLookupError) {
-        throw new Error("We could not check your previous application. Please try again or contact helpline.ngsf@gmail.com.");
-      }
-      if (existingApplication) {
-        await supabase.auth.signOut();
-        authData = null;
+    // This is a public direct-application form. Give each new application its own
+    // anonymous applicant session, rather than reusing a previous member/account session.
+    // Existing registrations are never modified by this flow.
+    const { data: currentSession } = await supabase.auth.getSession();
+    if (currentSession?.session) {
+      const { error: signOutError } = await supabase.auth.signOut();
+      if (signOutError) {
+        throw new Error("Could not start a fresh application session. Please reload the page and try again.");
       }
     }
 
-    if (authError || !authData || !authData.user) {
-      const { data: anonymousData, error: anonymousError } =
-        await supabase.auth.signInAnonymously();
-      if (anonymousError || !anonymousData.user) {
-        throw new Error("Direct application session could not be created. Please ensure Anonymous Sign-in is enabled in Supabase, then try again.");
-      }
-      authData = { user: anonymousData.user };
+    const { data: anonymousData, error: anonymousError } =
+      await supabase.auth.signInAnonymously();
+    if (anonymousError || !anonymousData.user) {
+      throw new Error("Direct application session could not be created. Please ensure Anonymous Sign-in is enabled in Supabase, then try again.");
     }
 
-    const user = authData.user;
+    const user = anonymousData.user;
     const enteredEmail = document.getElementById("email").value.trim().toLowerCase();
     const dob = document.getElementById("dob").value;
     const gender = document.querySelector('input[name="gender"]:checked')?.value?.trim();
@@ -326,7 +312,7 @@ form.addEventListener("submit", async (event) => {
 
     if (insertError) {
       if (insertError.code === "23505") {
-        throw new Error("A registration is already submitted for this account. Please contact the Federation for corrections.");
+        throw new Error("A matching membership record or identity document may already exist. Your previous application has not been changed. Please contact helpline.ngsf@gmail.com so the Admin can check the duplicate safely.");
       }
       throw insertError;
     }
