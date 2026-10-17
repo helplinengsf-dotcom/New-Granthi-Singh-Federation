@@ -45,7 +45,8 @@ a{color:inherit}
 <main>
 <section class="card">
 <h1>Member Registration Form</h1>
-<p class="intro">Fill in your details carefully. Your application will remain pending until reviewed by the Federation.</p>
+<p class="intro">Fill in your details carefully. You can apply directly without manually logging in. Your application will remain pending until reviewed by the Federation.</p>
+<p class="hint" style="background:#eef7ff;border-left:3px solid #102d43;padding:12px;border-radius:6px;">Login ਦੀ ਲੋੜ ਨਹੀਂ। ਤੁਹਾਡੀ ਅਰਜ਼ੀ ਅਤੇ ਦਸਤਾਵੇਜ਼ ਸੁਰੱਖਿਅਤ ਤਰੀਕੇ ਨਾਲ ਜਮ੍ਹਾਂ ਕਰਨ ਲਈ ਸਿਸਟਮ ਆਪਣੇ ਆਪ ਇੱਕ ਸੁਰੱਖਿਅਤ session ਬਣਾਏਗਾ। ਆਪਣਾ ਸੰਪਰਕ Email ਦੇਣਾ ਲਾਭਦਾਇਕ ਹੈ।</p>
 
 <div id="message" role="status" aria-live="polite"></div>
 
@@ -237,18 +238,21 @@ form.addEventListener("submit", async (event) => {
       throw new Error("Please add your Supabase publishable key in the code first.");
     }
 
-    const { data: authData, error: authError } =
-      await supabase.auth.getUser();
+    let { data: authData, error: authError } = await supabase.auth.getUser();
 
+    // No manual login required: create an anonymous Supabase session for secure,
+    // user-scoped uploads and submission policies.
     if (authError || !authData.user) {
-      throw new Error("Please sign in to your Member account first, then reopen this form.");
+      const { data: anonymousData, error: anonymousError } =
+        await supabase.auth.signInAnonymously();
+      if (anonymousError || !anonymousData.user) {
+        throw new Error("Direct application session could not be created. Please try again later or contact helpline.ngsf@gmail.com.");
+      }
+      authData = { user: anonymousData.user };
     }
 
     const user = authData.user;
     const enteredEmail = document.getElementById("email").value.trim().toLowerCase();
-    if (enteredEmail && user.email && enteredEmail !== user.email.toLowerCase()) {
-      throw new Error("The email address must match your signed-in Member account email, because the confirmation is sent to that account.");
-    }
     const dob = document.getElementById("dob").value;
     const gender = document.querySelector('input[name="gender"]:checked')?.value?.trim();
 
@@ -316,7 +320,7 @@ form.addEventListener("submit", async (event) => {
         body: {
           type: "registration",
           full_name: record.full_name,
-          student_email: user.email,
+          student_email: record.email,
           mobile: record.mobile
         }
       }
@@ -329,7 +333,7 @@ form.addEventListener("submit", async (event) => {
 
     form.reset();
     showMessage(
-      "Registration submitted successfully. Your application is Pending review. Please keep your account login details safe." + emailNotice,
+      "Registration submitted successfully. Your application is Pending review. You did not need to log in manually." + emailNotice,
       true
     );
   } catch (error) {
