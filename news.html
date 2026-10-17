@@ -476,11 +476,10 @@
   <main>
     <section class="hero">
       <div class="container">
-        <div class="eyebrow">ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ</div>
-        <h2>News & Announcements</h2>
+        <div class="eyebrow">OFFICIAL UPDATES • ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ</div>
+        <h2>NGSF (ਸੱਚ ਦੀ ਸੇਵਾ) News</h2>
         <p>
-          Stay connected with New Granthi Singh Federation for organisational
-          announcements, programme information and community updates.
+          ਸਿੱਖ ਧਰਮ, ਗੁਰਮਤਿ ਅਤੇ ਸਿੱਖ ਸੰਸਥਾਵਾਂ ਦੀਆਂ ਤਾਜ਼ਾ ਖ਼ਬਰਾਂ। ਖ਼ਬਰਾਂ ਆਪਣੇ ਆਪ ਪ੍ਰਕਾਸ਼ਿਤ ਹੁੰਦੀਆਂ ਹਨ ਅਤੇ ਮੂਲ ਸਰੋਤ ਨਾਲ ਲਿੰਕ ਦਿੱਤਾ ਜਾਂਦਾ ਹੈ।
         </p>
       </div>
     </section>
@@ -489,21 +488,16 @@
       <div class="container">
         <div class="intro">
           <div class="section-heading">
-            <h2>Latest Updates</h2>
-            <p>Information and announcements from our federation.</p>
+            <h2>ਤਾਜ਼ਾ ਅੱਪਡੇਟ</h2>
+            <p>ਸਿੱਖ ਧਰਮ, ਗੁਰਮਤਿ ਅਤੇ ਸਿੱਖ ਸੰਸਥਾਵਾਂ ਨਾਲ ਸੰਬੰਧਿਤ ਖ਼ਬਰਾਂ।</p>
           </div>
           <p>
-            This page is designed to share official news, event announcements
-            and community updates. Please contact the federation directly to
-            confirm the details of any programme or announcement.
+            ਇਹ ਪੇਜ ਚੁਣੇ ਹੋਏ RSS ਨਿਊਜ਼ ਸਰੋਤਾਂ ਤੋਂ ਖ਼ਬਰਾਂ ਆਪਣੇ ਆਪ ਲਿਆਉਂਦਾ ਹੈ। ਖ਼ਬਰਾਂ ਦਾ ਲੇਖਕ ਅਤੇ ਮੂਲ ਪ੍ਰਕਾਸ਼ਕ ਸੰਬੰਧਿਤ ਸਰੋਤ ਹੈ; NGSF ਵੱਲੋਂ ਹਰ ਖ਼ਬਰ ਦੀ ਪੁਸ਼ਟੀ ਦਾ ਦਾਅਵਾ ਨਹੀਂ ਕੀਤਾ ਜਾਂਦਾ।
           </p>
         </div>
 
         <div class="notice">
-          <strong>Important:</strong> The sample cards below are categories
-          and placeholders, not verified news reports or confirmed events.
-          Replace them with approved announcements before publishing them as
-          official news.
+          <strong>ਆਟੋਮੈਟਿਕ News:</strong> ਸਿੱਖ ਧਰਮ, ਗੁਰਮਤਿ ਅਤੇ ਸਿੱਖ ਸੰਸਥਾਵਾਂ ਨਾਲ ਸੰਬੰਧਿਤ ਖ਼ਬਰਾਂ RSS ਸਰੋਤਾਂ ਤੋਂ ਆਪਣੇ ਆਪ ਦਿਖਾਈਆਂ ਜਾਂਦੀਆਂ ਹਨ। ਹਰ ਖ਼ਬਰ ਦੇ ਨਾਲ ਮੂਲ ਸਰੋਤ ਦਾ ਲਿੰਕ ਦਿੱਤਾ ਜਾਂਦਾ ਹੈ। ਖ਼ਬਰਾਂ ਦੀ ਸਮੱਗਰੀ ਅਤੇ ਸਹੀਪਣ ਲਈ ਮੂਲ ਸਰੋਤ ਵੇਖੋ।
         </div>
       </div>
     </section>
@@ -511,112 +505,28 @@
     <section class="light-section">
       <div class="container">
         <div class="news-toolbar">
-          <h2>News & Updates</h2>
+          <h2>ਤਾਜ਼ਾ ਖ਼ਬਰਾਂ</h2>
           <input
             type="search"
             class="search-box"
             id="newsSearch"
-            placeholder="Search news and updates..."
-            aria-label="Search news and updates">
+            placeholder="ਖ਼ਬਰ ਲੱਭੋ / Search news"
+            aria-label="ਖ਼ਬਰਾਂ ਖੋਜੋ / Search news">
         </div>
 
-        <div class="news-grid" id="newsGrid">
-
-          <article class="news-card">
-            <div class="news-banner" aria-hidden="true">📢</div>
+        <div class="news-grid" id="newsGrid" aria-live="polite">
+          <article class="news-card" id="newsLoading">
+            <div class="news-banner" aria-hidden="true">ੴ</div>
             <div class="news-content">
-              <span class="news-category">Official Announcements</span>
-              <h3>Federation Announcements</h3>
-              <div class="news-meta">Date: To be announced</div>
-              <p>
-                Official notices and organisational announcements can be
-                published here after they have been confirmed by the federation.
-              </p>
-              <a class="btn"
-                 href="mailto:helpline.ngsf@gmail.com?subject=Official%20Announcement%20Enquiry">
-                Enquire by Email
-              </a>
+              <span class="news-category">ਆਟੋਮੈਟਿਕ ਖ਼ਬਰਾਂ</span>
+              <h3>ਖ਼ਬਰਾਂ ਲੋਡ ਹੋ ਰਹੀਆਂ ਹਨ…</h3>
+              <p>ਸਿੱਖ ਧਰਮ, ਗੁਰਮਤਿ ਅਤੇ ਸਿੱਖ ਸੰਸਥਾਵਾਂ ਦੀਆਂ ਤਾਜ਼ਾ ਖ਼ਬਰਾਂ ਲਿਆਈਆਂ ਜਾ ਰਹੀਆਂ ਹਨ।</p>
             </div>
           </article>
-
-          <article class="news-card">
-            <div class="news-banner" aria-hidden="true">🤝</div>
-            <div class="news-content">
-              <span class="news-category">Community Service</span>
-              <h3>Community Seva Updates</h3>
-              <div class="news-meta">Date: To be announced</div>
-              <p>
-                Updates about community service activities can be added here
-                when the activity details are officially available.
-              </p>
-              <a class="btn"
-                 href="https://wa.me/917597384624?text=Hello%2C%20I%20would%20like%20to%20ask%20about%20community%20service%20updates."
-                 target="_blank" rel="noopener">Ask on WhatsApp</a>
-            </div>
-          </article>
-
-          <article class="news-card">
-            <div class="news-banner" aria-hidden="true">📅</div>
-            <div class="news-content">
-              <span class="news-category">Events</span>
-              <h3>Programme & Event Notices</h3>
-              <div class="news-meta">Dates and venue: To be confirmed</div>
-              <p>
-                Check with the federation for verified programme dates,
-                locations and participation information.
-              </p>
-              <a class="btn" href="events.html">Visit Events Page</a>
-            </div>
-          </article>
-
-          <article class="news-card">
-            <div class="news-banner" aria-hidden="true">👥</div>
-            <div class="news-content">
-              <span class="news-category">Membership</span>
-              <h3>Membership Information</h3>
-              <div class="news-meta">Current details: Contact the federation</div>
-              <p>
-                Interested individuals can enquire about membership
-                requirements and the official application process.
-              </p>
-              <a class="btn" href="membership.html">Membership Details</a>
-            </div>
-          </article>
-
-          <article class="news-card">
-            <div class="news-banner" aria-hidden="true">❤️</div>
-            <div class="news-content">
-              <span class="news-category">Social Welfare</span>
-              <h3>Social Welfare Updates</h3>
-              <div class="news-meta">Date: To be announced</div>
-              <p>
-                Information about welfare initiatives can be published here
-                once programme details are confirmed.
-              </p>
-              <a class="btn"
-                 href="https://wa.me/917597384624?text=Hello%2C%20I%20would%20like%20information%20about%20social%20welfare%20updates."
-                 target="_blank" rel="noopener">Request Information</a>
-            </div>
-          </article>
-
-          <article class="news-card">
-            <div class="news-banner" aria-hidden="true">📞</div>
-            <div class="news-content">
-              <span class="news-category">Contact & Support</span>
-              <h3>Connect with NGSF</h3>
-              <div class="news-meta">Official contact information</div>
-              <p>
-                For questions about announcements, activities or programmes,
-                please contact the federation through its official channels.
-              </p>
-              <a class="btn" href="contact.html">Contact Us</a>
-            </div>
-          </article>
-
         </div>
 
         <div class="empty-message" id="emptyMessage">
-          No matching updates found. Try another search term.
+          ਕੋਈ ਮੇਲ ਖਾਂਦੀ ਖ਼ਬਰ ਨਹੀਂ ਮਿਲੀ। ਹੋਰ ਸ਼ਬਦ ਨਾਲ ਖੋਜੋ।
         </div>
       </div>
     </section>
@@ -761,22 +671,73 @@
       new Date().getFullYear();
 
     const searchInput = document.getElementById("newsSearch");
-    const newsCards = Array.from(document.querySelectorAll(".news-card"));
+    const newsGrid = document.getElementById("newsGrid");
     const emptyMessage = document.getElementById("emptyMessage");
+    const SUPABASE_URL = "https://oqelvpojoaylmwdbmwcn.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9xZWx2cG9qb2F5bG13ZGJtd2NuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE2MzI4MzksImV4cCI6MjEwNzIwODgzOX0.Xp4tFRUjf8hF0cEVY8HnX_08v2YymNLmQXstgi7gZcY";
 
-    searchInput.addEventListener("input", function () {
-      const searchTerm = searchInput.value.trim().toLowerCase();
+    function safeText(value) {
+      return String(value ?? "").replace(/[&<>"']/g, function (char) {
+        return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char];
+      });
+    }
+
+    function renderNews(items) {
+      newsGrid.innerHTML = "";
+      if (!items.length) {
+        newsGrid.innerHTML = '<article class="news-card"><div class="news-banner" aria-hidden="true">ੴ</div><div class="news-content"><span class="news-category">ਆਟੋਮੈਟਿਕ ਖ਼ਬਰਾਂ</span><h3>ਹਾਲੇ ਕੋਈ ਖ਼ਬਰ ਉਪਲਬਧ ਨਹੀਂ</h3><p>ਨਿਊਜ਼ ਫੀਡ ਦੀ ਅਗਲੀ ਆਟੋਮੈਟਿਕ ਜਾਂਚ ਤੋਂ ਬਾਅਦ ਖ਼ਬਰਾਂ ਇੱਥੇ ਦਿਖਣਗੀਆਂ।</p></div></article>';
+        emptyMessage.style.display = "none";
+        return;
+      }
+
+      items.forEach(function (item) {
+        const card = document.createElement("article");
+        card.className = "news-card";
+        const date = item.published_at ? new Date(item.published_at) : new Date(item.fetched_at);
+        const dateLabel = Number.isNaN(date.getTime()) ? "" : date.toLocaleDateString("pa-IN", {year:"numeric",month:"short",day:"numeric"});
+        const summary = item.summary || "ਪੂਰੀ ਖ਼ਬਰ ਪੜ੍ਹਨ ਲਈ ਮੂਲ ਸਰੋਤ ਦਾ ਲਿੰਕ ਖੋਲ੍ਹੋ।";
+        card.innerHTML =
+          '<div class="news-banner" aria-hidden="true">ੴ</div>' +
+          '<div class="news-content">' +
+          '<span class="news-category">' + safeText(item.category || "ਸਿੱਖ / ਗੁਰਮਤਿ ਖ਼ਬਰਾਂ") + '</span>' +
+          '<h3>' + safeText(item.title) + '</h3>' +
+          '<div class="news-meta">' + safeText(item.source_name || "ਮੂਲ ਸਰੋਤ") + (dateLabel ? " · " + safeText(dateLabel) : "") + '</div>' +
+          '<p>' + safeText(summary) + '</p>' +
+          '<a class="btn" href="' + safeText(item.source_url) + '" target="_blank" rel="noopener noreferrer">ਮੂਲ ਖ਼ਬਰ ਪੜ੍ਹੋ ↗</a>' +
+          '</div>';
+        newsGrid.appendChild(card);
+      });
+      filterNews();
+    }
+
+    function filterNews() {
+      const searchTerm = searchInput.value.trim().toLocaleLowerCase();
+      const cards = Array.from(newsGrid.querySelectorAll(".news-card"));
       let visibleCount = 0;
-
-      newsCards.forEach(function (card) {
-        const matches = card.textContent.toLowerCase().includes(searchTerm);
+      cards.forEach(function (card) {
+        const matches = card.textContent.toLocaleLowerCase().includes(searchTerm);
         card.style.display = matches ? "flex" : "none";
-
         if (matches) visibleCount++;
       });
-
       emptyMessage.style.display = visibleCount === 0 ? "block" : "none";
-    });
+    }
+
+    async function loadNews() {
+      try {
+        const response = await fetch(
+          SUPABASE_URL + "/rest/v1/ngsf_auto_news?select=id,title,summary,source_name,source_url,category,published_at,fetched_at&status=eq.published&order=published_at.desc.nullslast&limit=60",
+          { headers: { "apikey": SUPABASE_ANON_KEY, "Authorization": "Bearer " + SUPABASE_ANON_KEY } }
+        );
+        if (!response.ok) throw new Error("News request failed");
+        renderNews(await response.json());
+      } catch (error) {
+        newsGrid.innerHTML = '<article class="news-card"><div class="news-banner" aria-hidden="true">ੴ</div><div class="news-content"><span class="news-category">ਕਨੈਕਸ਼ਨ ਸਮੱਸਿਆ</span><h3>ਖ਼ਬਰਾਂ ਹੁਣੇ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੀਆਂ</h3><p>ਕਿਰਪਾ ਕਰਕੇ ਕੁਝ ਸਮੇਂ ਬਾਅਦ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</p><button class="btn" type="button" id="retryNews">ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ</button></div></article>';
+        document.getElementById("retryNews")?.addEventListener("click", loadNews);
+      }
+    }
+
+    searchInput.addEventListener("input", filterNews);
+    loadNews();
   </script>
 
 </body>
