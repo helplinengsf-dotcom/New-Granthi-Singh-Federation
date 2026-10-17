@@ -239,6 +239,14 @@
       flex-direction: column;
     }
 
+    .news-photo {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #E8EDF5;
+    }
+
     .news-banner {
       min-height: 125px;
       padding: 20px;
@@ -725,7 +733,7 @@
     async function loadNews() {
       try {
         const response = await fetch(
-          SUPABASE_URL + "/rest/v1/ngsf_auto_news?select=id,title,summary,source_name,source_url,category,published_at,fetched_at&status=eq.published&order=published_at.desc.nullslast&limit=60",
+          SUPABASE_URL + "/rest/v1/ngsf_auto_news?select=id,title,summary,source_name,source_url,category,image_url,published_at,fetched_at&status=eq.published&order=published_at.desc.nullslast&limit=60",
           { headers: { "apikey": SUPABASE_ANON_KEY, "Authorization": "Bearer " + SUPABASE_ANON_KEY } }
         );
         if (!response.ok) throw new Error("News request failed");
