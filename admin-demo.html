@@ -291,6 +291,7 @@ input:focus,select:focus{outline:2px solid #1261b0;border-color:#1261b0}
           <a class="module-link" href="membership.html"><strong>Membership Application</strong><span>ਮੈਂਬਰਸ਼ਿਪ ਅਰਜ਼ੀ ਪੇਜ</span></a>
           <a class="module-link" href="member-status.html"><strong>Member Status</strong><span>ਮੈਂਬਰ ਆਪਣੀ ਅਰਜ਼ੀ ਦਾ status ਵੇਖਣ</span></a>
           <a class="module-link" href="news.html"><strong>News & Updates</strong><span>ਮੌਜੂਦਾ News ਪੰਨਾ</span></a>
+          <button class="module-link" type="button" id="runNewsAutomation"><strong>Run News Automation Now</strong><span>ਸਿੱਖ / ਗੁਰਮਤਿ ਖ਼ਬਰਾਂ ਹੁਣੇ ਲਿਆਓ ਅਤੇ Publish ਕਰੋ</span></button>
           <a class="module-link" href="sanstha-news.html"><strong>Sanstha News Website</strong><span>Admin ਵਿੱਚ ਮਨਜ਼ੂਰ ਕੀਤੀਆਂ ਖ਼ਬਰਾਂ ਦਾ ਵੱਖਰਾ ਪੰਨਾ</span></a>
           <a class="module-link" href="team.html"><strong>Team & Coordinators</strong><span>ਟੀਮ ਅਤੇ ਅਹੁਦੇਦਾਰ</span></a>
         </div>
@@ -718,6 +719,31 @@ $("resetBtn").addEventListener("click", async () => {
 });
 
 $("reloadBtn").addEventListener("click", loadApplications);
+
+$("runNewsAutomation").addEventListener("click", async () => {
+  if (!currentUser || busy) {
+    showMessage("ਇਸ ਸਹੂਲਤ ਲਈ ਪਹਿਲਾਂ ਅਧਿਕਾਰਤ Admin ਵਜੋਂ Login ਕਰੋ।", true);
+    return;
+  }
+  const button = $("runNewsAutomation");
+  button.disabled = true;
+  showMessage("News automation ਚੱਲ ਰਹੀ ਹੈ…");
+  try {
+    const response = await fetch(
+      "https://oqelvpojoaylmwdbmwcn.supabase.co/functions/v1/ngsf-news-automation",
+      { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" }
+    );
+    const result = await response.json();
+    if (!response.ok || !result.ok) {
+      throw new Error((result.results || []).map(x => x.source + ": " + (x.error || "failed")).join("; ") || result.error || "Automation failed");
+    }
+    showMessage("News automation ਪੂਰੀ ਹੋਈ। " + result.results.map(x => x.source + ": " + x.fetched + " ਖ਼ਬਰਾਂ ਮਿਲੀਆਂ").join(" | ") + ". News page ਖੋਲ੍ਹ ਕੇ ਵੇਖੋ।");
+  } catch (error) {
+    showMessage("News automation ਚਾਲੂ ਨਹੀਂ ਹੋਈ: " + (error instanceof Error ? error.message : "Unknown error"), true);
+  } finally {
+    button.disabled = false;
+  }
+});
 $("openMembershipApprovals").addEventListener("click", (event) => {
   event.preventDefault();
   $("moduleHub").classList.add("hidden");
