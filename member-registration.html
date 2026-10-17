@@ -240,13 +240,31 @@ form.addEventListener("submit", async (event) => {
 
     let { data: authData, error: authError } = await supabase.auth.getUser();
 
-    // No manual login required: create an anonymous Supabase session for secure,
-    // user-scoped uploads and submission policies.
-    if (authError || !authData.user) {
+    // Direct applications: if this browser session already owns a registration,
+    // use a fresh anonymous applicant session so the new application is not blocked
+    // by the one-registration-per-user constraint. Existing records are untouched.
+    if (!authError && authData.user) {
+      const { data: existingApplication, error: existingLookupError } = await supabase
+        .from("ngsf_member_registrations")
+        .select("id")
+        .eq("user_id", authData.user.id)
+        .limit(1)
+        .maybeSingle();
+
+      if (existingLookupError) {
+        throw new Error("We could not check your previous application. Please try again or contact helpline.ngsf@gmail.com.");
+      }
+      if (existingApplication) {
+        await supabase.auth.signOut();
+        authData = null;
+      }
+    }
+
+    if (authError || !authData || !authData.user) {
       const { data: anonymousData, error: anonymousError } =
         await supabase.auth.signInAnonymously();
       if (anonymousError || !anonymousData.user) {
-        throw new Error("Direct application session could not be created. Please try again later or contact helpline.ngsf@gmail.com.");
+        throw new Error("Direct application session could not be created. Please ensure Anonymous Sign-in is enabled in Supabase, then try again.");
       }
       authData = { user: anonymousData.user };
     }
