@@ -35,4 +35,5 @@ async function showLetter(r){if(r.status!=="approved"||!r.letter_number)return;c
 $("refreshBtn").onclick=loadMine;
 (async()=>{await session();if(currentUser)await loadMine()})();
 })();
-</script></body></html>
+</script>  <script src="assets/ngsf-ai-chat.js" defer></script>
+</body></html>
