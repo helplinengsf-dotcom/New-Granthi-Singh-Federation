@@ -1,0 +1,27 @@
+/* NGSF Public Website refresh: blue, black and gold */
+body{background:#f3f4f6;color:#20232a}
+.topbar{background:#111827;border-bottom:2px solid #d7ad45}
+.header{background:linear-gradient(110deg,#111827,#243b53);color:#fff;border-bottom:3px solid #d7ad45}
+.brand-name{color:#fff}.brand-subtitle{color:#f4d98b}
+.brand img{background:#fff;border:2px solid #d7ad45;padding:2px}
+.nav{background:#1b1b1b;border-bottom:3px solid #d7ad45}
+.nav a{background:#4b2a18;border-color:#8a5a35;box-shadow:0 3px 7px #0003}
+.nav a:hover,.nav a:focus-visible{background:#d7ad45;color:#171717}
+.hero{background:linear-gradient(135deg,#101c3a,#173c70 55%,#4b2a18);border-bottom:4px solid #d7ad45}
+.hero h1{color:#fff2c4}
+.btn{background:#4b2a18;border-color:#d7ad45;color:#fff;box-shadow:0 3px 8px #0003}
+.btn:hover,.btn:focus-visible{background:#d7ad45;color:#171717;border-color:#f3d57d}
+.btn-outline{background:transparent;color:#fff;border-color:#e8cf87}
+.section h2{color:#8b2935}
+.card{border-color:#e2d6c8;box-shadow:0 4px 14px #1a1a1a12}
+.card h3{color:#4b2a18}.card a{color:#174a87}
+.portal-section{background:#eceff3}.portal-card{border-top-color:#d7ad45}
+.contact-box{background:linear-gradient(135deg,#171717,#4b2a18);border:1px solid #d7ad45}
+footer{background:#111827;border-top:3px solid #d7ad45}
+.quick-contact{right:10px;bottom:14px;flex-direction:row;flex-wrap:wrap;justify-content:flex-end}
+.quick-contact a{background:#4b2a18;border-color:#d7ad45}
+.quick-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:1100px;margin:24px auto 0;padding:0 6%}
+.quick-action{display:flex;min-height:78px;align-items:center;justify-content:center;flex-direction:column;gap:5px;text-align:center;text-decoration:none;color:#fff;background:linear-gradient(145deg,#5a321d,#2b1a12);border:1px solid #d7ad45;border-radius:8px;padding:12px 8px;font-weight:700;box-shadow:0 4px 10px #0002}
+.quick-action span:first-child{font-size:22px}
+.quick-action:hover,.quick-action:focus-visible{background:#d7ad45;color:#171717}
+@media(max-width:760px){.quick-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}.quick-action{min-height:70px;font-size:13px}.quick-contact{left:8px;right:8px;bottom:10px;justify-content:space-between}.quick-contact a{font-size:12px}}
