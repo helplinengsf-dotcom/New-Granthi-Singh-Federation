@@ -239,13 +239,60 @@
       flex-direction: column;
     }
 
+    .news-photo-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: var(--navy);
+    }
+
     .news-photo {
       display: block;
       width: 100%;
-      aspect-ratio: 16 / 9;
+      height: 100%;
       object-fit: cover;
-      background: #E8EDF5;
+      transition: transform .25s ease;
     }
+
+    .news-card:hover .news-photo { transform: scale(1.035); }
+
+    .news-photo-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 25% 0 0;
+      background: linear-gradient(transparent, rgba(0,0,0,.88));
+      pointer-events: none;
+    }
+
+    .news-photo-title {
+      position: absolute;
+      z-index: 1;
+      left: 15px;
+      right: 15px;
+      bottom: 12px;
+      margin: 0;
+      color: #fff;
+      font-size: clamp(16px, 2vw, 22px);
+      line-height: 1.3;
+      text-shadow: 0 2px 4px #000;
+    }
+
+    .news-photo-title a { color: #fff; }
+
+    .news-ticker {
+      overflow: hidden;
+      white-space: nowrap;
+      background: #c90000;
+      color: #fff;
+      border-bottom: 4px solid var(--gold);
+      padding: 10px 0;
+      font-weight: 700;
+    }
+
+    .news-ticker span { display: inline-block; padding-left: 100%; animation: newsTicker 28s linear infinite; }
+
+    @keyframes newsTicker { to { transform: translateX(-100%); } }
 
     .news-banner {
       min-height: 125px;
@@ -510,6 +557,8 @@
       </div>
     </section>
 
+    <div class="news-ticker" aria-label="ਨਿਊਜ਼ ਟਿਕਰ"><span>ਤਾਜ਼ਾ ਖ਼ਬਰਾਂ • ਸਿੱਖ ਧਰਮ • ਗੁਰਮਤਿ • ਸਿੱਖ ਸੰਸਥਾਵਾਂ • NGSF News • </span></div>
+
     <section class="light-section">
       <div class="container">
         <div class="news-toolbar">
@@ -706,10 +755,10 @@
         const summary = item.summary || "ਪੂਰੀ ਖ਼ਬਰ ਪੜ੍ਹਨ ਲਈ ਮੂਲ ਸਰੋਤ ਦਾ ਲਿੰਕ ਖੋਲ੍ਹੋ।";
         const imageUrl = /^https?:\\/\\//i.test(item.image_url || "") ? item.image_url : "";
         card.innerHTML =
-          (imageUrl ? '<img class="news-photo" src="' + safeText(imageUrl) + '" alt="' + safeText(item.title || "ਖ਼ਬਰ ਦੀ ਤਸਵੀਰ") + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\'">' : '<div class="news-banner" aria-hidden="true">ੴ</div>') +
+          (imageUrl ? '<div class="news-photo-wrap"><img class="news-photo" src="' + safeText(imageUrl) + '" alt="' + safeText(item.title || "ਖ਼ਬਰ ਦੀ ਤਸਵੀਰ") + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\'"><h3 class="news-photo-title">' + safeText(item.title) + '</h3></div>' : '<div class="news-banner" aria-hidden="true">ੴ</div>') +
           '<div class="news-content">' +
           '<span class="news-category">' + safeText(item.category || "ਸਿੱਖ / ਗੁਰਮਤਿ ਖ਼ਬਰਾਂ") + '</span>' +
-          '<h3>' + safeText(item.title) + '</h3>' +
+          (imageUrl ? '' : '<h3>' + safeText(item.title) + '</h3>') +
           '<div class="news-meta">' + safeText(item.source_name || "ਮੂਲ ਸਰੋਤ") + (dateLabel ? " · " + safeText(dateLabel) : "") + '</div>' +
           '<p>' + safeText(summary) + '</p>' +
           '<a class="btn" href="' + safeText(item.source_url) + '" target="_blank" rel="noopener noreferrer">ਮੂਲ ਖ਼ਬਰ ਪੜ੍ਹੋ ↗</a>' +
