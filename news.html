@@ -503,11 +503,18 @@
       .nav.open { display: flex; }
       .nav a { padding: 12px; }
 
-      .news-grid,
-      .contact-grid,
-      .footer-grid { grid-template-columns: 1fr; }
+      .news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap:10px; }
+      .contact-grid, .footer-grid { grid-template-columns: 1fr; }
 
-      .hero { padding: 28px 5%; }\n      .featured-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }\n      .featured-card:first-child { grid-column:span 2; grid-row:span 1; min-height:210px; }\n      .featured-card:first-child img { min-height:210px; }\n      .sidebar { grid-template-columns:1fr; }\n      .news-photo-title { font-size:14px; left:9px; right:9px; bottom:8px; }\n      .news-content { padding:10px; }\n      .news-content h3 { font-size:15px; }\n      .news-content p { font-size:13px; }
+      .hero { padding: 28px 5%; }
+      .featured-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .featured-card:first-child { grid-column:span 2; grid-row:span 1; min-height:210px; }
+      .featured-card:first-child img { min-height:210px; }
+      .sidebar { grid-template-columns:1fr; }
+      .news-photo-title { font-size:14px; left:9px; right:9px; bottom:8px; }
+      .news-content { padding:10px; }
+      .news-content h3 { font-size:15px; }
+      .news-content p { font-size:13px; }
       .news-toolbar { align-items: stretch; }
       .search-box { width: 100%; }
     }
@@ -749,7 +756,7 @@
     </div>
 
     <div class="copyright">
-      © <span id="year"></span> New Granthi Singh Federation. All rights reserved.
+      Design By New Granthi Singh Federation<br>© <span id="year"></span> New Granthi Singh Federation International. All rights reserved.
     </div>
   </footer>
 
@@ -793,6 +800,27 @@
     }
 
     function renderNews(items) {
+      const featuredGrid = document.getElementById("featuredGrid");
+      const latestNewsList = document.getElementById("latestNewsList");
+      featuredGrid.innerHTML = "";
+      latestNewsList.innerHTML = "";
+      items.slice(0, 5).forEach(function(item) {
+        const a = document.createElement("a");
+        a.className = "featured-card";
+        a.href = item.source_url || "#latest-news";
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        const imageUrl = /^https?:\/\//i.test(item.image_url || "") ? item.image_url : "";
+        a.innerHTML = (imageUrl ? '<img src="' + safeText(imageUrl) + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : '') + '<h3>' + safeText(item.title || "ਤਾਜ਼ਾ ਖ਼ਬਰ") + '</h3>';
+        featuredGrid.appendChild(a);
+      });
+      items.slice(0, 5).forEach(function(item) {
+        const row = document.createElement("div");
+        row.className = "latest-item";
+        const imageUrl = /^https?:\/\//i.test(item.image_url || "") ? item.image_url : "";
+        row.innerHTML = (imageUrl ? '<img src="' + safeText(imageUrl) + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : '<div class="news-banner" style="min-height:56px;padding:4px;font-size:22px">ੴ</div>') + '<a href="' + safeText(item.source_url || "#") + '" target="_blank" rel="noopener noreferrer">' + safeText(item.title || "ਤਾਜ਼ਾ ਖ਼ਬਰ") + '</a>';
+        latestNewsList.appendChild(row);
+      });
       newsGrid.innerHTML = "";
       if (!items.length) {
         newsGrid.innerHTML = '<article class="news-card"><div class="news-banner" aria-hidden="true">ੴ</div><div class="news-content"><span class="news-category">ਆਟੋਮੈਟਿਕ ਖ਼ਬਰਾਂ</span><h3>ਹਾਲੇ ਕੋਈ ਖ਼ਬਰ ਉਪਲਬਧ ਨਹੀਂ</h3><p>ਨਿਊਜ਼ ਫੀਡ ਦੀ ਅਗਲੀ ਆਟੋਮੈਟਿਕ ਜਾਂਚ ਤੋਂ ਬਾਅਦ ਖ਼ਬਰਾਂ ਇੱਥੇ ਦਿਖਣਗੀਆਂ।</p></div></article>';
