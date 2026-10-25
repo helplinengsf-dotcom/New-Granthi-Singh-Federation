@@ -222,11 +222,44 @@
       background: var(--white);
     }
 
+    .hero { padding: 28px 5%; }
+    .hero h2 { font-size: clamp(27px, 4vw, 42px); }
+    .hero p { font-size: 16px; }
+    .news-ticker { padding: 8px 0; font-size: 14px; }
+    .news-ticker strong { background: var(--gold); color: var(--navy); padding: 9px 13px; margin-right: 12px; }
+    .category-nav { background: var(--gold); color: var(--navy); padding: 10px 5%; display:flex; gap:8px; overflow-x:auto; white-space:nowrap; border-bottom: 1px solid #d2aa28; }
+    .category-nav a { color:var(--navy); font-size:13px; font-weight:700; padding:5px 11px; border-radius:16px; }
+    .category-nav a:hover { background:var(--navy); color:#fff; }
+    .featured-layout { display:grid; grid-template-columns:minmax(0,2fr) minmax(240px, .85fr); gap:18px; align-items:start; }
+    .featured-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin-bottom:26px; }
+    .featured-card { position:relative; display:block; min-height:135px; border-radius:9px; overflow:hidden; background:linear-gradient(135deg,var(--navy),var(--blue)); color:#fff; }
+    .featured-card:first-child { grid-column:span 2; grid-row:span 2; min-height:280px; }
+    .featured-card img { width:100%; height:100%; min-height:135px; object-fit:cover; position:absolute; inset:0; }
+    .featured-card:first-child img { min-height:280px; }
+    .featured-card:after { content:""; position:absolute; inset:20% 0 0; background:linear-gradient(transparent,rgba(0,0,0,.9)); }
+    .featured-card h3 { position:absolute; z-index:1; left:10px; right:10px; bottom:8px; margin:0; color:#fff; font-size:14px; line-height:1.3; }
+    .featured-card:first-child h3 { font-size:clamp(17px,2.2vw,25px); }
+    .featured-label { background:#d40000; color:#fff; padding:8px 12px; border-radius:6px 6px 0 0; font-size:13px; font-weight:700; margin-bottom:8px; }
+    .sidebar { display:flex; flex-direction:column; gap:16px; }
+    .sidebar-box { border:1px solid var(--border); border-radius:10px; padding:12px; background:#fff; box-shadow:0 3px 12px #0714260d; }
+    .sidebar-title { background:var(--black); color:#fff; padding:8px 10px; border-radius:6px; font-size:13px; font-weight:bold; margin-bottom:10px; }
+    .latest-item { display:grid; grid-template-columns:74px minmax(0,1fr); gap:9px; padding:8px 0; border-bottom:1px solid #edf0f5; align-items:start; }
+    .latest-item:last-child { border-bottom:0; }
+    .latest-item img { width:74px; height:56px; object-fit:cover; border-radius:5px; background:var(--light); }
+    .latest-item a { color:var(--navy); font-size:12px; font-weight:700; line-height:1.4; }
+    .ad-placeholder { min-height:125px; display:flex; align-items:center; justify-content:center; text-align:center; padding:16px; background:repeating-linear-gradient(135deg,#f3f6fb,#f3f6fb 12px,#e8edf5 12px,#e8edf5 24px); color:var(--navy); font-weight:bold; border:1px dashed #a9b7ca; border-radius:7px; }
     .news-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
+      gap: 18px;
     }
+    .news-section-bar { background:#d40000; color:#fff; padding:8px 12px; border-radius:5px 5px 0 0; font-weight:bold; margin:25px 0 12px; }
+    .news-card { border-top:3px solid #d40000; border-radius:9px; box-shadow:0 3px 12px rgba(7,20,38,.06); }
+    .news-content { padding:15px; }
+    .news-content h3 { font-size:17px; }
+    .btn { background:#d40000; border-color:#d40000; color:#fff; border-radius:18px; padding:7px 13px; font-size:12px; }
+    .btn:hover { background:var(--navy); border-color:var(--navy); color:#fff; }
+    .btn-blue { background:var(--blue); border-color:var(--blue); }
 
     .news-card {
       background: var(--white);
@@ -474,7 +507,7 @@
       .contact-grid,
       .footer-grid { grid-template-columns: 1fr; }
 
-      .hero { padding: 42px 5%; }
+      .hero { padding: 28px 5%; }\n      .featured-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }\n      .featured-card:first-child { grid-column:span 2; grid-row:span 1; min-height:210px; }\n      .featured-card:first-child img { min-height:210px; }\n      .sidebar { grid-template-columns:1fr; }\n      .news-photo-title { font-size:14px; left:9px; right:9px; bottom:8px; }\n      .news-content { padding:10px; }\n      .news-content h3 { font-size:15px; }\n      .news-content p { font-size:13px; }
       .news-toolbar { align-items: stretch; }
       .search-box { width: 100%; }
     }
@@ -557,7 +590,27 @@
       </div>
     </section>
 
-    <div class="news-ticker" aria-label="ਨਿਊਜ਼ ਟਿਕਰ"><span>ਤਾਜ਼ਾ ਖ਼ਬਰਾਂ • ਸਿੱਖ ਧਰਮ • ਗੁਰਮਤਿ • ਸਿੱਖ ਸੰਸਥਾਵਾਂ • NGSF News • </span></div>
+    <div class="news-ticker" aria-label="ਨਿਊਜ਼ ਟਿਕਰ"><span><strong>BREAKING NEWS</strong> ਤਾਜ਼ਾ ਖ਼ਬਰਾਂ • ਸਿੱਖ ਧਰਮ • ਗੁਰਮਤਿ • ਸਿੱਖ ਸੰਸਥਾਵਾਂ • NGSF News • ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ • </span></div>
+    <nav class="category-nav" aria-label="News categories">
+      <a href="#latest-news">ਤਾਜ਼ਾ ਖ਼ਬਰਾਂ</a><a href="#featured-news">ਮੁੱਖ ਖ਼ਬਰਾਂ</a><a href="#category-sikh">ਸਿੱਖ ਧਰਮ</a><a href="#category-gurmat">ਗੁਰਮਤਿ</a><a href="#category-institutions">ਸਿੱਖ ਸੰਸਥਾਵਾਂ</a><a href="#official-notices">ਸਰਕਾਰੀ/ਸੰਸਥਾ ਨੋਟਿਸ</a>
+    </nav>
+    <section id="featured-news" style="padding:24px 0 10px">
+      <div class="container">
+        <div class="featured-layout">
+          <div>
+            <div class="featured-label">ਮੁੱਖ ਖ਼ਬਰਾਂ / TOP STORIES</div>
+            <div class="featured-grid" id="featuredGrid">
+              <a class="featured-card" href="#latest-news"><h3>ਤਾਜ਼ਾ ਖ਼ਬਰਾਂ ਲੋਡ ਹੋ ਰਹੀਆਂ ਹਨ…</h3></a>
+            </div>
+          </div>
+          <aside class="sidebar">
+            <div class="sidebar-box"><div class="sidebar-title">🔴 Latest News</div><div id="latestNewsList"><p>ਖ਼ਬਰਾਂ ਲੋਡ ਹੋ ਰਹੀਆਂ ਹਨ…</p></div></div>
+            <div class="sidebar-box"><div class="sidebar-title">📢 Advertisement</div><div class="ad-placeholder">ਇਸ਼ਤਿਹਾਰ ਲਈ ਸੰਪਰਕ ਕਰੋ<br>helpline.ngsf@gmail.com</div></div>
+            <div class="sidebar-box"><div class="sidebar-title">NGSF Official</div><p style="font-size:13px;margin:0">New Granthi Singh Federation International<br>ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ</p><a class="btn" href="contact.html" style="margin-top:10px">ਸੰਪਰਕ ਕਰੋ</a></div>
+          </aside>
+        </div>
+      </div>
+    </section>
 
     <section class="light-section">
       <div class="container">
