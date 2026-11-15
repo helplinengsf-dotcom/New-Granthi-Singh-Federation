@@ -2,724 +2,111 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Granthi Singh Federation | NGSF</title>
-  <meta name="description" content="New Granthi Singh Federation — Service, Unity and Humanity. Community support, membership and social welfare.">
-  <meta name="theme-color" content="#102d46">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071a33">
+  <meta name="description" content="New Granthi Singh Federation International — Service, Unity and Humanity. Community support, education and social welfare.">
+  <title>New Granthi Singh Federation International | NGSF</title>
+  <link rel="icon" href="assets/ngsf-logo.jpg">
   <link rel="stylesheet" href="assets/style.css">
-  <link rel="stylesheet" href="assets/public-refresh.css">
-
   <style>
-    * { box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 20px;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: #173e32;
-      line-height: 1.6;
-      background: #fff;
-    }
-
-    a { color: inherit; }
-
-    .topbar {
-      background: #103e30;
-      color: #fff;
-      padding: 10px 5%;
-      font-size: 14px;
-    }
-
-    .topbar a {
-      color: #fff;
-      text-decoration: none;
-    }
-
-    .contactline {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px 20px;
-    }
-
-    .tagline {
-      margin-top: 5px;
-      color: #ffdc7a;
-      font-weight: 700;
-    }
-
-    .header {
-      background: #fff;
-      padding: 18px 5%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      position: relative;
-      z-index: 10;
-      box-shadow: 0 2px 12px #0000000d;
-      border-bottom: 3px solid #d3a52b;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      min-width: 0;
-    }
-
-    .brand img {
-      width: 78px;
-      height: 78px;
-      object-fit: contain;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .brand-name {
-      font-size: clamp(17px, 2.5vw, 28px);
-      font-weight: 800;
-      line-height: 1.25;
-      color: #102d46;
-    }
-
-    .brand-subtitle {
-      font-size: 15px;
-      margin-top: 5px;
-      color: #43566a;
-    }
-
-    .menu-toggle {
-      display: none;
-      border: 2px solid #d3a52b;
-      background: #10304a;
-      color: #fff;
-      border-radius: 12px;
-      font-size: 30px;
-      width: 54px;
-      height: 54px;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-
-    .menu-toggle:hover,
-    .menu-toggle:focus-visible {
-      background: #f5c957;
-      color: #102d46;
-    }
-
-    /* Navigation colours */
-    .nav {
-      background: #102d46;
-      padding: 12px 5%;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-      border-bottom: 3px solid #d3a52b;
-    }
-
-    .nav a {
-      display: block;
-      text-decoration: none;
-      font-weight: 700;
-      padding: 10px 14px;
-      border-radius: 8px;
-      color: #fff;
-      background: #183e5b;
-      border: 1px solid #315570;
-      transition: background .2s ease, color .2s ease;
-    }
-
-    .nav a:hover,
-    .nav a:focus-visible {
-      background: #f5c957;
-      color: #102d46;
-      border-color: #f5c957;
-      outline: none;
-    }
-
-    .hero {
-      padding: 85px 6%;
-      color: #fff;
-      background: linear-gradient(130deg, #103e30, #28654b);
-    }
-
-    .hero-inner {
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .eyebrow {
-      color: #ffd36b;
-      font-size: 20px;
-      font-weight: bold;
-    }
-
-    .hero h1 {
-      font-size: clamp(36px, 6vw, 62px);
-      line-height: 1.12;
-      max-width: 850px;
-      margin: 20px 0;
-    }
-
-    .hero p {
-      font-size: 19px;
-      max-width: 760px;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 13px 21px;
-      background: #f5c957;
-      color: #173e32;
-      text-decoration: none;
-      border-radius: 10px;
-      font-weight: bold;
-      border: 2px solid #f5c957;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .btn:hover,
-    .btn:focus-visible {
-      background: #ffdf83;
-      border-color: #ffdf83;
-      color: #102d46;
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: #fff;
-      border-color: #fff;
-    }
-
-    .btn-outline:hover,
-    .btn-outline:focus-visible {
-      background: #fff;
-      color: #103e30;
-    }
-
-    .section { padding: 55px 6%; }
-
-    .section-inner {
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .section h2 {
-      font-size: clamp(28px, 4vw, 40px);
-      color: #102d46;
-      line-height: 1.25;
-    }
-
-    .muted { color: #53675f; }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      padding: 24px;
-      border: 1px solid #dce5ed;
-      border-radius: 15px;
-      background: #fff;
-      box-shadow: 0 5px 18px #102d460c;
-      min-width: 0;
-    }
-
-    .card h3 {
-      margin-top: 0;
-      color: #123653;
-    }
-
-    .card a {
-      font-weight: bold;
-      color: #174e78;
-    }
-
-    .card a:hover { color: #986e08; }
-
-    .tint { background: #f2f6fa; }
-
-    .portal-section { background: #edf3f8; }
-
-    .portal-intro {
-      max-width: 760px;
-      margin-bottom: 25px;
-    }
-
-    .portal-card {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      border-top: 4px solid #d3a52b;
-    }
-
-    .portal-card p {
-      color: #53675f;
-      margin-top: 0;
-      flex-grow: 1;
-    }
-
-    .portal-card .btn {
-      width: 100%;
-      margin-top: auto;
-    }
-
-    .portal-note {
-      margin-top: 22px;
-      padding: 15px 18px;
-      border-left: 4px solid #d3a52b;
-      border-radius: 8px;
-      background: #fff;
-      color: #344b60;
-    }
-
-    .contact-box {
-      background: #103e30;
-      color: #fff;
-      padding: 30px;
-      border-radius: 16px;
-      overflow-wrap: anywhere;
-    }
-
-    .contact-box a:not(.btn) { color: #ffdc7a; }
-
-    footer {
-      background: #092c22;
-      color: #fff;
-      padding: 28px 6%;
-      text-align: center;
-    }
-
-    footer a { color: #ffdc7a; }
-
-    .quick-contact {
-      position: fixed;
-      right: 14px;
-      bottom: 18px;
-      z-index: 20;
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-    }
-
-    .quick-contact a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: bold;
-      padding: 11px 14px;
-      border-radius: 30px;
-      background: #103e30;
-      border: 1px solid #d3a52b;
-      box-shadow: 0 3px 12px #0002;
-    }
-
-    .quick-contact a:hover {
-      background: #f5c957;
-      color: #102d46;
-    }
-
-    :focus-visible {
-      outline: 3px solid #d3a52b;
-      outline-offset: 3px;
-    }
-
-    @media (max-width: 760px) {
-      .topbar { padding: 10px 5%; }
-
-      .contactline {
-        flex-direction: column;
-        gap: 5px;
-      }
-
-      .header { padding: 14px 5%; }
-
-      .brand { gap: 10px; }
-
-      .brand img {
-        width: 60px;
-        height: 60px;
-      }
-
-      .brand-name { font-size: 17px; }
-      .brand-subtitle { font-size: 12px; }
-
-      .menu-toggle {
-        display: block;
-        width: 50px;
-        height: 50px;
-        font-size: 28px;
-      }
-
-      .nav {
-        display: none;
-        padding: 14px 5%;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 7px;
-      }
-
-      .nav.open { display: flex; }
-
-      .nav a {
-        width: 100%;
-        padding: 12px 16px;
-        background: #183e5b;
-        color: #fff;
-        border: 1px solid #315570;
-        border-radius: 9px;
-        font-size: 16px;
-      }
-
-      .nav a:hover,
-      .nav a:focus-visible {
-        background: #f5c957;
-        color: #102d46;
-        border-color: #f5c957;
-      }
-
-      .hero { padding: 55px 6%; }
-      .hero p { font-size: 17px; }
-      .section { padding: 40px 6%; }
-      .cards { grid-template-columns: 1fr; }
-      .card { padding: 21px; }
-
-      .actions {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .actions .btn { width: 100%; }
-      .contact-box { padding: 22px; }
-
-      .quick-contact {
-        right: 8px;
-        bottom: 12px;
-      }
-
-      .quick-contact a {
-        font-size: 12px;
-        padding: 9px 11px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-
-      *, *::before, *::after {
-        transition-duration: .01ms !important;
-      }
-    }
+    :root{--navy:#071a33;--blue:#123e70;--gold:#e5b947;--gold-light:#f7dfa0;--ink:#101722;--muted:#637188;--paper:#f5f7fb;--line:#dce3ed}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;color:var(--ink);background:#fff;font-family:Arial,Helvetica,sans-serif;line-height:1.65}a{color:inherit;text-decoration:none}img{max-width:100%}
+    .topline{background:#050d19;color:#e8edf5;padding:8px 5%;font-size:13px}.topline-inner{max-width:1200px;margin:auto;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.topline a{color:var(--gold-light)}
+    .site-header{position:sticky;top:0;z-index:50;background:rgba(7,26,51,.97);backdrop-filter:blur(12px);border-bottom:2px solid var(--gold);color:#fff}.header-inner{max-width:1200px;margin:auto;padding:13px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:13px;min-width:0}.brand img{width:60px;height:60px;object-fit:contain;background:#fff;border:2px solid var(--gold);border-radius:50%;padding:3px}.brand-title{font-weight:800;font-size:clamp(16px,2.1vw,23px);line-height:1.2;color:#fff}.brand-sub{font-size:12px;color:var(--gold-light);letter-spacing:1.5px;text-transform:uppercase;margin-top:4px}
+    .menu-toggle{display:none;background:transparent;color:#fff;border:1px solid var(--gold);border-radius:9px;width:46px;height:44px;font-size:25px;padding:0;cursor:pointer}
+    .main-nav{display:flex;align-items:center;justify-content:flex-end;gap:4px;flex-wrap:wrap}.main-nav a{font-size:13px;font-weight:700;color:#f3f6fb;padding:9px 10px;border-radius:7px}.main-nav a:hover,.main-nav a:focus-visible{background:var(--gold);color:var(--navy);outline:none}.main-nav .nav-join{background:var(--gold);color:var(--navy);margin-left:4px}
+    .hero{position:relative;overflow:hidden;color:#fff;background:radial-gradient(ellipse at 80% 20%,rgba(39,91,145,.55),transparent 38%),linear-gradient(125deg,#050d19 0%,#071a33 48%,#123e70 100%);padding:86px 5% 78px;border-bottom:5px solid var(--gold)}
+    .hero:after{content:"";position:absolute;width:420px;height:420px;border:1px solid rgba(229,185,71,.22);border-radius:50%;right:-120px;bottom:-260px;box-shadow:0 0 0 35px rgba(229,185,71,.035),0 0 0 75px rgba(229,185,71,.025)}
+    .hero-inner{max-width:1200px;margin:auto;position:relative;z-index:1}.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--gold-light);font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:13px}.eyebrow:before{content:"";width:28px;height:2px;background:var(--gold)}
+    .hero h1{font-size:clamp(38px,6vw,70px);line-height:1.08;max-width:820px;margin:20px 0;color:#fff}.hero h1 span{color:var(--gold)}.hero p{max-width:690px;color:#dce6f3;font-size:18px;margin:0}
+    .hero-actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 21px;border-radius:8px;font-weight:800;border:1px solid var(--gold);background:var(--gold);color:var(--navy);transition:.2s}.btn:hover{background:var(--gold-light);border-color:var(--gold-light);color:var(--navy);transform:translateY(-2px)}.btn-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,.65)}.btn-outline:hover{background:#fff;color:var(--navy);border-color:#fff}
+    .trust-strip{background:#fff;box-shadow:0 8px 28px rgba(7,26,51,.08);position:relative;z-index:2;margin:-1px auto 0}.trust-inner{max-width:1200px;margin:auto;padding:20px 5%;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.trust-item{display:flex;align-items:center;gap:12px;justify-content:center;text-align:left}.trust-icon{width:42px;height:42px;display:grid;place-items:center;background:#fff7e4;border:1px solid #f0d48b;border-radius:50%;font-size:20px}.trust-item strong{display:block;color:var(--navy);font-size:14px}.trust-item small{color:var(--muted);font-size:12px}
+    .section{padding:72px 5%}.section-inner{max-width:1200px;margin:auto}.section-kicker{text-transform:uppercase;color:#9a741b;font-weight:800;letter-spacing:2px;font-size:12px}.section-title{font-size:clamp(28px,4vw,42px);line-height:1.2;color:var(--navy);margin:8px 0 12px}.section-lead{max-width:720px;color:var(--muted);margin:0 0 30px}.section-head{text-align:center;margin:0 auto 34px}.section-head .section-lead{margin:0 auto}
+    .intro-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}.intro-panel{background:linear-gradient(145deg,#071a33,#123e70);color:#fff;padding:34px;border-radius:16px;border:1px solid rgba(229,185,71,.55);box-shadow:0 16px 40px rgba(7,26,51,.16)}.intro-panel h3{font-size:24px;color:var(--gold-light);margin:0 0 12px}.intro-panel p{color:#e0e8f2;margin:0}.intro-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}.intro-list span{font-size:13px;color:#fff}.intro-list span:before{content:"✓";color:var(--gold);font-weight:900;margin-right:8px}
+    .services{background:var(--paper)}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:25px;box-shadow:0 7px 22px rgba(7,26,51,.045);transition:.2s;min-width:0}.card:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 14px 30px rgba(7,26,51,.09)}.card-icon{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:#fff7e5;border:1px solid #f0d48b;font-size:23px;margin-bottom:15px}.card h3{color:var(--navy);margin:0 0 8px;font-size:19px}.card p{color:var(--muted);font-size:14px;margin:0 0 16px}.card-link{font-size:13px;font-weight:800;color:#8b6715}.card-link:hover{color:var(--blue)}
+    .portal{background:#fff}.portal-card{border-top:3px solid var(--gold)}.portal-card .btn{width:100%;font-size:13px;padding:11px}
+    .callout{background:linear-gradient(115deg,#071a33,#123e70);color:#fff;padding:38px;border-radius:16px;display:flex;align-items:center;justify-content:space-between;gap:25px;border:1px solid var(--gold)}.callout h2{color:#fff;margin:0 0 7px;font-size:clamp(24px,3vw,34px)}.callout p{margin:0;color:#dce6f3}
+    .contact{background:var(--paper)}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.contact-card{background:#071a33;color:#fff;border-radius:15px;padding:30px;border:1px solid var(--gold)}.contact-card h3{color:var(--gold-light);margin-top:0}.contact-card p{color:#e3eaf4}.contact-card a{color:var(--gold-light);text-decoration:underline;text-underline-offset:3px}.contact-details{display:grid;gap:12px}.contact-details div{padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.15)}
+    footer{background:#050d19;color:#dbe3ee;border-top:3px solid var(--gold);padding:34px 5% 22px}.footer-inner{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:30px}.footer-brand{display:flex;align-items:center;gap:12px}.footer-brand img{width:52px;height:52px;object-fit:contain;background:#fff;border-radius:50%;padding:3px}.footer-title{font-weight:800;color:#fff}.footer-col h4{color:var(--gold-light);margin:0 0 10px}.footer-col a{display:block;color:#dbe3ee;font-size:13px;margin:6px 0}.footer-col a:hover{color:var(--gold)}.copyright{max-width:1200px;margin:25px auto 0;padding-top:15px;border-top:1px solid #243348;text-align:center;font-size:12px;color:#9eacbf}
+    .floating-contact{position:fixed;right:16px;bottom:16px;z-index:40;display:flex;gap:8px}.floating-contact a{background:#071a33;color:#fff;border:1px solid var(--gold);padding:10px 14px;border-radius:30px;font-weight:800;font-size:12px;box-shadow:0 5px 18px #0003}.floating-contact a:hover{background:var(--gold);color:var(--navy)}
+    :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+    @media(max-width:980px){.header-inner{flex-wrap:wrap}.menu-toggle{display:block}.main-nav{display:none;width:100%;align-items:stretch;flex-direction:column;gap:3px;padding:8px 0 4px}.main-nav.open{display:flex}.main-nav a{padding:12px 14px;background:rgba(255,255,255,.06)}.main-nav .nav-join{margin:4px 0}.intro-grid{grid-template-columns:1fr;gap:25px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:650px){.topline-inner{flex-direction:column}.brand img{width:51px;height:51px}.brand-title{font-size:15px}.brand-sub{font-size:10px}.hero{padding:62px 6% 60px}.hero p{font-size:16px}.hero-actions{flex-direction:column}.hero-actions .btn{width:100%}.trust-inner{grid-template-columns:1fr;gap:13px;padding:18px 6%}.trust-item{justify-content:flex-start}.section{padding:52px 6%}.cards{grid-template-columns:1fr}.intro-panel{padding:25px}.intro-list{grid-template-columns:1fr}.callout{padding:27px;align-items:flex-start;flex-direction:column}.callout .btn{width:100%}.contact-grid{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr;gap:22px}.floating-contact{left:8px;right:8px;bottom:9px;justify-content:space-between}.floating-contact a{flex:1;text-align:center}.copyright{padding-bottom:38px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;transform:none!important}}
   </style>
 </head>
-
 <body>
-
-  <div class="topbar">
-    <div class="contactline">
-      <span>☎ <a href="tel:+917087993724">+91 70879-93724</a></span>
-      <span>✉ <a href="mailto:helpline.ngsf@gmail.com">helpline.ngsf@gmail.com</a></span>
-    </div>
-    <div class="tagline">ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ</div>
-  </div>
-
-  <header class="header">
-    <a class="brand" href="index.html" aria-label="NGSF Home">
-      <img src="assets/ngsf-logo.jpg" alt="New Granthi Singh Federation Logo">
-      <div>
-        <div class="brand-name">New Granthi Singh Federation</div>
-        <div class="brand-subtitle">Service | Unity | Humanity</div>
-      </div>
-    </a>
-
-    <button
-      class="menu-toggle"
-      id="menuToggle"
-      aria-label="Open navigation menu"
-      aria-expanded="false"
-      aria-controls="mainNav"
-      type="button">☰</button>
-  </header>
-
-  <nav class="nav" id="mainNav" aria-label="Main navigation">
-    <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="membership.html">Membership</a>
-    <a href="exam-appointment.html">📝 Exam Appointment</a>
-    <a href="appointment-letter.html">Appointment Letter</a>
-    <a href="verify-appointment.html">Verify Appointment</a>
-    <a href="donations.html">Donations</a>
-    <a href="activities.html">Activities</a>
-    <a href="events.html">Events</a>
-    <a href="team.html">Our Team</a>
-    <a href="news.html">News</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-
-
-  <section class="quick-actions" aria-label="Quick services">
-    <a class="quick-action" href="membership.html"><span>👤</span><span>Membership Registration</span></a>
-    <a class="quick-action" href="events.html"><span>📅</span><span>Upcoming Programmes</span></a>
-    <a class="quick-action" href="activities.html"><span>🤝</span><span>Our Activities</span></a>
-    <a class="quick-action" href="donations.html"><span>💛</span><span>Support Seva</span></a>
-  </section>
-
+  <div class="topline"><div class="topline-inner"><span>☎ <a href="tel:+917087993724">+91 70879-93724</a></span><span>✉ <a href="mailto:helpline.ngsf@gmail.com">helpline.ngsf@gmail.com</a></span><span>ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ</span></div></div>
+  <header class="site-header"><div class="header-inner">
+    <a class="brand" href="index.html" aria-label="NGSF home"><img src="assets/ngsf-logo.jpg" alt="NGSF logo"><span><span class="brand-title">New Granthi Singh Federation</span><span class="brand-sub">International · Service · Unity · Humanity</span></span></a>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">☰</button>
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="activities.html">Activities</a><a href="membership.html">Membership</a><a href="events.html">Events</a><a href="news.html">News</a><a href="team.html">Our Team</a><a href="donations.html">Donations</a><a href="contact.html">Contact</a><a class="nav-join" href="membership.html">Join NGSF</a>
+    </nav>
+  </div></header>
   <main>
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="eyebrow">ਸੇਵਾ • ਸਿਮਰਨ • ਸੰਗਤ</div>
-        <h1>Together We Can Make a Difference</h1>
-        <p>
-          Serving humanity through community support, education and social
-          welfare—building a stronger, united community through seva,
-          compassion and Sikh values.
-        </p>
-        <div class="actions">
-          <a class="btn" href="membership.html">Become a Member</a>
-          <a class="btn btn-outline" href="donations.html">Support Seva</a>
-        </div>
+    <section class="hero"><div class="hero-inner">
+      <div class="eyebrow">ਸੇਵਾ • ਸਿਮਰਨ • ਸੰਗਤ</div>
+      <h1>Serving Humanity.<br><span>Building Unity.</span></h1>
+      <p>New Granthi Singh Federation International works to encourage seva, education, community support and social welfare, guided by compassion and shared responsibility.</p>
+      <div class="hero-actions"><a class="btn" href="membership.html">Become a Member <span>→</span></a><a class="btn btn-outline" href="donations.html">Support Seva</a><a class="btn btn-outline" href="about.html">Discover NGSF</a></div>
+    </div></section>
+    <section class="trust-strip" aria-label="Federation values"><div class="trust-inner">
+      <div class="trust-item"><span class="trust-icon">🤝</span><span><strong>Community Seva</strong><small>Serving with compassion</small></span></div>
+      <div class="trust-item"><span class="trust-icon">📚</span><span><strong>Education & Awareness</strong><small>Learning and opportunity</small></span></div>
+      <div class="trust-item"><span class="trust-icon">🕊️</span><span><strong>Unity & Humanity</strong><small>Stronger communities together</small></span></div>
+    </div></section>
+    <section class="section"><div class="section-inner intro-grid">
+      <div><div class="section-kicker">Welcome to NGSF</div><h2 class="section-title">A federation built on service and shared values</h2><p class="section-lead">We bring people together to support meaningful community initiatives, encourage participation and help create positive social impact.</p><a class="btn" href="about.html">Know More About Us →</a></div>
+      <div class="intro-panel"><h3>Our guiding thought</h3><p>ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ<br><br>Service with humility, unity through cooperation, and humanity beyond boundaries.</p><div class="intro-list"><span>Community welfare</span><span>Education initiatives</span><span>Member participation</span><span>Transparent service</span></div></div>
+    </div></section>
+    <section class="section services"><div class="section-inner">
+      <div class="section-head"><div class="section-kicker">What we do</div><h2 class="section-title">Explore NGSF Services</h2><p class="section-lead">Find information about our programmes, membership and ways to take part.</p></div>
+      <div class="cards">
+        <article class="card"><div class="card-icon">🤝</div><h3>Community Activities</h3><p>Explore service initiatives, community programmes and welfare activities.</p><a class="card-link" href="activities.html">Explore activities →</a></article>
+        <article class="card"><div class="card-icon">👥</div><h3>Membership</h3><p>Learn about joining the federation and submitting a membership application.</p><a class="card-link" href="membership.html">Membership details →</a></article>
+        <article class="card"><div class="card-icon">💛</div><h3>Support Seva</h3><p>Read donation information and support the federation's service work.</p><a class="card-link" href="donations.html">Donation information →</a></article>
+        <article class="card"><div class="card-icon">📅</div><h3>Events & Programmes</h3><p>See federation events, community gatherings and programme updates.</p><a class="card-link" href="events.html">View events →</a></article>
+        <article class="card"><div class="card-icon">📰</div><h3>News & Updates</h3><p>Read announcements and updates from the federation.</p><a class="card-link" href="news.html">Read news →</a></article>
+        <article class="card"><div class="card-icon">🧑‍🤝‍🧑</div><h3>Our Team</h3><p>Meet the people and representatives contributing to NGSF activities.</p><a class="card-link" href="team.html">Meet the team →</a></article>
       </div>
-    </section>
-
-    <section class="section portal-section" id="member-portal">
-      <div class="section-inner">
-        <h2>Login & Member Services</h2>
-        <p class="muted portal-intro">
-          Sign in to access the services available for your account.
-          Official applications and documents are subject to verification
-          and approval by authorized NGSF personnel.
-        </p>
-
-        <div class="cards">
-          <article class="card portal-card">
-            <h3>👤 Member Login / Sign Up</h3>
-            <p>
-              Create an ordinary member account, sign in, apply for your
-              own ID card or submit an application for another person
-              with their permission.
-            </p>
-            <a class="btn" href="member-login.html">Member Login / Sign Up</a>
-          </article>
-
-          <article class="card portal-card">
-            <h3>🤝 Coordinator Login</h3>
-            <p>
-              For authorized coordinators to access their assigned work
-              through the coordinator portal.
-            </p>
-            <a class="btn" href="coordinator-login.html">Coordinator Login</a>
-          </article>
-
-          <article class="card portal-card">
-            <h3>📋 Manager Login</h3>
-            <p>
-              For authorized managers to access management services
-              according to their assigned permissions.
-            </p>
-            <a class="btn" href="manager-login.html">Manager Login</a>
-          </article>
-
-          <article class="card portal-card">
-            <h3>🔐 Admin Login</h3>
-            <p>
-              Restricted entry for authorized NGSF administrators.
-              Admin access must be verified securely.
-            </p>
-            <a class="btn" href="admin-demo.html">Admin Login</a>
-          </article>
-
-          <article class="card portal-card">
-            <h3>🪪 Apply for an ID Card</h3>
-            <p>
-              Start a membership or ID card application. Applications
-              for another person require their permission.
-            </p>
-            <a class="btn" href="membership.html">Apply for ID Card</a>
-          </article>
-
-          <article class="card portal-card">
-            <h3>📄 Status & Document Help</h3>
-            <p>
-              Get assistance with application status, issued ID cards,
-              appointment letters and certificates.
-            </p>
-            <a class="btn" href="contact.html">Contact NGSF</a>
-          </article>
-        </div>
-
-        <div class="portal-note">
-          <strong>Important:</strong>
-          ID cards, appointment letters and certificates are available
-          only after verification and official approval. Never share
-          your password or login verification code.
-        </div>
+    </div></section>
+    <section class="section portal"><div class="section-inner">
+      <div class="section-head"><div class="section-kicker">Member access</div><h2 class="section-title">Login & Member Services</h2><p class="section-lead">Use the appropriate portal for your role. Official documents and applications remain subject to verification and authorized approval.</p></div>
+      <div class="cards">
+        <article class="card portal-card"><div class="card-icon">👤</div><h3>Member Login / Sign Up</h3><p>Create an account and access member services.</p><a class="btn" href="member-login.html">Member Login</a></article>
+        <article class="card portal-card"><div class="card-icon">🤝</div><h3>Coordinator Login</h3><p>Portal access for authorized coordinators.</p><a class="btn" href="coordinator-login.html">Coordinator Login</a></article>
+        <article class="card portal-card"><div class="card-icon">📋</div><h3>Manager Login</h3><p>Management access according to assigned permissions.</p><a class="btn" href="manager-login.html">Manager Login</a></article>
+        <article class="card portal-card"><div class="card-icon">🔐</div><h3>Admin Login</h3><p>Restricted access for authorized administrators.</p><a class="btn" href="admin-demo.html">Admin Login</a></article>
+        <article class="card portal-card"><div class="card-icon">🪪</div><h3>Exam & ID Application</h3><p>Access membership and exam application information.</p><a class="btn" href="exam-appointment.html">View Application</a></article>
+        <article class="card portal-card"><div class="card-icon">📄</div><h3>Appointment & Verification</h3><p>View appointment letter information and verify issued documents.</p><a class="btn" href="appointment-letter.html">Appointment Letters</a><a class="card-link" href="verify-appointment.html">Verify appointment →</a></article>
       </div>
-    </section>
-
-    <section class="section tint">
-      <div class="section-inner">
-        <h2>Welcome to Our Federation</h2>
-        <p class="muted">
-          A community platform for service, unity and transparent social welfare.
-        </p>
-
-        <div class="cards">
-          <article class="card">
-            <h3>🤝 Community Service</h3>
-            <p>Support people and families through community-led initiatives and seva.</p>
-            <a href="activities.html">Explore Activities →</a>
-          </article>
-
-          <article class="card">
-            <h3>👥 Membership</h3>
-            <p>Learn about the federation and express your interest in joining.</p>
-            <a href="membership.html">Membership Details →</a>
-          </article>
-
-          <article class="card">
-            <h3>💛 Donations</h3>
-            <p>Discover ways to support community welfare and charitable activities.</p>
-            <a href="donations.html">Donation Information →</a>
-          </article>
-
-          <article class="card">
-            <h3>📅 Events</h3>
-            <p>Find federation events, community gatherings and upcoming programmes.</p>
-            <a href="events.html">View Events →</a>
-          </article>
-
-          <article class="card">
-            <h3>🎓 Projects & Activities</h3>
-            <p>Learn about our projects, community initiatives and service activities.</p>
-            <a href="activities.html">View Projects →</a>
-          </article>
-
-          <article class="card">
-            <h3>📰 News & Updates</h3>
-            <p>Read updates and announcements from the federation.</p>
-            <a href="news.html">Read News →</a>
-          </article>
-        </div>
+      <p style="margin:20px 0 0;color:#64748b;font-size:13px">Security reminder: Never share your password or one-time verification code. ID cards, appointment letters and certificates are issued only after required verification and approval.</p>
+    </div></section>
+    <section class="section"><div class="section-inner"><div class="callout"><div><h2>Be part of positive change</h2><p>Join hands with NGSF and contribute to service, education and community welfare.</p></div><a class="btn" href="membership.html">Join the Federation →</a></div></div></section>
+    <section class="section contact"><div class="section-inner">
+      <div class="section-head"><div class="section-kicker">Get in touch</div><h2 class="section-title">Contact NGSF</h2><p class="section-lead">Reach our federation for membership information, programmes and general enquiries.</p></div>
+      <div class="contact-grid">
+        <div class="contact-card"><h3>New Granthi Singh Federation International</h3><div class="contact-details">
+          <div><strong>Registered Office</strong><br>Plot No. 01, Sheranwala, Near Petrol Pump, Sri Muktsar Sahib, Punjab (India) 152114</div>
+          <div><strong>Call</strong><br><a href="tel:+917087993724">+91 70879-93724</a></div>
+          <div><strong>WhatsApp</strong><br><a href="https://wa.me/917597384624" target="_blank" rel="noopener noreferrer">+91 75973-84624</a></div>
+          <div><strong>Email</strong><br><a href="mailto:helpline.ngsf@gmail.com">helpline.ngsf@gmail.com</a></div>
+        </div></div>
+        <div class="card"><div class="card-icon">📍</div><h3>Visit or write to us</h3><p>For official correspondence, please use the registered office address or email the federation.</p><a class="btn" href="https://maps.app.goo.gl/kks12XgECSoAiUFY6?g_st=ac" target="_blank" rel="noopener noreferrer">Open Office Location ↗</a><p style="margin-top:22px;font-size:13px">Registration: CIN U85300PB2022NPL056363<br>A Section 8 Act 2013 Non-Profit Organization (NGO)</p><a class="card-link" href="contact.html">Contact page →</a></div>
       </div>
-    </section>
-
-    <section class="section">
-      <div class="section-inner">
-        <h2>Our Mission</h2>
-        <p class="muted">
-          To promote service, unity, compassion, education and social welfare
-          while helping build a stronger and more supportive community.
-        </p>
-        <div class="actions">
-          <a class="btn" href="about.html">About Our Federation</a>
-          <a class="btn" href="team.html">Meet Our Team</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section tint">
-      <div class="section-inner">
-        <h2>Contact Us</h2>
-        <div class="contact-box">
-          <p><strong>New Granthi Singh Federation (NGSF)</strong></p>
-          <p>
-            <strong>Registered Office:</strong><br>
-            Plot No. 01, Sheranwala, Near Petrol Pump,<br>
-            Sri Muktsar Sahib, Punjab (India) 152114
-          </p>
-          <p>
-            <strong>Call:</strong>
-            <a href="tel:+917087993724">+91 70879-93724</a>
-          </p>
-          <p>
-            <strong>WhatsApp:</strong>
-            <a href="https://wa.me/917597384624"
-               target="_blank" rel="noopener noreferrer">
-              +91 75973-84624
-            </a>
-          </p>
-          <p>
-            <strong>Email:</strong>
-            <a href="mailto:helpline.ngsf@gmail.com">helpline.ngsf@gmail.com</a>
-          </p>
-          <a class="btn" href="contact.html">Contact Page</a>
-        </div>
-      </div>
-    </section>
+    </div></section>
   </main>
-
-  <footer>
-    <p><strong>New Granthi Singh Federation</strong></p>
-    <p>Service | Unity | Humanity</p>
-    <p>
-      <a href="index.html">Home</a> ·
-      <a href="about.html">About Us</a> ·
-      <a href="membership.html">Membership</a> ·
-      <a href="contact.html">Contact</a>
-    </p>
-    <p>
-      © <span id="year"></span> New Granthi Singh Federation.
-      All rights reserved.
-    </p>
-  </footer>
-
-  <div class="quick-contact">
-    <a href="tel:+917087993724">☎ Call</a>
-    <a href="https://wa.me/917597384624"
-       target="_blank" rel="noopener noreferrer">WhatsApp</a>
-  </div>
-
+  <footer><div class="footer-inner">
+    <div><div class="footer-brand"><img src="assets/ngsf-logo.jpg" alt="NGSF logo"><div><div class="footer-title">New Granthi Singh Federation</div><small>ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ</small></div></div><p style="font-size:13px;color:#b8c5d6">Service, unity and humanity through community participation and social welfare.</p></div>
+    <div class="footer-col"><h4>Quick Links</h4><a href="about.html">About Us</a><a href="membership.html">Membership</a><a href="activities.html">Activities</a><a href="donations.html">Donations</a><a href="events.html">Events</a><a href="news.html">News</a></div>
+    <div class="footer-col"><h4>Information</h4><a href="team.html">Our Team</a><a href="contact.html">Contact</a><a href="terms.html">Terms & Conditions</a><a href="privacy.html">Privacy Policy</a><a href="complaint.html">Complaint</a><a href="verify-appointment.html">Document Verification</a></div>
+  </div><div class="copyright">© <span id="year"></span> New Granthi Singh Federation International. All rights reserved.<br>Designed by New Granthi Singh Federation</div></footer>
+  <div class="floating-contact"><a href="tel:+917087993724">☎ Call</a><a href="https://wa.me/917597384624" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
   <script>
-    (function () {
-      const menuToggle = document.getElementById("menuToggle");
-      const mainNav = document.getElementById("mainNav");
-
-      if (menuToggle && mainNav) {
-        menuToggle.addEventListener("click", function () {
-          const isOpen = mainNav.classList.toggle("open");
-
-          menuToggle.textContent = isOpen ? "×" : "☰";
-          menuToggle.setAttribute("aria-expanded", String(isOpen));
-          menuToggle.setAttribute(
-            "aria-label",
-            isOpen ? "Close navigation menu" : "Open navigation menu"
-          );
-        });
-
-        mainNav.querySelectorAll("a").forEach(function (link) {
-          link.addEventListener("click", function () {
-            mainNav.classList.remove("open");
-            menuToggle.textContent = "☰";
-            menuToggle.setAttribute("aria-expanded", "false");
-            menuToggle.setAttribute("aria-label", "Open navigation menu");
-          });
-        });
-      }
-
-      const yearElement = document.getElementById("year");
-      if (yearElement) {
-        yearElement.textContent = new Date().getFullYear();
-      }
-    })();
+    (function(){const b=document.getElementById('menuToggle'),n=document.getElementById('mainNav');if(b&&n){b.addEventListener('click',function(){const open=n.classList.toggle('open');b.textContent=open?'×':'☰';b.setAttribute('aria-expanded',String(open));b.setAttribute('aria-label',open?'Close menu':'Open menu')});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');b.textContent='☰';b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Open menu')}))}const y=document.getElementById('year');if(y)y.textContent=new Date().getFullYear()})();
   </script>
-
   <script src="assets/ngsf-ai-chat.js?v=2" defer></script>
 </body>
 </html>
