@@ -26,6 +26,17 @@ footer{background:#050b14;color:#e1e7ef;border-top:3px solid var(--g);padding:18
 @media(max-width:850px){.header-in{flex-wrap:wrap}.menu-toggle{display:block}.social{margin-left:auto}.nav{display:none}.nav.open{display:block}.nav-in{display:flex;flex-direction:column;align-items:stretch;padding:6px 4%}.nav a{padding:11px 12px;border-bottom:1px solid #233b59}.dashboard{grid-template-columns:1fr 1.7fr}.dashboard .members-panel{grid-column:1/-1}.members-panel .panel-body{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.member-mini{border:0}.contact-in{grid-template-columns:1fr 1fr}.contact-in>div:first-child{grid-column:1/-1}}
 @media(max-width:600px){.topline-in{flex-direction:column}.brand img{width:46px;height:46px}.brand strong{font-size:14px}.brand small{font-size:9px}.social{display:none}.hero{padding:38px 5%}.hero h1{font-size:34px}.hero p{font-size:14px}.quick{grid-template-columns:repeat(2,1fr);padding:0 4%;gap:8px}.quick a{font-size:12px;padding:11px 5px}.dashboard{grid-template-columns:1fr;gap:12px}.dashboard .members-panel{grid-column:auto}.members-panel .panel-body{display:block}.member-mini{border-bottom:1px solid #e8ebf0}.recognition{grid-template-columns:1fr}.objective-grid{grid-template-columns:repeat(2,1fr);gap:18px}.gallery{grid-template-columns:repeat(2,1fr)}.gallery-item{min-height:110px}.testimonials{grid-template-columns:1fr}.contact-in{grid-template-columns:1fr}.contact-in>div:first-child{grid-column:auto}.floating{left:8px;right:8px;justify-content:space-between}.floating a{flex:1;text-align:center}footer{padding-bottom:58px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Contrast and floating-widget correction */
+section.contact{background:linear-gradient(120deg,#071a33 0%,#123e70 100%) !important;color:#fff !important;border-top:3px solid var(--g)}
+section.contact h3{color:#f8e4ad !important}
+section.contact p,section.contact a{color:#edf3fb !important;opacity:1 !important}
+section.contact a{text-decoration:underline;text-underline-offset:3px}
+section.contact a:hover{color:#f8e4ad !important}
+.floating{right:12px;bottom:18px;left:auto;width:auto;max-width:calc(100vw - 24px);justify-content:flex-end;z-index:35}
+.floating a{flex:0 0 auto;min-width:108px;text-align:center}
+@media(max-width:600px){.floating{right:12px;left:auto;bottom:18px;width:auto;gap:7px}.floating a{flex:0 0 auto;min-width:100px;padding:9px 12px;font-size:11px}footer{padding-bottom:24px}}
+
 </style>
 </head>
 <body>
