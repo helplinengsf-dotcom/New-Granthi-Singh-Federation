@@ -169,7 +169,14 @@ function googleTranslateElementInit(){
   set('hukam-punjabi',lines.map(line=>pick(line.translation&&line.translation.punjabi&&line.translation.punjabi.default)).filter(Boolean).join('\n'));
   set('hukam-english',lines.map(line=>pick(line.translation&&line.translation.english)).filter(Boolean).join('\n'));
   const date=data.date&&data.date.gregorian;
-  if(date)set('hukam-date',date.day+', '+date.month+' '+date.date+', '+date.year+' · Amritsar, India');
+  if(date){
+   const published=new Date(Date.UTC(date.year,date.monthno-1,date.date));
+   const now=new Date();
+   const amritsarToday=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Kolkata',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);
+   const publishedKey=date.year+'-'+String(date.monthno).padStart(2,'0')+'-'+String(date.date).padStart(2,'0');
+   if(publishedKey!==amritsarToday)throw new Error('The data provider has not published the current Amritsar date yet. Please use the official SGPC reading.');
+   set('hukam-date',date.day+', '+date.month+' '+date.date+', '+date.year+' · Amritsar, India');
+  }
   const info=data.hukamnamainfo||{};
   const ang=info.pageno?('ਅੰਗ '+info.pageno+' / Ang '+info.pageno):'';
   const writer=info.writer&&info.writer.unicode||'';
