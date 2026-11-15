@@ -37,6 +37,16 @@ section.contact a:hover{color:#f8e4ad !important}
 .floating a{flex:0 0 auto;min-width:108px;text-align:center}
 @media(max-width:600px){.floating{right:12px;left:auto;bottom:18px;width:auto;gap:7px}.floating a{flex:0 0 auto;min-width:100px;padding:9px 12px;font-size:11px}footer{padding-bottom:24px}}
 
+
+.translate-menu{display:flex;align-items:center;gap:8px;padding:7px 10px;color:#f8e4ad;font-size:12px;font-weight:800;border-left:1px solid #806b3c}
+.translate-menu .goog-te-gadget{font-family:Arial,sans-serif!important;color:#fff!important;font-size:11px!important}
+.translate-menu .goog-te-gadget-simple{background:#fff!important;border:1px solid #e5b947!important;border-radius:6px!important;padding:5px 7px!important;color:#071a33!important}
+.translate-menu .goog-te-gadget-simple .goog-te-menu-value{color:#071a33!important}
+.translate-menu img{display:none!important}
+.goog-te-banner-frame.skiptranslate{display:none!important}
+body{top:0!important}
+@media(max-width:850px){.translate-menu{border-left:0;border-top:1px solid #233b59;align-items:flex-start;flex-direction:column;padding:12px}.translate-menu .goog-te-gadget{max-width:100%}}
+
 </style>
 </head>
 <body>
@@ -71,6 +81,7 @@ function googleTranslateElementInit(){
 </div></header>
 <nav class="nav" id="mainNav"><div class="nav-in">
 <a href="index.html">Home</a><a href="membership.html">ID Card Print</a><a href="team.html">Management Team</a><a href="activities.html">Gallery</a><a href="coordinator-login.html">Coordinator Login</a><a href="activities.html">Our Solutions</a><a href="donations.html">Crowdfunding</a><a href="contact.html">Contact Us</a><a href="membership.html">All Donors</a><a href="about.html">About Us</a><a href="member-login.html">User Signup</a><a href="admin-demo.html">Login</a>
+<div class="translate-menu"><span>🌐 Language</span><div id="google_translate_element" aria-label="Select website language"></div></div>
 </div></nav>
 <section class="hero"><div class="hero-in"><div class="kicker">ਸੇਵਾ • ਸਿਮਰਨ • ਸੰਗਤ</div><h1>Serving Humanity.<br><span>Building Unity.</span></h1><p>New Granthi Singh Federation International — bringing people together through seva, education, community support and social welfare.</p><div class="actions"><a class="btn" href="membership.html">Become a Member →</a><a class="btn btn-outline" href="donations.html">Support Seva</a></div></div></section>
 <div class="quick"><a href="membership.html"><span>👥</span>Membership Registration</a><a href="events.html"><span>📅</span>Upcoming Programmes</a><a href="activities.html"><span>🤝</span>Our Activities</a><a href="donations.html"><span>💛</span>Support Seva</a></div>
@@ -96,5 +107,15 @@ function googleTranslateElementInit(){
 <script>
 (function(){const b=document.getElementById('menuToggle'),n=document.getElementById('mainNav');if(b&&n){b.addEventListener('click',function(){const open=n.classList.toggle('open');b.textContent=open?'×':'☰';b.setAttribute('aria-expanded',String(open));b.setAttribute('aria-label',open?'Close menu':'Open menu')});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');b.textContent='☰';b.setAttribute('aria-expanded','false')}))}document.getElementById('year').textContent=new Date().getFullYear()})();
 </script>
+
+<script>
+function googleTranslateElementInit(){
+  if(window.google&&google.translate&&google.translate.TranslateElement){
+    new google.translate.TranslateElement({pageLanguage:'en',autoDisplay:false,layout:google.translate.TranslateElement.InlineLayout.SIMPLE},'google_translate_element');
+  }
+}
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
+
 <script src="assets/ngsf-ai-chat.js?v=2" defer></script>
 </body></html>
