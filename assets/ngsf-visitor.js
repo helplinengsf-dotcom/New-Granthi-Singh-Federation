@@ -12,7 +12,7 @@
       localStorage.setItem(KEY, id);
       return id;
     } catch (e) {
-      return (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : 'v-' + Date.now().toString(16) + Math.random().toString(16).slice(2);
+      return (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : Array.from({length:32}, function () { return Math.floor(Math.random()*16).toString(16); }).join('');
     }
   }
   var id = visitorId();
