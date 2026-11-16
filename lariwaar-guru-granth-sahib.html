@@ -72,8 +72,10 @@ footer{background:#050b14;color:#e1e7ef;text-align:center;padding:18px;font-size
  function saveCached(n,lines){
   try{
    localStorage.setItem('ngsf-larivaar-ang-'+n,JSON.stringify(lines));
-   const keep=[n,n-1,n+1,n+2].filter(x=>x>=1&&x<=1430);
-   for(let i=1;i<=1430;i++){if(!keep.includes(i))localStorage.removeItem('ngsf-larivaar-ang-'+i)}
+   let keys=JSON.parse(localStorage.getItem('ngsf-larivaar-cache-keys')||'[]');
+   keys=keys.filter(x=>x!==n);keys.push(n);
+   while(keys.length>5){const old=keys.shift();localStorage.removeItem('ngsf-larivaar-ang-'+old)}
+   localStorage.setItem('ngsf-larivaar-cache-keys',JSON.stringify(keys))
   }catch(e){}
  }
  async function prefetchAng(n){
