@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pa">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071a33">
+<meta name="description" content="ਸ੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ ਦਾ ਲੜੀਵਾਰ ਪਾਠ — ਬਿਨਾਂ ਅਰਥਾਂ ਦੇ, ਮੂਲ ਗੁਰਬਾਣੀ।">
+<title>ਲੜੀਵਾਰ ਸ੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ | NGSF</title>
+<link rel="icon" href="assets/ngsf-logo.jpg">
+<style>
+:root{--navy:#071a33;--blue:#123e70;--gold:#e5b947;--paper:#f8f5ec;--ink:#172b46}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,"Noto Sans Gurmukhi",sans-serif}
+header{background:linear-gradient(110deg,#050b14,var(--navy),var(--blue));color:white;border-bottom:3px solid var(--gold);padding:14px 4%}
+.head{max-width:1050px;margin:auto;display:flex;align-items:center;gap:12px}.head img{width:48px;height:48px;object-fit:contain;background:#fff;border:2px solid var(--gold);border-radius:50%}.head strong{display:block;font-size:clamp(15px,3vw,21px)}.head small{color:#f8e4ad;letter-spacing:1px}
+nav{background:#0b1728;padding:10px 4%;text-align:center}nav a{color:#f8e4ad;text-decoration:none;font-weight:bold;font-size:13px}
+main{max-width:1000px;margin:25px auto;padding:0 14px}
+h1{text-align:center;color:var(--navy);font-size:clamp(24px,4vw,34px);margin:12px 0 5px}.sub{text-align:center;color:#8a6415;font-weight:bold;margin:0 0 20px}
+.controls{background:#fff;border:1px solid #d8bd73;border-radius:12px;padding:14px;display:flex;gap:9px;align-items:center;justify-content:center;flex-wrap:wrap;box-shadow:0 5px 18px #071a3310}
+button,input{font:inherit}button{border:1px solid var(--gold);background:var(--navy);color:#fff;border-radius:7px;padding:10px 14px;font-weight:bold;cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}input{width:100px;max-width:30vw;border:1px solid #cbd4df;border-radius:7px;padding:10px;text-align:center;color:var(--navy)}
+#status{text-align:center;color:#667386;font-size:12px;min-height:22px;margin:12px 0}
+.reader{background:#fff;border:1px solid #d8bd73;border-top:5px solid var(--gold);border-radius:13px;padding:clamp(18px,4vw,38px);box-shadow:0 12px 35px #071a3315;min-height:280px}
+.ang{text-align:center;color:#916b17;font-weight:bold;font-size:15px;margin-bottom:20px}
+#text{font-family:"Noto Sans Gurmukhi","Raavi","Arial",sans-serif;font-size:27px;line-height:2.15;text-align:center;white-space:pre-wrap;overflow-wrap:anywhere;color:#102e50;font-weight:600}
+.bottom{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:22px;padding-top:14px;border-top:1px solid #e2e6ec}
+.bottom a{color:var(--blue);font-weight:bold;text-decoration:none;font-size:13px}
+.notice{text-align:center;color:#687589;font-size:11px;line-height:1.6;margin:16px auto;max-width:760px}
+footer{background:#050b14;color:#e1e7ef;text-align:center;padding:18px;font-size:11px;border-top:3px solid var(--gold)}footer a{color:#f8e4ad}
+@media(max-width:560px){.controls{gap:7px}.controls button{padding:9px 11px;font-size:12px}#text{font-size:23px;line-height:2}.reader{padding:17px 12px}}
+</style>
+</head>
+<body>
+<header><div class="head"><img src="assets/ngsf-logo.jpg" alt="NGSF"><div><strong>NEW GRANTHI SINGH FEDERATION</strong><small>INTERNATIONAL · SEVA · UNITY · HUMANITY</small></div></div></header>
+<nav><a href="index.html">← ਮੁੱਖ ਪੰਨੇ ’ਤੇ ਵਾਪਸ ਜਾਓ</a></nav>
+<main>
+<h1>ਲੜੀਵਾਰ ਸ੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ</h1>
+<p class="sub">ਮੂਲ ਗੁਰਬਾਣੀ · ਬਿਨਾਂ ਅਰਥਾਂ ਦੇ</p>
+<div class="controls" aria-label="ਅੰਗ ਚੁਣੋ">
+<button id="prev" type="button">← ਪਿਛਲਾ ਅੰਗ</button>
+<label for="angInput">ਅੰਗ ਨੰਬਰ</label>
+<input id="angInput" type="number" min="1" max="1430" value="1" inputmode="numeric">
+<button id="go" type="button">ਜਾਓ</button>
+<button id="next" type="button">ਅਗਲਾ ਅੰਗ →</button>
+<button id="smaller" type="button" aria-label="ਅੱਖਰ ਛੋਟੇ ਕਰੋ">A−</button>
+<button id="larger" type="button" aria-label="ਅੱਖਰ ਵੱਡੇ ਕਰੋ">A+</button>
+<button id="full" type="button">ਪੂਰੀ ਸਕ੍ਰੀਨ</button>
+</div>
+<div id="status" role="status" aria-live="polite">ਗੁਰਬਾਣੀ ਲੋਡ ਹੋ ਰਹੀ ਹੈ…</div>
+<section class="reader" aria-label="ਮੂਲ ਲੜੀਵਾਰ ਗੁਰਬਾਣੀ">
+<div class="ang" id="angTitle">ਅੰਗ ੧ / ੧੪੩੦</div>
+<div id="text" lang="pa">ਗੁਰਬਾਣੀ ਲੋਡ ਹੋ ਰਹੀ ਹੈ…</div>
+<div class="bottom"><a href="#" id="prevLink">← ਪਿਛਲਾ ਅੰਗ</a><a href="#" id="nextLink">ਅਗਲਾ ਅੰਗ →</a></div>
+</section>
+<p class="notice">ਇਸ ਪੰਨੇ ’ਤੇ ਸਿਰਫ਼ ਮੂਲ ਲੜੀਵਾਰ ਗੁਰਬਾਣੀ ਦਿਖਾਈ ਜਾਂਦੀ ਹੈ। ਕੋਈ ਅਰਥ ਜਾਂ ਵਿਆਖਿਆ ਸ਼ਾਮਲ ਨਹੀਂ। ਗੁਰਬਾਣੀ ਡਾਟਾ GurbaniNow API ਤੋਂ ਪ੍ਰਾਪਤ ਹੁੰਦਾ ਹੈ।</p>
+</main>
+<footer>© <span id="year"></span> New Granthi Singh Federation International · Website Design By New Granthi Singh Federation · <a href="index.html">Home</a></footer>
+<script>
+(function(){
+ const $=id=>document.getElementById(id);
+ let ang=1,fontSize=27,loading=false;
+ const toPunjabi=n=>String(n).replace(/[0-9]/g,d=>'੦੧੨੩੪੫੬੭੮੯'[Number(d)]);
+ function setStatus(s){$('status').textContent=s}
+ async function loadAng(n){
+  n=Math.max(1,Math.min(1430,Number(n)||1));if(loading)return;loading=true;ang=n;
+  $('angInput').value=n;$('angTitle').textContent='ਅੰਗ '+toPunjabi(n)+' / ੧੪੩੦';
+  $('text').textContent='ਗੁਰਬਾਣੀ ਲੋਡ ਹੋ ਰਹੀ ਹੈ…';setStatus('ਅੰਗ '+toPunjabi(n)+' ਪ੍ਰਾਪਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…');
+  $('prev').disabled=$('prevLink').getAttribute('aria-disabled')=''+(n===1);
+  $('next').disabled=$('nextLink').getAttribute('aria-disabled')=''+(n===1430);
+  try{
+   const response=await fetch('https://api.gurbaninow.com/v2/ang/'+n,{cache:'force-cache'});
+   if(!response.ok)throw new Error('ਸਰਵਰ ਜਵਾਬ ਨਹੀਂ ਦੇ ਰਿਹਾ ('+response.status+')');
+   const data=await response.json();
+   const rows=Array.isArray(data.page)?data.page:[];
+   const lines=rows.map(row=>row&&row.line&&row.line.larivaar&&row.line.larivaar.unicode||'').filter(Boolean);
+   if(!lines.length)throw new Error('ਇਸ ਅੰਗ ਦੀ ਗੁਰਬਾਣੀ ਇਸ ਵੇਲੇ ਉਪਲਬਧ ਨਹੀਂ।');
+   $('text').textContent=lines.join('\n');
+   setStatus('ਅੰਗ '+toPunjabi(n)+' ਸਫਲਤਾਪੂਰਵਕ ਲੋਡ ਹੋ ਗਿਆ।');
+   $('prevLink').href=n>1?'?ang='+(n-1):'#';
+   $('nextLink').href=n<1430?'?ang='+(n+1):'#';
+   history.replaceState(null,'','?ang='+n);
+  }catch(e){$('text').textContent='ਗੁਰਬਾਣੀ ਇਸ ਵੇਲੇ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੀ। ਕਿਰਪਾ ਕਰਕੇ ਇੰਟਰਨੈੱਟ ਕਨੈਕਸ਼ਨ ਜਾਂ ਕੁਝ ਸਮੇਂ ਬਾਅਦ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।';setStatus(e.message)}
+  finally{loading=false}
+ }
+ $('go').addEventListener('click',()=>loadAng($('angInput').value));
+ $('angInput').addEventListener('keydown',e=>{if(e.key==='Enter')loadAng($('angInput').value)});
+ $('prev').addEventListener('click',()=>loadAng(ang-1));
+ $('next').addEventListener('click',()=>loadAng(ang+1));
+ $('prevLink').addEventListener('click',e=>{e.preventDefault();if(ang>1)loadAng(ang-1)});
+ $('nextLink').addEventListener('click',e=>{e.preventDefault();if(ang<1430)loadAng(ang+1)});
+ $('smaller').addEventListener('click',()=>{fontSize=Math.max(18,fontSize-2);$('text').style.fontSize=fontSize+'px'});
+ $('larger').addEventListener('click',()=>{fontSize=Math.min(42,fontSize+2);$('text').style.fontSize=fontSize+'px'});
+ $('full').addEventListener('click',async()=>{try{if(!document.fullscreenElement)await $('text').requestFullscreen();else await document.exitFullscreen()}catch(e){setStatus('ਪੂਰੀ ਸਕ੍ਰੀਨ ਇਸ ਡਿਵਾਈਸ ’ਤੇ ਉਪਲਬਧ ਨਹੀਂ।')}});
+ $('year').textContent=new Date().getFullYear();
+ const initial=new URLSearchParams(location.search).get('ang')||1;loadAng(initial);
+})();
+</script>
+</body>
+</html>
