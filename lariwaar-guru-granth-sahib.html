@@ -64,7 +64,7 @@ footer{background:#050b14;color:#e1e7ef;text-align:center;padding:18px;font-size
   return rows.map(row=>{const line=row&&row.line;return line&&line.larivaar&&(line.larivaar.unicode||line.larivaar.gurmukhi)||''}).filter(Boolean);
  }
  function showLines(n,lines){
-  $('text').textContent=lines.join('\\n');
+  $('text').textContent=lines.join('\n')
   $('prevLink').href=n>1?'?ang='+(n-1):'#';
   $('nextLink').href=n<1430?'?ang='+(n+1):'#';
  }
