@@ -14,7 +14,14 @@ nav{background:#0b1728;color:#fff;border-bottom:2px solid var(--gold);padding:10
 main{max-width:1100px;margin:auto;padding:24px 4%}.intro{text-align:center;background:linear-gradient(135deg,#fff8e8,#f3e7c9);border:1px solid #d4b45d;border-radius:14px;padding:25px 18px}.intro h2{margin:0 0 8px;color:var(--navy);font-size:clamp(24px,4vw,34px)}.intro p{margin:0;color:#46556a}
 .notice{margin:18px 0;padding:14px 16px;background:#fff;border-left:4px solid var(--gold);border-radius:8px;color:#4b586a;font-size:14px}
 .group{margin:24px 0}.group h2{font-size:22px;color:var(--navy);border-bottom:2px solid var(--gold);padding-bottom:8px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.card{background:#fff;border:1px solid #d7dee8;border-radius:12px;padding:17px;box-shadow:0 4px 14px #071a3310}.card h3{margin:0 0 5px;color:#123e70;font-size:19px}.card p{margin:0 0 12px;color:#667386;font-size:13px}.card a,.primary{display:inline-block;background:var(--navy);color:#fff;padding:9px 14px;border-radius:7px;font-weight:bold;font-size:13px;border:1px solid var(--gold)}.card a:hover,.primary:hover{background:#173e68}
-.reader{margin:28px 0;background:#fff;border:1px solid #d7dee8;border-radius:12px;padding:18px}.reader h2{color:var(--navy);margin-top:0}.reader iframe{width:100%;height:720px;border:1px solid #d9e0e9;border-radius:8px;background:#fff}.reader small{display:block;margin-top:10px;color:#667386}
+.reader{margin:28px 0;background:#fff;border:1px solid #d7dee8;border-radius:12px;padding:18px}.reader h2{color:var(--navy);margin-top:0}.reader small{display:block;margin-top:10px;color:#667386}
+.reader-tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:12px 0}
+.reader-tools button,.reader-tools select{border:1px solid #c7d1df;border-radius:7px;background:#f7f9fc;padding:9px 12px;color:#102b4b;font-weight:700}
+.reader-tools button.active{background:#071a33;color:#fff;border-color:#e5b947}
+.bani-text{font-family:serif;font-size:25px;line-height:2.1;white-space:pre-wrap;text-align:center;color:#102e50;padding:18px 10px}
+.bani-line{padding:4px 0;border-bottom:1px solid #eef1f5}
+.reader-status{padding:10px;background:#f7f9fc;border-radius:8px;color:#5c6878;font-size:13px}
+@media(max-width:600px){.bani-text{font-size:22px;line-height:1.9}}
 footer{background:#050b14;color:#e5eaf1;text-align:center;padding:20px 12px;border-top:3px solid var(--gold);font-size:12px}footer a{color:#f8e4ad}
 @media(max-width:600px){.head img{width:48px;height:48px}.reader{padding:10px}.reader iframe{height:650px}}
 </style>
@@ -24,7 +31,7 @@ footer{background:#050b14;color:#e5eaf1;text-align:center;padding:20px 12px;bord
 <nav><a href="index.html">ਮੁੱਖ ਪੰਨਾ</a><a href="history-gurdwaras.html">ਇਤਿਹਾਸਕ ਗੁਰਦੁਆਰੇ</a><a href="contact.html">ਸੰਪਰਕ</a></nav>
 <main>
 <section class="intro"><h2>ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥</h2><p>ਰੋਜ਼ਾਨਾ ਨਿਤਨੇਮ ਦੀਆਂ ਬਾਣੀਆਂ — ਸਵੇਰ, ਸ਼ਾਮ ਅਤੇ ਰਾਤ ਦੇ ਪਾਠ ਲਈ।</p></section>
-<div class="notice">ਹੁਣ ਹਰ ਬਾਣੀ ਦੇ “ਪਾਠ ਪੜ੍ਹੋ” ਬਟਨ ਨਾਲ ਪਾਠ ਇਸੇ NGSF ਵੈੱਬਸਾਈਟ ਦੇ ਪੰਨੇ ਉੱਤੇ ਹੇਠਾਂ ਖੁੱਲ੍ਹੇਗਾ। ਪਾਠ ਦੀ ਬੀੜ/ਮਰਯਾਦਾ ਵਿੱਚ ਸਥਾਨਕ ਗੁਰਦੁਆਰਾ ਸਾਹਿਬ ਜਾਂ ਆਪਣੇ ਗੁਰਸਿੱਖ ਅਧਿਆਪਕ ਦੀ ਰਹਿਨੁਮਾਈ ਅਨੁਸਾਰ ਚੱਲੋ।</div>
+<div class="notice">ਹਰ ਬਾਣੀ ਦਾ ਪੂਰਾ ਗੁਰਮੁਖੀ ਪਾਠ ਇਸੇ NGSF ਪੰਨੇ ਵਿੱਚ ਖੁੱਲ੍ਹੇਗਾ। ਪਾਠ BaniDB ਦੇ ਡਾਟਾ ਸਰੋਤ ਤੋਂ ਲੋਡ ਹੁੰਦਾ ਹੈ; ਪੜ੍ਹਨ ਲਈ ਵੱਖਰੀ ਵੈੱਬਸਾਈਟ ਖੋਲ੍ਹਣ ਦੀ ਲੋੜ ਨਹੀਂ।</div>
 <section class="group"><h2>🌅 ਸਵੇਰ ਦਾ ਨਿਤਨੇਮ</h2><div class="cards">
 <article class="card"><h3>ਜਪੁਜੀ ਸਾਹਿਬ</h3><p>ਸ੍ਰੀ ਗੁਰੂ ਨਾਨਕ ਦੇਵ ਜੀ ਦੀ ਬਾਣੀ</p><a href="#reader">ਪਾਠ ਪੜ੍ਹੋ ↗</a></article>
 <article class="card"><h3>ਜਾਪੁ ਸਾਹਿਬ</h3><p>ਸ੍ਰੀ ਗੁਰੂ ਗੋਬਿੰਦ ਸਿੰਘ ਜੀ ਦੀ ਬਾਣੀ</p><a href="#reader">ਪਾਠ ਪੜ੍ਹੋ ↗</a></article>
@@ -34,8 +41,40 @@ footer{background:#050b14;color:#e5eaf1;text-align:center;padding:20px 12px;bord
 </div></section>
 <section class="group"><h2>🌇 ਸ਼ਾਮ ਦਾ ਨਿਤਨੇਮ</h2><div class="cards"><article class="card"><h3>ਰਹਿਰਾਸਿ ਸਾਹਿਬ</h3><p>ਸ਼ਾਮ ਵੇਲੇ ਦਾ ਪਾਠ</p><a href="#reader">ਪਾਠ ਪੜ੍ਹੋ ↗</a></article></div></section>
 <section class="group"><h2>🌙 ਰਾਤ ਦਾ ਨਿਤਨੇਮ</h2><div class="cards"><article class="card"><h3>ਕੀਰਤਨ ਸੋਹਿਲਾ</h3><p>ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਪੜ੍ਹੀ ਜਾਣ ਵਾਲੀ ਬਾਣੀ</p><a href="#reader">ਪਾਠ ਪੜ੍ਹੋ ↗</a></article></div></section>
-<section class="reader" id="reader"><h2>ਇਸੇ ਵੈੱਬਸਾਈਟ ਉੱਤੇ ਗੁਰਬਾਣੀ ਪਾਠ</h2><p>ਹੇਠਾਂ ਦਿੱਤਾ ਪਾਠ-ਸਰੋਤ ਗੁਰਮੁਖੀ ਸਮੇਤ ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਬਾਣੀਆਂ ਪੜ੍ਹਨ ਦੀ ਸਹੂਲਤ ਦਿੰਦਾ ਹੈ।</p><a class="primary" href="#reader">ਪੂਰਾ ਨਿਤਨੇਮ ਗੁਟਕਾ ਖੋਲ੍ਹੋ ↗</a><iframe src="https://nitnemsahib.net/nitnem" title="Nitnem Gurbani reader" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe><small>ਪਾਠ ਇਸੇ ਪੰਨੇ ਵਿੱਚ ਦਿਖਾਇਆ ਜਾਵੇਗਾ। ਜੇ ਬਾਹਰੀ ਸਰੋਤ ਵੱਲੋਂ embedding ਰੋਕੀ ਗਈ ਹੋਵੇ ਤਾਂ ਇਸ ਫਰੇਮ ਵਿੱਚ ਪਾਠ ਨਹੀਂ ਆ ਸਕੇਗਾ; ਅਜਿਹੀ ਸਥਿਤੀ ਵਿੱਚ ਅਸੀਂ ਪਾਠ ਨੂੰ ਆਪਣੇ ਸਰਵਰ ਉੱਤੇ ਸਿੱਧਾ ਜੋੜਾਂਗੇ।</small></section>
-<div class="notice">ਸਰੋਤ: Nitnem Sahib — ਗੁਰਮੁਖੀ, ਹਿੰਦੀ ਅਤੇ ਅੰਗਰੇਜ਼ੀ ਵਿੱਚ ਬਾਣੀਆਂ ਪੜ੍ਹਨ ਲਈ। ਇਹ ਪੰਨਾ ਪਾਠਕ ਸਹੂਲਤ ਵਾਸਤੇ ਹੈ; NGSF ਵੱਲੋਂ ਕਿਸੇ ਪਾਠ-ਰੂਪ ਜਾਂ ਮਰਯਾਦਾ ਦੀ ਅੰਤਿਮ ਪ੍ਰਮਾਣਿਕਤਾ ਦਾ ਦਾਅਵਾ ਨਹੀਂ।</div>
+<section class="reader" id="reader"><h2 id="reader-title">ਗੁਰਬਾਣੀ ਪਾਠ — ਇਸੇ ਵੈੱਬਸਾਈਟ ਉੱਤੇ</h2>
+<p>ਬਾਣੀ ਚੁਣੋ ਅਤੇ ਗੁਰਮੁਖੀ ਵਿੱਚ ਪਾਠ ਪੜ੍ਹੋ।</p>
+<div class="reader-tools"><select id="bani-select" aria-label="ਬਾਣੀ ਚੁਣੋ"><option value="2">ਜਪੁਜੀ ਸਾਹਿਬ</option><option value="4">ਜਾਪੁ ਸਾਹਿਬ</option><option value="6">ਤ੍ਵ ਪ੍ਰਸਾਦਿ ਸਵੱਯੇ</option><option value="9">ਬੇਨਤੀ ਚੌਪਈ ਸਾਹਿਬ</option><option value="10">ਅਨੰਦ ਸਾਹਿਬ</option><option value="21">ਰਹਿਰਾਸਿ ਸਾਹਿਬ</option><option value="23">ਕੀਰਤਨ ਸੋਹਿਲਾ</option></select><button type="button" id="font-down">A−</button><button type="button" id="font-up">A+</button><button type="button" id="reload-bani">ਪਾਠ ਮੁੜ ਲੋਡ ਕਰੋ</button></div>
+<div id="reader-status" class="reader-status" role="status">ਪਾਠ ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ…</div><div id="bani-text" class="bani-text" lang="pa"></div>
+<small>ਡਾਟਾ ਸਰੋਤ: BaniDB / Khalis Foundation. ਪਾਠ ਇੱਥੇ ਹੀ ਦਿਖਾਇਆ ਜਾਂਦਾ ਹੈ; API ਕਨੈਕਸ਼ਨ ਲਈ ਇੰਟਰਨੈੱਟ ਲੋੜੀਂਦਾ ਹੈ।</small></section>
+<script>
+(function(){
+const names={"2":"ਜਪੁਜੀ ਸਾਹਿਬ","4":"ਜਾਪੁ ਸਾਹਿਬ","6":"ਤ੍ਵ ਪ੍ਰਸਾਦਿ ਸਵੱਯੇ","9":"ਬੇਨਤੀ ਚੌਪਈ ਸਾਹਿਬ","10":"ਅਨੰਦ ਸਾਹਿਬ","21":"ਰਹਿਰਾਸਿ ਸਾਹਿਬ","23":"ਕੀਰਤਨ ਸੋਹਿਲਾ"};
+const select=document.getElementById('bani-select'), text=document.getElementById('bani-text'), status=document.getElementById('reader-status'), title=document.getElementById('reader-title');
+let size=25, requestNo=0;
+async function loadBani(id){
+ const req=++requestNo; select.value=String(id); title.textContent=names[id]||'ਗੁਰਬਾਣੀ ਪਾਠ'; text.textContent=''; status.textContent='ਪਾਠ ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ…';
+ try{
+  const response=await fetch('https://api.banidb.com/v2/banis/'+encodeURIComponent(id),{headers:{'Accept':'application/json'}});
+  if(!response.ok) throw new Error('HTTP '+response.status);
+  const data=await response.json(); if(req!==requestNo)return;
+  const verses=Array.isArray(data.verses)?data.verses:[];
+  const lines=verses.map(item=>item&&item.verse&&item.verse.verse&&item.verse.verse.unicode?item.verse.verse.unicode:'').filter(Boolean);
+  if(!lines.length) throw new Error('ਪਾਠ ਡਾਟਾ ਨਹੀਂ ਮਿਲਿਆ');
+  const frag=document.createDocumentFragment();
+  lines.forEach(line=>{const div=document.createElement('div');div.className='bani-line';div.textContent=line;frag.appendChild(div)});
+  text.replaceChildren(frag); text.style.fontSize=size+'px';
+  status.textContent=names[id]+' — '+lines.length+' ਪੰਕਤੀਆਂ ਲੋਡ ਹੋ ਗਈਆਂ।';
+ }catch(err){if(req!==requestNo)return;status.textContent='ਪਾਠ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕਿਆ। ਇੰਟਰਨੈੱਟ ਕਨੈਕਸ਼ਨ ਜਾਂ ਡਾਟਾ ਸਰੋਤ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।';}
+}
+select.addEventListener('change',()=>loadBani(select.value));
+document.querySelectorAll('.read-bani').forEach(a=>a.addEventListener('click',()=>loadBani(a.dataset.bani)));
+document.getElementById('font-up').addEventListener('click',()=>{size=Math.min(42,size+2);text.style.fontSize=size+'px'});
+document.getElementById('font-down').addEventListener('click',()=>{size=Math.max(16,size-2);text.style.fontSize=size+'px'});
+document.getElementById('reload-bani').addEventListener('click',()=>loadBani(select.value));
+loadBani('2');
+})();
+</script>
+<div class="notice">ਗੁਰਬਾਣੀ ਡਾਟਾ ਸਰੋਤ: BaniDB / Khalis Foundation. ਪਾਠ ਦੀ ਮਰਯਾਦਾ ਅਤੇ ਰੂਪ ਬਾਰੇ ਸੰਗਤ ਆਪਣੇ ਗੁਰਦੁਆਰਾ ਸਾਹਿਬ ਜਾਂ ਗੁਰਸਿੱਖ ਅਧਿਆਪਕ ਦੀ ਰਹਿਨੁਮਾਈ ਲਵੇ।</div>
 </main>
 <footer>New Granthi Singh Federation International<br>Website Design By New Granthi Singh Federation</footer>
 </body></html>
