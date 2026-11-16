@@ -55,6 +55,7 @@ rest.forEach(a=>{const card=document.createElement("article");card.className="ca
 async function load(){try{const {data,error}=await db.from("ngsf_content").select("id,title,body,period_start,created_at").eq("content_type","news").eq("status","approved").order("created_at",{ascending:false}).limit(100);if(error)throw error;articles=data||[];render()}catch(e){featured.replaceChildren();box.replaceChildren();const p=document.createElement("div");p.className="error";p.textContent="ਖ਼ਬਰਾਂ ਇਸ ਵੇਲੇ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੀਆਂ। Supabase ਦੀ public news read policy ਜਾਂ connection ਦੀ ਜਾਂਚ ਕਰੋ।";box.append(p);console.error("News load error",e)}}
 search.addEventListener("input",render);load();
 </script>
+<script src="assets/ngsf-visitor.js?v=1" defer></script>
 </body></html
 <script>
 "use strict";
