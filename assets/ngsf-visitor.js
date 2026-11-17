@@ -1,4 +1,4 @@
-/* NGSF Public Visitor Counter — privacy-conscious, first-party counter */
+/* NGSF Public Visitor Counter — page views + unique visitors */
 (function () {
   'use strict';
   var API = 'https://ngsf-public-visitors.helpline-ngsf.workers.dev';
@@ -19,31 +19,37 @@
   var box = document.createElement('aside');
   box.id = 'ngsf-visitor-counter';
   box.setAttribute('aria-label', 'Website visitor statistics');
-  box.innerHTML = '<div class="ngsf-vc-title">👁️ NGSF Website Visitors</div><div class="ngsf-vc-grid"><span>Total <b id="ngsf-vc-total">—</b></span><span>Today <b id="ngsf-vc-today">—</b></span><span>Live <b id="ngsf-vc-live">—</b></span></div>';
+  box.innerHTML = '<div class="ngsf-vc-title">👁️ NGSF Website Visitors</div><div class="ngsf-vc-grid"><span>Total Views <b id="ngsf-vc-total">—</b></span><span>Today <b id="ngsf-vc-today">—</b></span><span>Unique <b id="ngsf-vc-unique">—</b></span><span>Live <b id="ngsf-vc-live">—</b></span></div>';
   var style = document.createElement('style');
-  style.textContent = '#ngsf-visitor-counter{position:fixed;z-index:34;left:12px;bottom:16px;width:min(270px,calc(100vw - 24px));padding:9px 12px;border:1px solid #d6aa3d;border-radius:10px;background:linear-gradient(120deg,#071a33,#123e70);color:#fff;box-shadow:0 4px 16px #0003;font:12px/1.4 Arial,sans-serif}#ngsf-visitor-counter .ngsf-vc-title{font-weight:800;color:#f8e4ad;margin-bottom:5px}#ngsf-visitor-counter .ngsf-vc-grid{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}#ngsf-visitor-counter .ngsf-vc-grid span{color:#e8edf5;font-size:11px}#ngsf-visitor-counter b{color:#fff;font-size:13px;margin-left:3px}@media(max-width:600px){#ngsf-visitor-counter{left:8px;bottom:12px;width:calc(100vw - 16px);max-width:250px;padding:8px 10px}#ngsf-visitor-counter .ngsf-vc-grid{gap:5px}}';
+  style.textContent = '#ngsf-visitor-counter{position:fixed;z-index:34;left:12px;bottom:16px;width:min(300px,calc(100vw - 24px));padding:9px 12px;border:1px solid #d6aa3d;border-radius:10px;background:linear-gradient(120deg,#071a33,#123e70);color:#fff;box-shadow:0 4px 16px #0003;font:12px/1.4 Arial,sans-serif}#ngsf-visitor-counter .ngsf-vc-title{font-weight:800;color:#f8e4ad;margin-bottom:5px}#ngsf-visitor-counter .ngsf-vc-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px 12px}#ngsf-visitor-counter .ngsf-vc-grid span{color:#e8edf5;font-size:11px}#ngsf-visitor-counter b{color:#fff;font-size:13px;margin-left:3px}@media(max-width:600px){#ngsf-visitor-counter{left:8px;bottom:12px;width:calc(100vw - 16px);max-width:260px;padding:8px 10px}}';
   document.head.appendChild(style);
   document.body.appendChild(box);
-  async function refresh() {
+
+  async function recordPageView() {
     try {
       await fetch(API + '/api/visit', {
         method: 'POST', mode: 'cors', cache: 'no-store',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ visitor_id: id, path: location.pathname })
       });
+    } catch (e) {}
+  }
+  async function loadStats() {
+    try {
       var response = await fetch(API + '/api/stats', { mode: 'cors', cache: 'no-store' });
       if (!response.ok) throw new Error('stats unavailable');
       var data = await response.json();
       if (!data.ok) throw new Error('stats unavailable');
-      document.getElementById('ngsf-vc-total').textContent = Number(data.total_visitors).toLocaleString('en-IN');
-      document.getElementById('ngsf-vc-today').textContent = Number(data.today_visitors).toLocaleString('en-IN');
+      document.getElementById('ngsf-vc-total').textContent = Number(data.total_page_views).toLocaleString('en-IN');
+      document.getElementById('ngsf-vc-today').textContent = Number(data.today_page_views).toLocaleString('en-IN');
+      document.getElementById('ngsf-vc-unique').textContent = Number(data.total_unique_visitors).toLocaleString('en-IN');
       document.getElementById('ngsf-vc-live').textContent = Number(data.live_visitors).toLocaleString('en-IN');
     } catch (e) {
       box.title = 'Visitor counter is temporarily unavailable';
     }
   }
-  refresh();
+  recordPageView().then(loadStats);
   window.setInterval(function () {
-    if (document.visibilityState === 'visible') refresh();
+    if (document.visibilityState === 'visible') loadStats();
   }, 60000);
 })();
