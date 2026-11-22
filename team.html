@@ -418,44 +418,53 @@ footer {
 
 <body>
 
-<div class="topbar">
-  <a href="tel:+917087993724">Call: +91 70879-93724</a> |
-  <a href="https://wa.me/917597384624" target="_blank" rel="noopener">WhatsApp</a> |
-  <a href="mailto:helpline.ngsf@gmail.com">Email Us</a>
-</div>
-
-<header>
-  <nav class="navbar" aria-label="Main navigation">
-    <a class="brand" href="index.html">
-      <img src="assets/ngsf-logo.jpg" alt="NGSF Logo">
-      <span class="brand-name">
-        NEW GRANTHI SINGH FEDERATION
-        <span>SEWA • UNITY • HUMANITY</span>
-      </span>
-    </a>
-
-    <button class="menu-toggle"
-            id="menuToggle"
-            type="button"
-            aria-label="Open navigation menu"
-            aria-expanded="false"
-            aria-controls="navLinks">☰</button>
-
-    <div class="nav-links" id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="membership.html">Membership</a>
-      <a href="donations.html">Donations</a>
-      <a href="activities.html">Activities</a>
-      <a href="events.html">Events</a>
-      <a class="active" href="team.html" aria-current="page">Our Team</a>
-      <a href="news.html">News</a>
-      <a href="contact.html">Contact</a>
-      <a href="admin-demo.html">Admin Demo</a>
-    </div>
-  </nav>
-</header>
-
+<!-- Shared NGSF Home Page Header -->
+<style>
+.ngsf-translate-bar{position:relative;z-index:1000;display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap;padding:6px 4%;background:#050b14;color:#f8e4ad;border-bottom:1px solid #b99035;font:600 12px Arial,sans-serif}
+.ngsf-translate-bar #google_translate_element{min-height:26px}
+.ngsf-translate-bar .goog-te-gadget{font:12px Arial,sans-serif!important;color:#f8e4ad!important}
+.ngsf-translate-bar .goog-te-gadget-simple{border:1px solid #e5b947!important;border-radius:6px!important;padding:5px 8px!important;background:#fff!important}
+.ngsf-translate-bar .goog-te-gadget-simple span{color:#071a33!important}
+.goog-te-gadget img{display:none!important}.goog-te-banner-frame.skiptranslate{display:none!important}body{top:0!important}
+@media(max-width:600px){.ngsf-translate-bar{justify-content:center;padding:7px 10px}.ngsf-translate-bar:before{content:"Translate Website";font-weight:700}}
+.home-topline{background:#050b14;color:#fff;padding:6px 4%;font-size:12px}
+.home-topline-in{max-width:1320px;margin:auto;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.home-topline a{color:#f8e4ad}
+.home-header{position:relative;top:auto;z-index:1000;background:linear-gradient(100deg,#050b14,#071a33 55%,#173d69);color:#fff;border-bottom:3px solid #e5b947;box-shadow:none}
+.home-header-in{max-width:1320px;margin:auto;padding:12px 4%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.home-brand{display:flex;align-items:center;gap:12px;min-width:0}
+.home-brand img{width:54px;height:54px;object-fit:contain;border-radius:50%;background:#fff;border:2px solid #e5b947;padding:2px}
+.home-brand strong{display:block;color:#fff;font-size:clamp(16px,2vw,23px);line-height:1.2}
+.home-brand small{color:#f8e4ad;letter-spacing:1.5px;font-size:11px}
+.home-social{display:flex;gap:8px}
+.home-social a{width:30px;height:30px;display:grid;place-items:center;border:1px solid #806b3c;border-radius:50%;color:#f8e4ad;font-size:12px;font-weight:bold}
+.home-header .menu-toggle{display:none;background:transparent;color:#fff;border:1px solid #e5b947;border-radius:8px;width:44px;height:42px;font-size:24px;padding:0;cursor:pointer}
+.home-nav{display:none;background:#0b1728;color:#fff;border-bottom:2px solid #e5b947}
+.home-nav.open{display:block}
+.home-nav-in{max-width:1320px;margin:auto;padding:0 3%;display:flex;align-items:center;justify-content:center;gap:2px;flex-wrap:wrap}
+.home-nav a{padding:11px 10px;color:#f2f5fa;font-size:12px;font-weight:700;white-space:nowrap;border-radius:0}
+.home-nav a:hover,.home-nav a:focus-visible,.home-nav a.active{background:#e5b947;color:#071a33;outline:none}
+@media(max-width:850px){.home-header-in{flex-wrap:wrap}.home-header .menu-toggle{display:block}.home-social{margin-left:auto}.home-nav-in{display:flex;flex-direction:column;align-items:stretch;padding:6px 4%}.home-nav a{padding:11px 12px;border-bottom:1px solid #233b59}.home-nav-in a{width:100%}}
+@media(max-width:600px){.home-topline-in{flex-direction:column}.home-brand img{width:46px;height:46px}.home-brand strong{font-size:14px}.home-brand small{font-size:9px}.home-social{display:none}}
+</style>
+<div class="ngsf-translate-bar"><span>Website Language / ਭਾਸ਼ਾ ਚੁਣੋ:</span><div id="google_translate_element"></div></div>
+<script>
+function googleTranslateElementInit(){
+  if(window.google&&google.translate&&google.translate.TranslateElement){
+    new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,pa,hi',autoDisplay:false,layout:google.translate.TranslateElement.InlineLayout.SIMPLE},'google_translate_element');
+  }
+}
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
+<div class="home-topline"><div class="home-topline-in"><span>☎ <a href="tel:+917087993724">+91 70879-93724</a> &nbsp; | &nbsp; ✉ <a href="mailto:helpline.ngsf@gmail.com">helpline.ngsf@gmail.com</a></span><span>ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ</span></div></div>
+<header class="home-header"><div class="home-header-in">
+<a class="home-brand" href="index.html"><img src="assets/ngsf-logo.jpg" alt="NGSF Logo"><span><strong>NEW GRANTHI SINGH FEDERATION</strong><small>INTERNATIONAL · SERVICE · UNITY · HUMANITY</small></span></a>
+<div class="home-social" aria-label="NGSF official social media"><a href="https://www.facebook.com/share/1CnTueXz4m/" target="_blank" rel="noopener noreferrer" aria-label="NGSF Facebook">f</a><a href="https://www.instagram.com/newgranthisinghfederatio" target="_blank" rel="noopener noreferrer" aria-label="NGSF Instagram">◎</a><a href="https://youtube.com/@newgranthisinghfederation-n7m" target="_blank" rel="noopener noreferrer" aria-label="NGSF YouTube">▶</a><a href="https://youtube.com/@thekhalastv?si=abQvtD2K-xxf1uH5" target="_blank" rel="noopener noreferrer" aria-label="The Khalsa TV YouTube">K</a></div>
+<button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">☰</button>
+</div></header>
+<nav class="home-nav" id="mainNav"><div class="home-nav-in">
+<a href="index.html">Home</a><a href="membership.html">ID Card Print</a><a href="team.html" class="active" aria-current="page">Management Team</a><a href="activities.html">Gallery</a><a href="coordinator-login.html">Coordinator Login</a><a href="official-updates.html">Latest Official Updates</a><a href="donations.html">Crowdfunding</a><a href="contact.html">Contact Us</a><a href="about.html">About Us</a><a href="path-santhiya.html">Path Santhiya Videos</a><a href="online-santhiya.html">Online Santhiya</a><a href="member-login.html">User Signup</a><a href="admin-demo.html">Login</a>
+</div></nav>
 <main>
 <section class="hero">
   <div class="eyebrow">Our Leadership & Team</div>
@@ -604,15 +613,12 @@ footer {
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
+const navLinks = document.getElementById("mainNav");
 
 menuToggle.addEventListener("click", function () {
   const isOpen = navLinks.classList.toggle("open");
   menuToggle.setAttribute("aria-expanded", String(isOpen));
-  menuToggle.setAttribute(
-    "aria-label",
-    isOpen ? "Close navigation menu" : "Open navigation menu"
-  );
+  menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
   menuToggle.textContent = isOpen ? "✕" : "☰";
 });
 
@@ -620,7 +626,7 @@ navLinks.querySelectorAll("a").forEach(function (link) {
   link.addEventListener("click", function () {
     navLinks.classList.remove("open");
     menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.setAttribute("aria-label", "Open navigation menu");
+    menuToggle.setAttribute("aria-label", "Open menu");
     menuToggle.textContent = "☰";
   });
 });
