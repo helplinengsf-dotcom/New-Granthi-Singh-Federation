@@ -255,16 +255,19 @@ header {
 .directory-toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:0 0 22px}
 .directory-toolbar input{width:min(100%,430px);padding:13px 15px;border:1px solid #ccd6e3;border-radius:10px;background:#fff;color:var(--text);font:inherit;outline-color:var(--gold)}
 .directory-toolbar span{font-size:13px;font-weight:700;color:var(--muted)}
-.id-member-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-.id-member-card{background:#fff;border:1px solid #dce4ee;border-top:4px solid var(--gold);border-radius:15px;overflow:hidden;box-shadow:var(--shadow);text-align:center;padding:22px 18px}
-.id-member-photo{width:116px;height:116px;border-radius:50%;object-fit:cover;object-position:center 25%;border:3px solid var(--gold);background:#e9eff7;margin:0 auto 14px;display:grid;place-items:center;color:var(--deep-blue);font-size:34px;font-weight:800}
-.id-member-card h3{font-size:18px;color:var(--deep-blue);line-height:1.35;margin:0 0 7px}
-.id-member-designation{display:inline-block;color:#76540e;background:#fbf0cf;border:1px solid #ead69b;border-radius:30px;padding:5px 11px;font-size:12px;font-weight:800;margin-bottom:13px}
-.id-member-location{color:#526074;font-size:14px;line-height:1.6}
+.id-member-grid{display:grid;grid-template-columns:1fr;gap:28px}
+.id-member-card{display:grid;grid-template-columns:minmax(250px,350px) minmax(0,1fr);background:#fff;border:1px solid #e0e6ef;border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+.id-member-photo-wrap{min-height:340px;padding:16px;background:linear-gradient(145deg,var(--deep-blue),var(--black));display:flex;align-items:center;justify-content:center}
+.id-member-photo{display:block;width:100%;height:100%;min-height:320px;max-height:480px;object-fit:cover;object-position:center 20%;border:3px solid var(--gold);border-radius:12px;background:#e9edf2}
+.id-member-photo-placeholder{display:grid;place-items:center;color:var(--light-gold);font-size:64px;font-weight:800}
+.id-member-info{padding:30px;display:flex;flex-direction:column;justify-content:center}
+.id-member-card h3{color:var(--deep-blue);font-size:clamp(23px,3vw,33px);line-height:1.3;margin:0 0 9px}
+.id-member-designation{align-self:flex-start;color:#76540e;background:#fbf0cf;border:1px solid #ead69b;border-radius:30px;padding:6px 12px;font-size:12px;font-weight:800;margin:0 0 15px}
+.id-member-location{color:#526074;font-size:15px;line-height:1.7}
 .id-member-location strong{color:var(--deep-blue)}
 .directory-message{grid-column:1/-1;text-align:center;padding:28px 16px;background:#fff;border:1px solid #dce4ee;border-radius:12px;color:var(--muted)}
-@media(max-width:850px){.id-member-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:560px){.id-member-grid{grid-template-columns:1fr}.directory-toolbar input{width:100%}}
+@media(max-width:700px){.id-member-card{grid-template-columns:1fr}.id-member-photo-wrap{min-height:0;padding:14px}.id-member-photo{height:auto;min-height:0;max-height:520px;aspect-ratio:4/5;object-fit:cover;object-position:center 20%}.id-member-info{padding:23px 20px 27px}}
+@media(max-width:560px){.directory-toolbar input{width:100%}}
 
 .team-section { background: #eaf0f7; }
 .team-grid {
@@ -653,8 +656,10 @@ function renderTeamMembers() {
   filtered.forEach(member => {
     const card = document.createElement("article");
     card.className = "id-member-card";
+    const photoWrap = document.createElement("div");
+    photoWrap.className = "id-member-photo-wrap";
     const photo = member.photo_url ? document.createElement("img") : document.createElement("div");
-    photo.className = "id-member-photo";
+    photo.className = member.photo_url ? "id-member-photo" : "id-member-photo id-member-photo-placeholder";
     if (member.photo_url) {
       photo.src = member.photo_url;
       photo.alt = member.member_name + " profile photo";
@@ -665,6 +670,9 @@ function renderTeamMembers() {
       photo.setAttribute("aria-label","Profile photo not uploaded");
       photo.title = "Profile photo not uploaded";
     }
+    photoWrap.append(photo);
+    const info = document.createElement("div");
+    info.className = "id-member-info";
     const name = document.createElement("h3");
     name.textContent = member.member_name || "NGSF Member";
     const role = document.createElement("div");
@@ -681,7 +689,8 @@ function renderTeamMembers() {
     stateLabel.textContent = "State: ";
     state.append(stateLabel,document.createTextNode(member.state || "Not provided"));
     location.append(district,state);
-    card.append(photo,name,role,location);
+    info.append(name,role,location);
+    card.append(photoWrap,info);
     teamGrid.append(card);
   });
 }
