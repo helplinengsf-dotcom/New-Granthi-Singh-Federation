@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>NGSF Free Marketing Studio</title>
+<style>
+:root{--navy:#071a33;--blue:#123e70;--gold:#e5b947;--ink:#182334;--muted:#687589;--paper:#f2f4f7}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 Arial,sans-serif}
+header{background:linear-gradient(110deg,#050b14,var(--navy),var(--blue));color:white;padding:24px 5%;border-bottom:4px solid var(--gold)}
+header h1{margin:0;color:#fff;font-size:clamp(22px,4vw,34px)}header p{margin:8px 0 0;color:#f8e4ad}
+main{max-width:1050px;margin:24px auto;padding:0 16px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:white;border:1px solid #d9e0e9;border-radius:12px;padding:18px;box-shadow:0 4px 16px #071a330c}
+h2{font-size:18px;color:var(--navy);margin:0 0 14px}label{display:block;font-weight:700;font-size:13px;margin:12px 0 5px}
+input,select,textarea{width:100%;padding:11px;border:1px solid #cbd4df;border-radius:7px;font:inherit;background:#fff;color:var(--ink)}
+textarea{min-height:210px;resize:vertical}.btn{border:0;border-radius:7px;padding:11px 15px;background:var(--gold);color:var(--navy);font-weight:800;cursor:pointer;margin:8px 6px 0 0}.btn.secondary{background:var(--navy);color:#fff}.note{font-size:12px;color:var(--muted)}.actions{display:flex;flex-wrap:wrap;gap:6px}
+footer{text-align:center;color:var(--muted);padding:24px;font-size:12px}
+@media(max-width:720px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><h1>NGSF Free Marketing Studio</h1><p>New Granthi Singh Federation International · Blue, Black & Gold</p></header>
+<main>
+<div class="card" style="margin-bottom:16px">
+<h2>Campaign builder / ਪ੍ਰਚਾਰ ਸਮੱਗਰੀ ਤਿਆਰ ਕਰੋ</h2>
+<p class="note">This free starter tool creates editable campaign drafts in your browser. It does not publish automatically, connect to member records, or access the NGSF Admin Panel.</p>
+<div class="grid">
+<div>
+<label for="campaign">Campaign</label>
+<select id="campaign"><option value="santhiya">Online Gurbani Santhiya</option><option value="membership">NGSF Membership</option><option value="seva">Seva and Donations</option><option value="events">Events and Activities</option><option value="news">Official News and Updates</option></select>
+<label for="language">Language</label>
+<select id="language"><option value="both">Punjabi + English</option><option value="pa">Punjabi</option><option value="en">English</option></select>
+<label for="audience">Audience</label>
+<input id="audience" value="Sangat worldwide">
+<label for="detail">Campaign detail</label>
+<input id="detail" placeholder="e.g. Learn Gurbani Path online from home">
+<button class="btn" id="generate">Generate draft</button>
+</div>
+<div>
+<label for="output">Editable social media post</label>
+<textarea id="output" placeholder="Your campaign draft will appear here..."></textarea>
+<div class="actions"><button class="btn secondary" id="copy">Copy text</button><button class="btn secondary" id="share">Share</button><button class="btn secondary" id="download">Download .txt</button></div>
+</div>
+</div>
+</div>
+<div class="grid">
+<div class="card"><h2>Official links</h2>
+<p><a href="./">Public Website</a></p><p><a href="membership.html">Membership</a></p><p><a href="online-santhiya.html">Online Santhiya</a></p><p><a href="donations.html">Donations & Seva</a></p><p><a href="activities.html">Activities</a></p><p><a href="news.html">News</a></p>
+</div>
+<div class="card"><h2>Publishing checklist</h2>
+<p>☐ Check names, dates, contact details and claims before publishing.</p>
+<p>☐ Use only photos/videos that NGSF has permission to publish.</p>
+<p>☐ Add the relevant official website link.</p>
+<p>☐ Publish manually through the official social account.</p>
+<p>☐ Never include private member details or admin screenshots.</p>
+</div>
+</div>
+</main>
+<footer>Designed by New Granthi Singh Federation · Free starter marketing tool</footer>
+<script>
+const base=location.origin+location.pathname.replace(/[^/]*$/,'');
+const campaigns={
+santhiya:{pa:'ਨਿਊ ਗ੍ਰੰਥੀ ਸਿੰਘ ਫੈਡਰੇਸ਼ਨ ਇੰਟਰਨੈਸ਼ਨਲ ਵੱਲੋਂ ਆਨਲਾਈਨ ਗੁਰਬਾਣੀ ਸੰਥਿਆ ਅਤੇ ਕਥਾ ਸਿਖਲਾਈ। ਘਰ ਬੈਠੇ ਸਿੱਖਣ ਦੇ ਇੱਛੁਕ ਸਿੰਘ ਅਤੇ ਸਿੰਘਣੀਆਂ ਸੰਪਰਕ ਕਰਨ।',en:'New Granthi Singh Federation International offers online Gurbani Santhiya and Katha learning. Those interested in learning from anywhere are welcome to contact us.',url:'online-santhiya.html'},
+membership:{pa:'ਨਿਊ ਗ੍ਰੰਥੀ ਸਿੰਘ ਫੈਡਰੇਸ਼ਨ ਇੰਟਰਨੈਸ਼ਨਲ ਨਾਲ ਜੁੜੋ। ਸੰਸਥਾ ਦੀਆਂ ਸੇਵਾਵਾਂ ਅਤੇ ਮੈਂਬਰਸ਼ਿਪ ਬਾਰੇ ਜਾਣਕਾਰੀ ਲਈ ਅਧਿਕਾਰਤ ਵੈੱਬਸਾਈਟ ਵੇਖੋ।',en:'Connect with New Granthi Singh Federation International. Visit our official website to learn about our work and membership.',url:'membership.html'},
+seva:{pa:'ਸੇਵਾ, ਸਹਿਯੋਗ ਅਤੇ ਮਨੁੱਖਤਾ ਦੇ ਕਾਰਜਾਂ ਵਿੱਚ ਆਪਣਾ ਯੋਗਦਾਨ ਪਾਓ। ਦਾਨ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਸਿਰਫ਼ ਅਧਿਕਾਰਤ NGSF ਵੈੱਬਸਾਈਟ ਦੀ ਜਾਣਕਾਰੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ।',en:'Support seva and humanitarian activities. Please verify donation details only through the official NGSF website.',url:'donations.html'},
+events:{pa:'ਨਿਊ ਗ੍ਰੰਥੀ ਸਿੰਘ ਫੈਡਰੇਸ਼ਨ ਦੀਆਂ ਗਤੀਵਿਧੀਆਂ ਅਤੇ ਆਉਣ ਵਾਲੇ ਸਮਾਗਮਾਂ ਬਾਰੇ ਤਾਜ਼ਾ ਜਾਣਕਾਰੀ ਲਈ ਸਾਡੀ ਵੈੱਬਸਾਈਟ ਵੇਖੋ।',en:'Explore activities and upcoming events from New Granthi Singh Federation International on our official website.',url:'activities.html'},
+news:{pa:'NGSF ਦੀਆਂ ਅਧਿਕਾਰਤ ਖ਼ਬਰਾਂ ਅਤੇ ਅਪਡੇਟਾਂ ਲਈ ਸਾਡੀ ਵੈੱਬਸਾਈਟ ਵੇਖੋ। ਜਾਣਕਾਰੀ ਸਾਂਝੀ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਤਸਦੀਕ ਜ਼ਰੂਰ ਕਰੋ।',en:'Visit the NGSF website for official news and updates. Please verify information before sharing.',url:'news.html'}
+};
+document.getElementById('generate').addEventListener('click',()=>{
+ const c=campaigns[document.getElementById('campaign').value],lang=document.getElementById('language').value;
+ const audience=document.getElementById('audience').value.trim(),detail=document.getElementById('detail').value.trim();
+ const pa='ਵਾਹਿਗੁਰੂ ਜੀ ਕਾ ਖਾਲਸਾ, ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫਤਹਿ॥\n'+(detail?detail+'\n':'')+c.pa;
+ const en='Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh.\n'+(detail?detail+'\n':'')+c.en;
+ const text=(lang==='pa'?pa:lang==='en'?en:pa+'\n\n'+en)+'\n\nAudience: '+(audience||'Sangat worldwide')+'\n'+base+c.url+'\n\n#NGSF #NewGranthiSinghFederation #Gurbani #Seva';
+ document.getElementById('output').value=text;
+});
+document.getElementById('copy').addEventListener('click',async()=>{const v=document.getElementById('output').value;if(!v)return alert('Generate or enter a post first.');try{await navigator.clipboard.writeText(v);alert('Copied.');}catch(e){alert('Please select and copy the text manually.');}});
+document.getElementById('share').addEventListener('click',async()=>{const v=document.getElementById('output').value;if(!v)return alert('Generate or enter a post first.');if(navigator.share){try{await navigator.share({text:v});}catch(e){}}else{try{await navigator.clipboard.writeText(v);alert('Text copied. Paste it into your social app.');}catch(e){alert('Copy the text manually.');}}});
+document.getElementById('download').addEventListener('click',()=>{const v=document.getElementById('output').value;if(!v)return alert('Generate or enter a post first.');const a=document.createElement('a'),u=URL.createObjectURL(new Blob([v],{type:'text/plain;charset=utf-8'}));a.href=u;a.download='ngsf-campaign.txt';a.click();URL.revokeObjectURL(u);});
+</script>
+</body></html>
