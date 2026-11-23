@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin-
+Disallow: /admin/
+Disallow: /coordinator-login.html
+Disallow: /manager-login.html
+Disallow: /member-login.html
+Disallow: /reset-password.html
+Disallow: /edit-member.html
+Sitemap: https://helplinengsf-dotcom.github.io/New-Granthi-Singh-Federation/sitemap.xml
