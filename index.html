@@ -95,6 +95,19 @@ body{top:0!important}
 .sikh-history .history-note{font-size:11px;color:#cbd8e8}
 .sikh-history .history-link{display:inline-flex;margin-top:10px;background:#e5b947;color:#071a33;padding:9px 14px;border-radius:6px;font-weight:800;font-size:12px}
 
+
+/* NGSF leadership cards */
+.ngsf-leadership{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:0 0 24px}
+.ngsf-leadership .team-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:18px 12px;border:1px solid #d8bd73;border-top:4px solid #d6aa3d;border-radius:12px;background:linear-gradient(160deg,#fff 0%,#f8f5ec 100%);box-shadow:0 8px 22px #071a3312}
+.ngsf-leadership .team-photo,.ngsf-leadership .team-initials{width:104px;height:104px;flex:0 0 104px;border-radius:50%;object-fit:cover;border:3px solid #d6aa3d;background:#071a33}
+.ngsf-leadership .team-initials{display:grid;place-items:center;color:#f8e4ad;font-size:30px;font-weight:800;letter-spacing:1px}
+.ngsf-leadership .team-copy{width:100%}
+.ngsf-leadership .team-role{display:inline-block;color:#8a6415;font-size:10px;font-weight:900;letter-spacing:.7px;line-height:1.5}
+.ngsf-leadership .team-copy h3{color:#123e70;font-size:15px;line-height:1.35;margin:7px 0 4px}
+.ngsf-leadership .team-copy p{color:#687589;font-size:11px;margin:0}
+@media(max-width:850px){.ngsf-leadership{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:420px){.ngsf-leadership{gap:9px}.ngsf-leadership .team-card{padding:14px 8px}.ngsf-leadership .team-photo,.ngsf-leadership .team-initials{width:82px;height:82px;flex-basis:82px}.ngsf-leadership .team-copy h3{font-size:13px}.ngsf-leadership .team-role{font-size:9px}}
+
 </style>
 <link rel="canonical" href="https://helplinengsf-dotcom.github.io/New-Granthi-Singh-Federation/">
 <meta property="og:type" content="website">
@@ -215,7 +228,25 @@ function googleTranslateElementInit(){
 </section>
 
 <section class="ngsf-social-section" aria-labelledby="ngsf-social-title" style="margin:28px 0;padding:24px 16px;background:linear-gradient(120deg,#071a33,#173e68);border:1px solid #e5b947;border-radius:12px;text-align:center;color:#fff"><h2 id="ngsf-social-title" style="margin:0 0 8px;color:#f8e4ad">Follow NGSF on Social Media</h2><p style="margin:0 0 16px;color:#e7edf5">ਸਾਡੇ ਅਧਿਕਾਰਤ ਸੋਸ਼ਲ ਮੀਡੀਆ ਚੈਨਲਾਂ ਨਾਲ ਜੁੜੋ ਅਤੇ ਨਵੀਆਂ ਗਤੀਵਿਧੀਆਂ ਵੇਖੋ।</p><div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap"><a class="btn" href="https://www.facebook.com/share/1CnTueXz4m/" target="_blank" rel="noopener noreferrer">Facebook</a><a class="btn" href="https://www.instagram.com/newgranthisinghfederatio" target="_blank" rel="noopener noreferrer">Instagram</a><a class="btn" href="https://youtube.com/@newgranthisinghfederation-n7m" target="_blank" rel="noopener noreferrer">YouTube</a><a class="btn" href="https://youtube.com/@thekhalastv?si=abQvtD2K-xxf1uH5" target="_blank" rel="noopener noreferrer">The Khalsa TV</a></div></section>
-<h2 class="section-title">Our Commitment</h2><section class="testimonials"><article class="quote"><p>“ਸੇਵਾ • ਏਕਤਾ • ਮਨੁੱਖਤਾ” — Our guiding values are service with humility, unity through cooperation and compassion for all.</p><strong>New Granthi Singh Federation International</strong></article><article class="quote"><p>We welcome community members, volunteers and supporters to participate in meaningful welfare and education initiatives.</p><strong>Join the NGSF Community</strong></article></section>
+<h2 class="section-title" id="ngsf-leadership-title">NGSF Leadership & Team</h2>
+<section class="testimonials ngsf-leadership" aria-labelledby="ngsf-leadership-title">
+ <article class="quote team-card">
+  <img class="team-photo" src="assets/madho-singh-khalsa.png" alt="Bhai Madho Singh Khalsa" loading="lazy">
+  <div class="team-copy"><span class="team-role">FOUNDER &amp; CEO</span><h3>Bhai Madho Singh Khalsa</h3><p>New Granthi Singh Federation International</p></div>
+ </article>
+ <article class="quote team-card">
+  <div class="team-initials" aria-hidden="true">TS</div>
+  <div class="team-copy"><span class="team-role">DIRECTOR</span><h3>Trilochan Singh</h3><p>New Granthi Singh Federation International</p></div>
+ </article>
+ <article class="quote team-card">
+  <img class="team-photo" src="assets/ram-singh-khalsa.jpg" alt="Bhai Ram Singh Khalsa" loading="lazy">
+  <div class="team-copy"><span class="team-role">PROFESSOR</span><h3>Bhai Ram Singh Khalsa</h3><p>Raisingh Nagar</p></div>
+ </article>
+ <article class="quote team-card">
+  <img class="team-photo" src="assets/harmesh-singh-khalsa.jpg" alt="Bhai Harmesh Singh Khalsa" loading="lazy">
+  <div class="team-copy"><span class="team-role">HARYANA STATE CHAIRMAN &amp; PROFESSOR</span><h3>Bhai Harmesh Singh Khalsa</h3><p>Panchkula, Haryana</p></div>
+ </article>
+</section>
 <section class="hukam-section" id="daily-hukamnama" aria-labelledby="hukam-title">
 <div class="hukam-wrap">
 <div class="hukam-heading"><span class="hukam-kicker">ਰੋਜ਼ਾਨਾ ਮੁੱਖਵਾਕ · DAILY MUKHWAK</span><h2 id="hukam-title">ਸ੍ਰੀ ਹਰਿਮੰਦਰ ਸਾਹਿਬ ਦਾ ਅੱਜ ਦਾ ਹੁਕਮਨਾਮਾ</h2><p id="hukam-date">ਹੁਕਮਨਾਮਾ ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ…</p></div>
