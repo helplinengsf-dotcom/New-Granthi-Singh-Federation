@@ -409,3 +409,46 @@ db.auth.getSession().then(({data})=>{if(data.session)check(data.session.user)});
 #certBody .org-status{font-size:10px;font-weight:700;letter-spacing:.15px;color:#fff5dc;margin:3px 0}
 @media print{#certBody .org-status{font-size:8.5px!important;line-height:1.15!important;margin:1px 0!important}}
 </style>
+
+<style>
+/* NGSF official Royal Blue & Gold certificate theme */
+#certBody.cert{
+  color:#123f8c!important;
+  border:9px double #d4af37!important;
+  outline:2px solid #123f8c!important;
+  background:#fffdf7!important;
+}
+#certBody .cert-top{
+  background:linear-gradient(135deg,#082b68 0%,#1249a0 48%,#082b68 100%)!important;
+  color:#fff!important;
+  border-bottom:5px solid #d4af37!important;
+}
+#certBody .cert-top h2,
+#certBody .cert-top p{color:#fff!important}
+#certBody .org-status{color:#ffe7a0!important}
+#certBody .cert .org-logo{border:2px solid #d4af37!important}
+#certBody h1,
+#certBody .names{color:#123f8c!important}
+#certBody .subhead{
+  color:#123f8c!important;
+  border-color:#d4af37!important;
+  background:#fffdf7!important;
+}
+#certBody .detail-line{border-bottom:1px solid #d4af37!important}
+#certBody .detail-line strong{color:#123f8c!important}
+#certBody .english{border-color:#d4af37!important;color:#17365f!important}
+#certBody .signature-block{border-color:#d4af37!important}
+#certBody .signature-item img{border-bottom-color:#123f8c!important}
+#certBody .qr-code-number{color:#123f8c!important}
+#certBody .seal{border-color:#d4af37!important;color:#123f8c!important}
+#certBody .ngsf-seal-image{filter:none!important}
+#certBody .disclaimer{border-color:#d4af37!important;color:#17365f!important}
+#certBody .signrow>div{color:#123f8c!important}
+@media print{
+  #certBody.cert{border-color:#d4af37!important;outline-color:#123f8c!important;background:#fffdf7!important;print-color-adjust:exact!important;-webkit-print-color-adjust:exact!important}
+  #certBody .cert-top{background:linear-gradient(135deg,#082b68 0%,#1249a0 48%,#082b68 100%)!important;border-bottom-color:#d4af37!important}
+  #certBody .cert-top h2,#certBody .cert-top p{color:#fff!important}
+  #certBody .org-status{color:#ffe7a0!important}
+  #certBody h1,#certBody .names{color:#123f8c!important}
+}
+</style>
