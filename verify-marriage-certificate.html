@@ -66,3 +66,44 @@ document.getElementById("clearBtn").addEventListener("click",()=>{input.value=""
 const params=new URLSearchParams(location.search);const scanned=params.get("cert");if(scanned){input.value=scanned;verify(scanned)}
 </script>
 </body></html>
+
+<style>
+/* Premium verification look matched to the supplied NGSF exam-verification reference */
+:root{--blue:#081a3b;--royal:#102b58;--gold:#e0b83f;--pale:#ffedb0;--ink:#e8eefb;--muted:#aebbd0}
+html,body{min-height:100%;background:radial-gradient(ellipse at 50% 18%,#17375f 0%,#0a1b39 42%,#050e21 100%)!important;color:#e8eefb!important}
+header{background:transparent!important;border:0!important;padding:22px 4% 10px!important}
+.brand{max-width:530px!important;gap:12px!important}
+.brand img{width:48px!important;height:48px!important;background:#fff!important;border:2px solid var(--gold)!important}
+.brand h1{font-size:14px!important;letter-spacing:.25px!important;color:#ffe7a0!important}
+.brand p{font-size:10px!important;color:#b9c7dd!important}
+nav{max-width:530px!important;margin:8px auto!important}
+nav a{color:#e8c65e!important;font-size:12px!important}
+main{width:min(530px,92%)!important;margin:clamp(80px,17vh,180px) auto 42px!important}
+.card{background:linear-gradient(150deg,#142747,#0e1d39)!important;border:1px solid #2c4165!important;border-radius:17px!important;padding:23px!important;box-shadow:0 22px 65px #0007!important;color:#e8eefb!important}
+.card:before{height:4px!important;background:linear-gradient(90deg,#d5aa34,#f6df8a,#d5aa34)!important}
+h2{color:#ffe7a0!important;font-size:21px!important;margin:7px 0!important}
+.intro{color:#b8c5d9!important;font-size:13px!important}
+.section-tag{background:#1b3154!important;border:1px solid #8e7029!important;color:#f3d77c!important}
+label{color:#dbe5f5!important;font-size:12px!important}
+input{background:#101f3b!important;color:#fff!important;border:1px solid #354968!important;border-radius:8px!important}
+input::placeholder{color:#8495b0!important}
+button{background:linear-gradient(120deg,#f0d477,#c89a2b)!important;color:#14233e!important;border-radius:8px!important;box-shadow:none!important}
+button.secondary{background:transparent!important;color:#f1d77d!important;border:1px solid #9c7b30!important}
+.msg{background:#102c3c!important;border:1px solid #285e55!important;color:#e9f5ef!important}
+.msg.err{background:#3a1d2a!important;border-color:#8c4051!important;color:#ffe3e8!important}
+.msg.loading{background:#172b4b!important;border-color:#3a5680!important;color:#e6efff!important}
+.verified-head{background:#104236!important;border:1px solid #2b8065!important}
+.verified-head h3{color:#c5f5d9!important}
+.verified-head small{color:#a5d9bd!important}
+.check{background:#1c9a65!important;color:#fff!important}
+.details{grid-template-columns:1fr!important;gap:0!important}
+.detail{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:14px!important;background:transparent!important;border:0!important;border-bottom:1px solid #304361!important;border-radius:0!important;padding:9px 0!important}
+.detail span{color:#aebbd0!important;font-size:12px!important;text-transform:none!important;letter-spacing:0!important;font-weight:500!important}
+.detail strong{color:#f0f4fb!important;font-size:13px!important;text-align:right!important;margin:0!important}
+.certno{background:#192d4d!important;border:1px solid #806b32!important}
+.certno span{color:#e6ce82!important}
+.certno strong{color:#fff!important;font-size:15px!important}
+.footer-note{border-color:#354966!important;color:#aebbd0!important;font-size:11px!important}
+.footbrand{color:#8c9bb2!important}
+@media(max-width:620px){main{margin:clamp(95px,18vh,175px) auto 35px!important}.card{padding:22px 18px!important}.brand img{width:44px!important;height:44px!important}.detail{gap:8px!important}}
+</style>
