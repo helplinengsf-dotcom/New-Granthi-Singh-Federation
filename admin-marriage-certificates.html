@@ -223,3 +223,31 @@ db.auth.getSession().then(({data})=>{if(data.session)check(data.session.user)});
  header,#login,#panel,.no-print{display:none!important}
 }
 </style>
+
+
+<style>
+/* Ensure every certificate section spans the printable page width */
+@media print{
+ #certBody.cert{align-items:stretch!important}
+ #certBody .cert-top,
+ #certBody .serial,
+ #certBody .subhead,
+ #certBody h1,
+ #certBody .intro,
+ #certBody .names,
+ #certBody .details,
+ #certBody .english,
+ #certBody .signature-block,
+ #certBody .verify-row,
+ #certBody .signrow,
+ #certBody .disclaimer{width:100%!important;max-width:100%!important;box-sizing:border-box!important}
+ #certBody .couple-photo-wrap{align-self:center!important;width:auto!important}
+ #certBody .couple-photo-wrap img{width:auto!important;max-width:190px!important;height:125px!important}
+ #certBody .details{padding:0 8mm!important}
+ #certBody .detail-line{width:100%!important}
+ #certBody .cert-top{border-radius:4px 4px 28px 28px!important}
+ #certBody .signature-block{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ #certBody .verify-row{display:flex!important;justify-content:space-around!important}
+ #certBody .signrow{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+</style>
