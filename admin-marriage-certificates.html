@@ -251,3 +251,34 @@ db.auth.getSession().then(({data})=>{if(data.session)check(data.session.user)});
  #certBody .signrow{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important}
 }
 </style>
+
+
+<style>
+/* Final A4 print width enforcement for flex children */
+@media print{
+ #certBody.cert{align-items:stretch!important}
+ #certBody .cert-top,
+ #certBody .serial,
+ #certBody .subhead,
+ #certBody h1,
+ #certBody .intro,
+ #certBody .names,
+ #certBody .details,
+ #certBody .english,
+ #certBody .signature-block,
+ #certBody .verify-row,
+ #certBody .signrow,
+ #certBody .disclaimer{
+   display:block!important;flex:0 0 100%!important;align-self:stretch!important;
+   width:100%!important;min-width:0!important;max-width:none!important;
+   box-sizing:border-box!important
+ }
+ #certBody .subhead{display:table!important}
+ #certBody .signature-block{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ #certBody .verify-row{display:flex!important;flex-direction:row!important;justify-content:space-around!important;align-items:center!important}
+ #certBody .signrow{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ #certBody .details{padding-left:5mm!important;padding-right:5mm!important}
+ #certBody .detail-line{display:block!important;width:100%!important}
+ #certBody .cert-top{padding-left:12mm!important;padding-right:12mm!important}
+}
+</style>
