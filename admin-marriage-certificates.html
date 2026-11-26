@@ -66,3 +66,7 @@ $("loginBtn").onclick=async()=>{const {data,error}=await db.auth.signInWithPassw
 $("refresh").onclick=load;$("logout").onclick=async()=>{await db.auth.signOut();location.reload()};
 db.auth.getSession().then(({data})=>{if(data.session)check(data.session.user)});
 </script></body></html>
+<style>
+/* Remove the horizontal rule above the signature blocks */
+#certBody .signrow>div{border-top:0!important}
+</style>
