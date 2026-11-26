@@ -59,6 +59,10 @@ async function verify(number){
  const head=document.createElement("div");head.className="verified-head";const check=document.createElement("div");check.className="check";check.textContent="✓";const title=document.createElement("div");const h=document.createElement("h3");h.textContent="Verified – Active";const small=document.createElement("small");small.textContent="NGSF official record matched";title.append(h,small);head.append(check,title);out.append(head);
  const certno=document.createElement("div");certno.className="certno";const label=document.createElement("span");label.textContent="VERIFIED CERTIFICATE NUMBER";const val=document.createElement("strong");val.textContent=data.certificate_number;certno.append(label,val);out.append(certno);
  const grid=document.createElement("div");grid.className="details";addDetail(grid,"Groom / ਲਾੜਾ",data.groom_full_name);addDetail(grid,"Bride / ਲਾੜੀ",data.bride_full_name);addDetail(grid,"Marriage Date / ਵਿਆਹ ਦੀ ਮਿਤੀ",data.marriage_date);addDetail(grid,"Issue Date / ਜਾਰੀ ਕਰਨ ਦੀ ਮਿਤੀ",data.issued_date);addDetail(grid,"Status / ਸਥਿਤੀ","Active");out.append(grid);
+ const actionRow=document.createElement("div");actionRow.style.cssText="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px";
+ const viewBtn=document.createElement("button");viewBtn.type="button";viewBtn.textContent="View Certificate";viewBtn.onclick=()=>openPublicCertificate(data.certificate_number,false);
+ const pdfBtn=document.createElement("button");pdfBtn.type="button";pdfBtn.textContent="Download / Save PDF";pdfBtn.className="secondary";pdfBtn.onclick=()=>openPublicCertificate(data.certificate_number,true);
+ actionRow.append(viewBtn,pdfBtn);out.append(actionRow);
  const note=document.createElement("p");note.className="footer-note";note.textContent="ਇਹ ਸਰਟੀਫਿਕੇਟ NGSF ਦੇ ਡਿਜ਼ੀਟਲ ਰਿਕਾਰਡ ਵਿੱਚ Active ਹੈ। ਇਹ ਸੰਸਥਾਗਤ ਸਰਟੀਫਿਕੇਟ ਹੈ, ਸਰਕਾਰੀ ਵਿਆਹ ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਸਰਟੀਫਿਕੇਟ ਨਹੀਂ।";out.append(note);
 }
 document.getElementById("vform").addEventListener("submit",e=>{e.preventDefault();verify(input.value)});
@@ -107,3 +111,30 @@ button.secondary{background:transparent!important;color:#f1d77d!important;border
 .footbrand{color:#8c9bb2!important}
 @media(max-width:620px){main{margin:clamp(95px,18vh,175px) auto 35px!important}.card{padding:22px 18px!important}.brand img{width:44px!important;height:44px!important}.detail{gap:8px!important}}
 </style>
+
+<script>
+async function openPublicCertificate(number,autoPrint){
+ const tab=window.open("about:blank","_blank");
+ if(!tab){alert("Please allow pop-ups for this site.");return}
+ tab.document.write("<title>Loading NGSF Certificate</title><p style='font:16px Arial;padding:30px'>Loading verified certificate…</p>");
+ const result=await db.rpc("get_public_marriage_certificate",{p_certificate_number:number});
+ const data=result.data;
+ if(result.error||!data){tab.document.body.innerHTML="<p style='font:16px Arial;padding:30px'>Certificate details could not be loaded. Please contact NGSF.</p>";return}
+ const esc=v=>String(v??"—").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+ const verifyUrl=location.origin+location.pathname+"?cert="+encodeURIComponent(number);
+ const qr="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+encodeURIComponent(verifyUrl);
+ const html='<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NGSF Marriage Certificate</title>'+
+ '<style>@page{size:A4 portrait;margin:10mm}*{box-sizing:border-box}body{margin:0;background:#eef2f8;color:#102b58;font-family:Georgia,serif}.sheet{width:190mm;min-height:277mm;margin:15px auto;padding:9mm;border:8px double #d4af37;outline:2px solid #123f8c;outline-offset:-15px;background:#fffdf7}.head{background:linear-gradient(120deg,#082b68,#174fa2,#082b68);color:#fff;text-align:center;padding:18px 12px;border-bottom:5px solid #d4af37;border-radius:5px 5px 22px 22px}.head h2{margin:4px 0;font-size:21px}.head p{margin:3px 0;font:12px Arial;color:#ffe7a0}.cin{text-align:center;font:11px Arial;color:#17365f;margin:9px 0 18px}.tag{display:inline-block;border:1px solid #d4af37;border-radius:30px;padding:5px 22px;font:bold 12px Arial;color:#123f8c}h1{text-align:center;color:#123f8c;font-size:28px;margin:12px 0 5px}.sub{text-align:center;font:14px Arial;color:#17365f}.statement{text-align:center;font:15px/1.7 Arial;margin:18px 12px}.names{display:flex;justify-content:center;gap:22px;text-align:center;margin:18px 0;font-size:21px;font-weight:bold;color:#123f8c}.names span{display:block;font:11px Arial;color:#7b6525;margin-top:5px}.details{margin:18px 6px;border-top:1px solid #d4af37}.line{display:flex;gap:12px;justify-content:space-between;padding:9px 6px;border-bottom:1px solid #d8c99e;font:13px Arial}.line b{color:#123f8c}.line span{text-align:right;color:#263b5b}.bottom{display:flex;justify-content:space-around;align-items:center;gap:12px;margin:22px 0;text-align:center;font:10px Arial;color:#17365f}.bottom img{width:94px;height:94px}.seal{width:78px;height:78px;border:2px solid #d4af37;border-radius:50%;display:grid;place-items:center;color:#123f8c;font:bold 10px Arial}.signs{display:flex;justify-content:space-between;gap:25px;margin:25px 15px 10px;text-align:center;font:11px Arial;color:#123f8c}.signs div{width:45%;border-top:1px solid #d4af37;padding-top:7px}.disclaimer{text-align:center;border-top:1px solid #d4af37;padding-top:10px;margin-top:16px;font:10px/1.5 Arial;color:#4c5d76}.actions{text-align:center;margin:15px}.actions button{padding:12px 18px;border:0;border-radius:8px;background:#d4af37;color:#102b58;font-weight:bold;margin:4px}@media print{body{background:white}.sheet{margin:0 auto}.actions{display:none}}@media(max-width:700px){.sheet{width:100%;min-height:0;margin:0;padding:5mm}.head h2{font-size:16px}.names{font-size:16px}.line{font-size:11px}}</style></head><body>'+
+ '<div class="actions"><button onclick="window.print()">Print / Save as PDF</button><button onclick="window.close()">Close</button></div>'+
+ '<main class="sheet"><header class="head"><h2>ਨਿਊ ਗ੍ਰੰਥੀ ਸਿੰਘ ਫੈਡਰੇਸ਼ਨ ਇੰਟਰਨੈਸ਼ਨਲ</h2><p>NEW GRANTHI SINGH FEDERATION INTERNATIONAL</p><p>A Section 8 Company under the Companies Act, 2013 | Non-Profit Organization (NGO)</p></header>'+
+ '<div class="cin">Regd. CIN: U85300PB2022NPL056363<br>Plot No. 01, Sheranwala, Near Petrol Pump, Sri Muktsar Sahib, Punjab – 152114</div><div style="text-align:center"><span class="tag">INSTITUTIONAL CERTIFICATE</span></div><h1>ਵਿਆਹ ਦਾ ਸਰਟੀਫਿਕੇਟ</h1><p class="sub">MARRIAGE CERTIFICATE</p>'+
+ '<p class="statement">This is to certify that the following couple’s marriage details have been verified and this institutional certificate has been issued by the authorized NGSF Administration.</p>'+
+ '<div class="names"><div>'+esc(data.groom_full_name)+'<span>ਲਾੜਾ / Groom<br>Father: '+esc(data.groom_father_name)+'</span></div><div>&amp;</div><div>'+esc(data.bride_full_name)+'<span>ਲਾੜੀ / Bride<br>Father: '+esc(data.bride_father_name)+'</span></div></div>'+
+ '<div class="details"><div class="line"><b>Certificate Number</b><span>'+esc(data.certificate_number)+'</span></div><div class="line"><b>Marriage Date</b><span>'+esc(data.marriage_date)+'</span></div><div class="line"><b>Marriage Place</b><span>'+esc(data.marriage_place)+'</span></div><div class="line"><b>Issue Date</b><span>'+esc(data.issued_date)+'</span></div><div class="line"><b>Verification Status</b><span>ACTIVE – VERIFIED</span></div></div>'+
+ '<div class="bottom"><div><img src="'+qr+'" alt="QR code"><br>Scan to verify online</div><div class="seal">NGSF<br>OFFICIAL<br>SEAL</div><div><b>ONLINE RECORD</b><br>'+esc(data.certificate_number)+'<br>Royal Blue &amp; Gold</div></div>'+
+ '<div class="signs"><div>Founder / Authorized Signatory<br>New Granthi Singh Federation</div><div>Haryana State Chairman &amp; Professor<br>Authorized Signatory</div></div>'+
+ '<div class="disclaimer">This is an institutional certificate issued by New Granthi Singh Federation International. It is not a government marriage registration certificate. Verification confirms the active record held by NGSF only.</div></main></body></html>';
+ tab.document.open();tab.document.write(html);tab.document.close();
+ if(autoPrint){tab.onload=()=>setTimeout(()=>tab.print(),700)}
+}
+</script>
