@@ -172,3 +172,54 @@ db.auth.getSession().then(({data})=>{if(data.session)check(data.session.user)});
  header,#login,#panel,.no-print{display:none!important}
 }
 </style>
+
+
+<style>
+/* Final mobile-friendly A4 portrait certificate: fill page, no top-only landscape strip */
+@media print{
+ @page{size:A4 portrait;margin:5mm}
+ html,body{margin:0!important;padding:0!important;width:100%!important;background:#fff!important}
+ main{width:100%!important;margin:0!important;padding:0!important}
+ #certificate{display:block!important;margin:0!important;padding:0!important;border:0!important;box-shadow:none!important}
+ #certBody.cert{
+  box-sizing:border-box!important;width:200mm!important;max-width:200mm!important;height:287mm!important;min-height:287mm!important;
+  margin:0 auto!important;padding:7mm 8mm!important;overflow:hidden!important;zoom:1!important;
+  display:flex!important;flex-direction:column!important;justify-content:space-between!important;gap:2mm!important;
+  border:7px double #123e70!important;outline:2px solid #d5ad4c!important;outline-offset:-13px!important;
+  text-align:center!important;break-inside:avoid!important;page-break-inside:avoid!important;
+  print-color-adjust:exact!important;-webkit-print-color-adjust:exact!important
+ }
+ #certBody .cert-top{margin:0!important;padding:9px 12px 8px!important}
+ #certBody .org-logo{width:54px!important;height:54px!important}
+ #certBody .cert-top h2{font-size:19px!important;margin:4px 0 2px!important}
+ #certBody .cert-top p{font-size:9px!important;line-height:1.25!important;margin:1px 0!important}
+ #certBody .serial{font-size:10px!important;margin:0!important;text-align:right!important}
+ #certBody .subhead{font-size:13px!important;padding:2px 16px!important;margin:0 auto!important}
+ #certBody h1{font-size:26px!important;margin:0!important}
+ #certBody .intro{font-size:12px!important;margin:0!important}
+ #certBody .names{font-size:23px!important;margin:0!important}
+ #certBody .couple-photo-wrap{margin:0 auto!important}
+ #certBody .couple-photo-wrap img{max-width:165px!important;height:105px!important;margin:0 auto!important}
+ #certBody .couple-photo-wrap p{font-size:8px!important;margin:2px 0!important}
+ #certBody .details{font-size:11px!important;line-height:1.45!important;margin:0!important;text-align:left!important}
+ #certBody .detail-line{padding:3px 4px!important}
+ #certBody .english{font-size:10px!important;line-height:1.35!important;margin:0!important;padding:5px 8px!important}
+ #certBody .signature-block{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px 5px!important;margin:0!important;padding:5px 0!important}
+ #certBody .signature-item{width:auto!important;min-width:0!important;font-size:8px!important}
+ #certBody .signature-item img{height:28px!important;margin:0 auto 2px!important}
+ #certBody .signature-item small{font-size:8px!important}
+ #certBody .verify-row{display:flex!important;justify-content:space-around!important;align-items:center!important;gap:8px!important;margin:0!important}
+ #certBody #qr{width:70px!important;height:70px!important}
+ #certBody #barcode{width:165px!important;height:42px!important}
+ #certBody .verify-row p,#certBody .qr-code-number{font-size:8px!important;margin:2px 0!important}
+ #certBody .ngsf-seal-image{width:70px!important;height:70px!important}
+ #certBody .signrow{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:5px!important;margin:0!important;font-size:9px!important}
+ #certBody .signrow>div{width:auto!important;min-width:0!important;border:0!important;padding:0!important}
+ #certBody .president-signature,#certBody .founder-signature{min-height:48px!important;font-size:8px!important}
+ #certBody .president-signature img{width:105px!important;height:30px!important}
+ #certBody .founder-signature svg{width:125px!important;height:35px!important}
+ #certBody .president-signature strong,#certBody .founder-signature strong{font-size:8px!important}
+ #certBody .disclaimer{font-size:8px!important;line-height:1.3!important;margin:0!important;padding-top:4px!important}
+ header,#login,#panel,.no-print{display:none!important}
+}
+</style>
