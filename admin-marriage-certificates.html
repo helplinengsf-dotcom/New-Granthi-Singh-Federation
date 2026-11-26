@@ -337,3 +337,39 @@ db.auth.getSession().then(({data})=>{if(data.session)check(data.session.user)});
   header, #login, #panel, .no-print { display:none!important; }
 }
 </style>
+
+
+<style>
+/* Final page-fit correction: reserve visible space for official signatories and verification footer */
+@media print {
+  #certBody.cert { height:287mm!important; min-height:287mm!important; padding:5mm 7mm!important; gap:0.8mm!important; justify-content:flex-start!important; }
+  #certBody .cert-top { padding:5px 10px!important; }
+  #certBody .org-logo { width:48px!important; height:48px!important; }
+  #certBody .cert-top h2 { font-size:17px!important; margin:2px 0!important; }
+  #certBody .cert-top p { font-size:8px!important; line-height:1.15!important; margin:0!important; }
+  #certBody .serial { font-size:9px!important; line-height:1.2!important; }
+  #certBody .subhead { font-size:11px!important; padding:1px 12px!important; }
+  #certBody h1 { font-size:22px!important; line-height:1.1!important; }
+  #certBody .intro { font-size:11px!important; }
+  #certBody .names { font-size:19px!important; line-height:1.15!important; }
+  #certBody .couple-photo-wrap img { height:92px!important; max-width:160px!important; }
+  #certBody .couple-photo-wrap p { font-size:8px!important; }
+  #certBody .details { font-size:10.5px!important; line-height:1.25!important; }
+  #certBody .detail-line { padding:1.5px 3px!important; }
+  #certBody .english { font-size:9px!important; line-height:1.2!important; padding:3px 6px!important; }
+  #certBody .signature-block { gap:4px 6px!important; padding:3px 0!important; }
+  #certBody .signature-item img { height:25px!important; }
+  #certBody .signature-item small { font-size:7.5px!important; }
+  #certBody .verify-row { min-height:62px!important; padding:2px 0!important; }
+  #certBody #qr { width:58px!important; height:58px!important; }
+  #certBody #barcode { width:145px!important; height:34px!important; }
+  #certBody .ngsf-seal-image { width:58px!important; height:58px!important; }
+  #certBody .verify-row p, #certBody .qr-code-number { font-size:7px!important; line-height:1.1!important; margin:1px 0!important; }
+  #certBody .signrow { min-height:48px!important; display:grid!important; grid-template-columns:repeat(3,minmax(0,1fr))!important; align-items:end!important; margin:1mm 0 0!important; font-size:8px!important; }
+  #certBody .president-signature, #certBody .founder-signature { min-height:42px!important; font-size:7px!important; }
+  #certBody .president-signature img { width:90px!important; height:25px!important; }
+  #certBody .founder-signature svg { width:105px!important; height:29px!important; }
+  #certBody .president-signature strong, #certBody .founder-signature strong { font-size:7.5px!important; }
+  #certBody .disclaimer { font-size:7px!important; line-height:1.15!important; padding-top:2px!important; margin-top:1mm!important; }
+}
+</style>
