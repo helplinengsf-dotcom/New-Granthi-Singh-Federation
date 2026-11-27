@@ -154,7 +154,9 @@ body{top:0!important}
 .shopping-menu>summary:after{content:" ▾"}
 .shopping-menu[open]>summary{background:#f8e4ad}
 .shopping-dropdown{position:absolute;top:calc(100% + 5px);left:0;min-width:190px;padding:6px;background:#071a33;border:1px solid #e5b947;border-radius:8px;box-shadow:0 8px 22px #0005;display:flex;flex-direction:column}
-.shopping-dropdown a{display:block!important;padding:10px 12px!important;border-radius:5px;color:#fff!important;font-size:13px!important;text-decoration:none}
+.shopping-dropdown a{display:flex!important;align-items:center;gap:11px;padding:9px 12px!important;border-radius:5px;color:#fff!important;font-size:13px!important;text-decoration:none;min-height:42px}
+.shopping-dropdown a img{width:25px;height:25px;object-fit:contain;border-radius:5px;background:#fff;padding:2px;flex:0 0 25px}
+.shopping-dropdown .ngsf-mart-link img{width:29px;height:29px;flex-basis:29px}
 .shopping-dropdown a:hover,.shopping-dropdown a:focus{background:#e5b947!important;color:#071a33!important}
 .shopping-dropdown .ngsf-mart-link{color:#f8e4ad!important;font-weight:900;border-bottom:1px solid #806b3c;margin-bottom:4px}
 @media(max-width:850px){.shopping-menu{display:block;width:100%;margin:4px 0}.shopping-menu>summary{display:block}.shopping-dropdown{position:static;margin-top:5px;width:100%;box-shadow:none}.shopping-dropdown a{padding:10px 14px!important}}
@@ -196,13 +198,13 @@ function googleTranslateElementInit(){
 <details class="shopping-menu">
 <summary>🛍️ SHOPPING</summary>
 <div class="shopping-dropdown">
-<a href="https://helplinengsf-dotcom.github.io/NGSF-MART/" target="_blank" rel="noopener noreferrer" class="ngsf-mart-link">🛍️ NGSF MART</a>
-<a href="https://www.flipkart.com/" target="_blank" rel="noopener noreferrer">Flipkart</a>
-<a href="https://www.amazon.in/" target="_blank" rel="noopener noreferrer">Amazon</a>
-<a href="https://www.alibaba.com/" target="_blank" rel="noopener noreferrer">Alibaba</a>
-<a href="https://www.meesho.com/" target="_blank" rel="noopener noreferrer">Meesho</a>
-<a href="https://www.made-in-china.com/" target="_blank" rel="noopener noreferrer">Made-in-China</a>
-<a href="https://www.1mg.com/" target="_blank" rel="noopener noreferrer">Tata 1mg</a>
+<a href="https://helplinengsf-dotcom.github.io/NGSF-MART/" target="_blank" rel="noopener noreferrer" class="ngsf-mart-link"><img src="https://www.google.com/s2/favicons?domain=helplinengsf-dotcom.github.io&sz=64" alt="NGSF MART logo">NGSF MART</a>
+<a href="https://www.flipkart.com/" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=flipkart.com&sz=64" alt="Flipkart logo">Flipkart</a>
+<a href="https://www.amazon.in/" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=amazon.in&sz=64" alt="Amazon logo">Amazon</a>
+<a href="https://www.alibaba.com/" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=alibaba.com&sz=64" alt="Alibaba logo">Alibaba</a>
+<a href="https://www.meesho.com/" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=meesho.com&sz=64" alt="Meesho logo">Meesho</a>
+<a href="https://www.made-in-china.com/" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=made-in-china.com&sz=64" alt="Made-in-China logo">Made-in-China</a>
+<a href="https://www.1mg.com/" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=1mg.com&sz=64" alt="Tata 1mg logo">Tata 1mg</a>
 </div>
 </details>
 <div class="translate-menu"><span>🌐 Language</span><div id="google_translate_element" aria-label="Select website language"></div></div>
