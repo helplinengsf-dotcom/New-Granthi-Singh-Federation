@@ -27,7 +27,7 @@ footer{text-align:center;color:var(--muted);padding:24px;font-size:12px}
 <div class="grid">
 <div>
 <label for="campaign">Campaign</label>
-<select id="campaign"><option value="santhiya">Online Gurbani Santhiya</option><option value="membership">NGSF Membership</option><option value="seva">Seva and Donations</option><option value="events">Events and Activities</option><option value="news">Official News and Updates</option></select>
+<select id="campaign"><option value="santhiya">Online Gurbani Santhiya</option><option value="membership">NGSF Membership</option><option value="seva">Seva and Donations</option><option value="events">Events and Activities</option><option value="community">Community Seva Photograph</option><option value="news">Official News and Updates</option></select>
 <label for="language">Language</label>
 <select id="language"><option value="both">Punjabi + English</option><option value="pa">Punjabi</option><option value="en">English</option></select>
 <label for="audience">Audience</label>
@@ -63,6 +63,7 @@ const campaigns={
 santhiya:{pa:'ਨਿਊ ਗ੍ਰੰਥੀ ਸਿੰਘ ਫੈਡਰੇਸ਼ਨ ਇੰਟਰਨੈਸ਼ਨਲ ਵੱਲੋਂ ਆਨਲਾਈਨ ਗੁਰਬਾਣੀ ਸੰਥਿਆ ਅਤੇ ਕਥਾ ਸਿਖਲਾਈ। ਘਰ ਬੈਠੇ ਸਿੱਖਣ ਦੇ ਇੱਛੁਕ ਸਿੰਘ ਅਤੇ ਸਿੰਘਣੀਆਂ ਸੰਪਰਕ ਕਰਨ।',en:'New Granthi Singh Federation International offers online Gurbani Santhiya and Katha learning. Those interested in learning from anywhere are welcome to contact us.',url:'online-santhiya.html'},
 membership:{pa:'ਨਿਊ ਗ੍ਰੰਥੀ ਸਿੰਘ ਫੈਡਰੇਸ਼ਨ ਇੰਟਰਨੈਸ਼ਨਲ ਨਾਲ ਜੁੜੋ। ਸੰਸਥਾ ਦੀਆਂ ਸੇਵਾਵਾਂ ਅਤੇ ਮੈਂਬਰਸ਼ਿਪ ਬਾਰੇ ਜਾਣਕਾਰੀ ਲਈ ਅਧਿਕਾਰਤ ਵੈੱਬਸਾਈਟ ਵੇਖੋ।',en:'Connect with New Granthi Singh Federation International. Visit our official website to learn about our work and membership.',url:'membership.html'},
 seva:{pa:'ਸੇਵਾ, ਸਹਿਯੋਗ ਅਤੇ ਮਨੁੱਖਤਾ ਦੇ ਕਾਰਜਾਂ ਵਿੱਚ ਆਪਣਾ ਯੋਗਦਾਨ ਪਾਓ। ਦਾਨ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਸਿਰਫ਼ ਅਧਿਕਾਰਤ NGSF ਵੈੱਬਸਾਈਟ ਦੀ ਜਾਣਕਾਰੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ।',en:'Support seva and humanitarian activities. Please verify donation details only through the official NGSF website.',url:'donations.html'},
+community:{pa:'ਨਿਊ ਗ੍ਰੰਥੀ ਸਿੰਘ ਫੈਡਰੇਸ਼ਨ ਇੰਟਰਨੈਸ਼ਨਲ ਦੀਆਂ ਸੰਗਤ ਅਤੇ ਸੇਵਾ ਨਾਲ ਜੁੜੀਆਂ ਗਤੀਵਿਧੀਆਂ ਦੀ ਇੱਕ ਝਲਕ। ਆਓ, ਗੁਰਮਤਿ, ਸੇਵਾ ਅਤੇ ਮਨੁੱਖਤਾ ਦੀ ਭਲਾਈ ਦੇ ਕਾਰਜਾਂ ਨਾਲ ਜੁੜੀਏ।',en:'A glimpse of the sangat and community seva activities of New Granthi Singh Federation International. Join us in supporting Gurmat, service and the welfare of humanity.',url:'activities.html'},
 events:{pa:'ਨਿਊ ਗ੍ਰੰਥੀ ਸਿੰਘ ਫੈਡਰੇਸ਼ਨ ਦੀਆਂ ਗਤੀਵਿਧੀਆਂ ਅਤੇ ਆਉਣ ਵਾਲੇ ਸਮਾਗਮਾਂ ਬਾਰੇ ਤਾਜ਼ਾ ਜਾਣਕਾਰੀ ਲਈ ਸਾਡੀ ਵੈੱਬਸਾਈਟ ਵੇਖੋ।',en:'Explore activities and upcoming events from New Granthi Singh Federation International on our official website.',url:'activities.html'},
 news:{pa:'NGSF ਦੀਆਂ ਅਧਿਕਾਰਤ ਖ਼ਬਰਾਂ ਅਤੇ ਅਪਡੇਟਾਂ ਲਈ ਸਾਡੀ ਵੈੱਬਸਾਈਟ ਵੇਖੋ। ਜਾਣਕਾਰੀ ਸਾਂਝੀ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਤਸਦੀਕ ਜ਼ਰੂਰ ਕਰੋ।',en:'Visit the NGSF website for official news and updates. Please verify information before sharing.',url:'news.html'}
 };
